@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System · อามัน ข้าวหมกไก่</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@400;500;700;800&display=swap">
+<style>
+:root{
+  --cream:#FBF4E8; --paper:#FFFDF8; --sand:#F3E6D0; --line:#E6D5B8;
+  --ink:#2E1C17; --ink-2:#6B5246; --ink-3:#9A8273;
+  --brand:#C8401A; --brand-hover:#A9340F; --brand-soft:#FBE3D6; --accent:#E8602A; --turmeric:#E3A33A;
+  --grab:#00B14F; --lineman:#06C755;
+  --r-sm:6px; --r:10px; --r-lg:16px;
+  --font:'Noto Sans Thai Looped',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7}
+h1,h2,h3{margin:0;line-height:1.25;font-weight:800}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+header.top{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+header.top h1{font-size:44px;margin:8px 0 12px}
+header.top p{color:var(--ink-2);max-width:640px}
+.ns{margin-top:24px;padding:18px 22px;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--brand);border-radius:var(--r);max-width:760px}
+.ns b{display:block;font-size:13px;color:var(--brand);letter-spacing:.04em}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+.num{font-size:13px;font-weight:700;color:var(--ink-3)}
+section>.wrap>h2{font-size:28px;margin:4px 0 8px}
+.desc{color:var(--ink-2);margin-bottom:28px;max-width:720px}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.sw{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.sw .c{height:96px;display:flex;align-items:flex-end;padding:10px 12px;font-size:12px;font-weight:700}
+.sw .m{padding:12px 14px;font-size:13px;line-height:1.55}
+.sw .m b{display:block;font-size:15px}
+.sw code{font-size:12px;color:var(--ink-2)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace}
+.group-label{font-size:14px;font-weight:700;margin:28px 0 12px;color:var(--ink-2)}
+.type-row{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline;padding:18px 0;border-bottom:1px dashed var(--line)}
+.type-row small{font-size:13px;color:var(--ink-3);line-height:1.5}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px}
+.label{font-size:12px;font-weight:700;color:var(--ink-3);margin-bottom:12px;letter-spacing:.04em}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.note{font-size:13px;color:var(--ink-2);margin-top:12px;line-height:1.6}
+ul.rules{margin:0;padding-left:20px;color:var(--ink-2)}
+ul.rules li{margin:4px 0}
+.do,.dont{border-radius:var(--r);padding:18px 20px;border:1px solid var(--line);background:var(--paper)}
+.do h3,.dont h3{font-size:16px;margin-bottom:8px}
+.do h3{color:#1F7A4A}.dont h3{color:var(--brand)}
+
+/* ==== Components (same as index.html) ==== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:var(--r);font:700 17px/1 var(--font);text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap;color:inherit}
+.btn-primary{background:var(--brand);color:#fff}.btn-primary:hover,.btn-primary.is-hover{background:var(--brand-hover)}
+.btn-app{background:var(--paper);color:var(--ink);border-color:var(--line)}.btn-app:hover,.btn-app.is-hover{border-color:var(--ink)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:15px}.btn-lg{min-height:60px;font-size:18px;padding:0 28px}
+.is-focus{outline:3px solid var(--turmeric);outline-offset:3px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:var(--brand)}
+.eyebrow::before{content:"";width:28px;height:10px;background:repeating-linear-gradient(180deg,var(--accent) 0 2px,transparent 2px 4px)}
+.tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-size:14px;font-weight:700}
+.tag .ok{width:18px;height:18px;border-radius:50%;background:var(--brand);color:#fff;display:inline-flex;align-items:center;justify-content:center}
+.incl{display:flex;flex-wrap:wrap;gap:8px}.incl span{font-size:14px;padding:4px 12px;border-radius:999px;background:var(--sand);color:var(--ink-2);font-weight:500}
+.cat{font:700 15px/1 var(--font);padding:12px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink-2)}
+.cat.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.price{font-weight:800;color:var(--brand);white-space:nowrap}
+.price small{font-size:.55em;font-weight:700;margin-left:2px}
+.item{display:flex;flex-direction:column;gap:12px;max-width:240px}
+.item-img{aspect-ratio:1/1;border-radius:var(--r);overflow:hidden}
+.item-img img{width:100%;height:100%;object-fit:cover;display:block}
+.item-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.item h3{font-size:19px;font-weight:700}
+.chip{display:inline-flex;flex-direction:column;background:var(--paper);border-radius:var(--r);padding:14px 18px;box-shadow:0 14px 30px -14px rgba(46,28,23,.4);line-height:1.3}
+.chip small{font-size:13px;color:var(--ink-2)}.chip b{font-size:26px;color:var(--brand)}
+.fact{display:flex;flex-direction:column;gap:2px}.fact small{font-size:14px;color:var(--ink-3);font-weight:500}.fact b{font-size:19px}
+.ph{color:var(--ink-3);font-weight:500}
+.stripes{height:14px;background:repeating-linear-gradient(180deg,var(--accent) 0 2px,transparent 2px 4px);opacity:.55}
+.sp-bar{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--ink-2)}
+.sp-bar i{display:block;background:var(--brand-soft);border:1px solid var(--accent);height:16px}
+.rad{width:88px;height:88px;background:var(--sand);border:1.5px solid var(--ink-3)}
+@media (max-width:860px){.g4{grid-template-columns:1fr 1fr}.g3,.g2{grid-template-columns:1fr}.type-row{grid-template-columns:1fr;gap:6px}.wrap{padding:0 16px}header.top h1{font-size:32px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="eyebrow">Design System · v1 · 9 พ.ย. 2569</span>
+    <h1>อามัน ข้าวหมกไก่</h1>
+    <p>ชุดกติกาดีไซน์ของเว็บร้าน ใช้ค่าเดียวกับหน้า <code>index.html</code> ทุกตัว สีดึงจากโลโก้บนผ้ากันเปื้อน (ไก่ลายเส้นสีส้มอิฐ ตัวอักษรครีม พื้นน้ำตาลเข้ม) แล้วกลับด้านเป็นโทนสว่าง เพราะลูกค้าไม่เอาเว็บโทนมืด</p>
+    <div class="ns"><b>ดาวเหนือของดีไซน์</b>จานจริงถ่ายจากด้านบนบนพื้นครีมอุ่น สีส้มอิฐจากโลโก้มีหน้าที่เดียวคือพาไปปุ่ม Google Maps / GrabFood / LINE MAN</div>
+  </div>
+</header>
+
+<!-- 1 COLOR -->
+<section>
+  <div class="wrap">
+    <span class="num">01</span><h2>สี</h2>
+    <p class="desc">พื้นหลังเป็นครีม ตัวอักษรเป็นน้ำตาลจากผ้ากันเปื้อน ส้มอิฐใช้เฉพาะปุ่มหลัก ราคา และลายตกแต่ง ไม่มีโหมดมืด</p>
+    <div class="group-label">พื้นหลัง</div>
+    <div class="grid g4">
+      <div class="sw"><div class="c" style="background:var(--cream)"></div><div class="m"><b>Cream</b><code>--cream #FBF4E8</code><br>พื้นหลักของหน้า</div></div>
+      <div class="sw"><div class="c" style="background:var(--paper)"></div><div class="m"><b>Paper</b><code>--paper #FFFDF8</code><br>การ์ด แถบข้อมูล ปุ่มรอง</div></div>
+      <div class="sw"><div class="c" style="background:var(--sand)"></div><div class="m"><b>Sand</b><code>--sand #F3E6D0</code><br>section สลับ (เมนู, footer)</div></div>
+      <div class="sw"><div class="c" style="background:var(--line)"></div><div class="m"><b>Line</b><code>--line #E6D5B8</code><br>เส้นขอบ เส้นแบ่ง</div></div>
+    </div>
+    <div class="group-label">ตัวอักษร</div>
+    <div class="grid g4">
+      <div class="sw"><div class="c" style="background:var(--ink);color:#fff">14.8 : 1</div><div class="m"><b>Ink</b><code>--ink #2E1C17</code><br>หัวข้อ เนื้อหาหลัก (น้ำตาลผ้ากันเปื้อน)</div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-2);color:#fff">6.6 : 1</div><div class="m"><b>Ink 2</b><code>--ink-2 #6B5246</code><br>คำอธิบาย ข้อความรอง</div></div>
+      <div class="sw"><div class="c" style="background:var(--ink-3);color:#fff"></div><div class="m"><b>Ink 3</b><code>--ink-3 #9A8273</code><br>ป้ายเล็ก ข้อมูลที่ยังรอลูกค้า [ ]</div></div>
+    </div>
+    <div class="group-label">แบรนด์</div>
+    <div class="grid g4">
+      <div class="sw"><div class="c" style="background:var(--brand);color:#fff">ขาวบนส้ม 5.0 : 1</div><div class="m"><b>Brand</b><code>--brand #C8401A</code><br>ปุ่มหลัก ราคา eyebrow</div></div>
+      <div class="sw"><div class="c" style="background:var(--brand-hover);color:#fff"></div><div class="m"><b>Brand hover</b><code>--brand-hover #A9340F</code><br>ปุ่มหลักตอน hover</div></div>
+      <div class="sw"><div class="c" style="background:var(--accent)"></div><div class="m"><b>Accent</b><code>--accent #E8602A</code><br>ลายตกแต่งเท่านั้น ห้ามใช้กับตัวอักษร (ตัดกับพื้นไม่พอ)</div></div>
+      <div class="sw"><div class="c" style="background:var(--turmeric)"></div><div class="m"><b>Turmeric</b><code>--turmeric #E3A33A</code><br>ดาวรีวิว กรอบ focus (สีข้าวหมก)</div></div>
+    </div>
+    <div class="group-label">สีแอปเดลิเวอรี่ (ใช้เป็นจุดเล็กหน้าชื่อเท่านั้น)</div>
+    <div class="grid g4">
+      <div class="sw"><div class="c" style="background:var(--grab)"></div><div class="m"><b>GrabFood</b><code>--grab #00B14F</code></div></div>
+      <div class="sw"><div class="c" style="background:var(--lineman)"></div><div class="m"><b>LINE MAN</b><code>--lineman #06C755</code></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 TYPE -->
+<section>
+  <div class="wrap">
+    <span class="num">02</span><h2>ตัวอักษร</h2>
+    <p class="desc">ใช้ <b>Noto Sans Thai Looped</b> ทั้งเว็บ (Google Fonts, ฟรี) เป็นไทยมีหัว เส้นเท่ากันแบบเดียวกับตัวอักษร “อามัน” ในโลโก้ ใช้ 4 น้ำหนัก: 400 / 500 / 700 / 800</p>
+    <div class="type-row"><small>Display · H1<br>800 · 58px / มือถือ 38px · lh 1.25</small><div style="font-size:58px;font-weight:800;line-height:1.2">ข้าวหมกไก่ฮาลาล</div></div>
+    <div class="type-row"><small>H2 หัว section<br>800 · 40px / มือถือ 30px</small><div style="font-size:40px;font-weight:800;line-height:1.25">มาครั้งแรก เริ่มจากเซ็ตนี้</div></div>
+    <div class="type-row"><small>H3 ชื่อเซ็ต/การ์ด<br>800 · 26px / มือถือ 22px</small><div style="font-size:26px;font-weight:800">เซ็ตข้าวหมกไก่ย่าง</div></div>
+    <div class="type-row"><small>ชื่อเมนู<br>700 · 19px / มือถือ 16px</small><div style="font-size:19px;font-weight:700">บัตเตอร์ชิคเก้น</div></div>
+    <div class="type-row"><small>ราคา<br>800 · สี brand · ใช้ “.-” หรือ “บาท”</small><div class="row" style="gap:28px"><span class="price" style="font-size:30px">189<small>บาท</small></span><span class="price" style="font-size:20px">89.-</span></div></div>
+    <div class="type-row"><small>Lead<br>400 · 18px · ink-2</small><div style="font-size:18px;color:var(--ink-2)">ข้าวหมกหุงเครื่องเทศสีขมิ้น เสิร์ฟคู่ไก่ชิ้นโต สลัด และน้ำจิ้มเขียว</div></div>
+    <div class="type-row"><small>Body<br>400 · 17px / มือถือ 16px · lh 1.7</small><div style="font-size:17px">เปิดทุกวัน 10:00–21:00 วันหยุดพิเศษจะแจ้งทางเพจล่วงหน้า</div></div>
+    <div class="type-row"><small>Eyebrow<br>700 · 15px · brand + ลายเส้น</small><div><span class="eyebrow">เมนู &amp; ราคา</span></div></div>
+    <div class="type-row" style="border:0"><small>Small / label<br>500 · 13–14px · ink-3</small><div style="font-size:14px;color:var(--ink-3);font-weight:500">ราคาทานที่ร้าน · ราคาบนแอปอาจต่างกันเล็กน้อย</div></div>
+  </div>
+</section>
+
+<!-- 3 BUTTONS -->
+<section>
+  <div class="wrap">
+    <span class="num">03</span><h2>ปุ่ม</h2>
+    <p class="desc">CTA หลักมี 3 ตัวเท่านั้น: Google Maps (ปุ่มส้ม) · GrabFood · LINE MAN (ปุ่มขาวขอบครีม + จุดสีแอป) ทุก CTA ต้องเป็นปุ่มมีกรอบ ไม่ใช้ลิงก์ตัวหนังสือ ต่อ 1 พื้นที่มีปุ่มส้มได้ปุ่มเดียว</p>
+    <div class="grid g2">
+      <div class="card">
+        <div class="label">PRIMARY · Google Maps</div>
+        <div class="row">
+          <a class="btn btn-primary btn-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>นำทางด้วย Google Maps</a>
+        </div>
+        <div class="row" style="margin-top:12px"><a class="btn btn-primary">ปกติ</a><a class="btn btn-primary is-hover">Hover</a><a class="btn btn-primary is-focus">Focus</a></div>
+      </div>
+      <div class="card">
+        <div class="label">APP · GrabFood / LINE MAN</div>
+        <div class="row"><a class="btn btn-app btn-lg"><span class="dot" style="background:var(--grab)"></span>GrabFood</a><a class="btn btn-app btn-lg"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a></div>
+        <div class="row" style="margin-top:12px"><a class="btn btn-app">ปกติ</a><a class="btn btn-app is-hover">Hover</a><a class="btn btn-app is-focus">Focus</a></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="label">ขนาด</div>
+      <div class="row"><a class="btn btn-primary btn-lg">LG · 60px</a><a class="btn btn-primary">MD · 52px</a><a class="btn btn-primary btn-sm">SM · 44px</a></div>
+      <p class="note">ความสูงขั้นต่ำ 44px (กดง่ายบนมือถือ) · มุม 10px · ตัวหนา 700 · ไอคอน 18–20px ห่างข้อความ 10px</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 COMPONENTS -->
+<section>
+  <div class="wrap">
+    <span class="num">04</span><h2>คอมโพเนนต์</h2>
+    <p class="desc">ชิ้นส่วนที่ใช้ซ้ำในหน้า เวลาทำใน Avada/Elementor ให้ทำเป็น Global/Library ตามชื่อนี้</p>
+    <div class="grid g3">
+      <div class="card"><div class="label">TAG · ป้ายฮาลาล</div><span class="tag"><span class="ok"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>ฮาลาล 100%</span></div>
+      <div class="card"><div class="label">PRICE CHIP · วางบนรูป</div><span class="chip"><small>เซ็ตข้าวหมกไก่ทอด</small><b>189.-</b></span></div>
+      <div class="card"><div class="label">INCLUDES · ของในเซ็ต</div><div class="incl"><span>ข้าวหมก</span><span>ไก่ย่าง</span><span>สลัด</span><span>น้ำจิ้มเขียว</span></div></div>
+      <div class="card"><div class="label">FILTER · หมวดเมนู</div><div class="row" style="gap:8px"><span class="cat on">ทั้งหมด</span><span class="cat">แกงอินเดีย</span></div></div>
+      <div class="card"><div class="label">FACT · ข้อมูลด่วน</div><div class="fact"><small>เปิดกี่โมง?</small><b>ทุกวัน 10:00–21:00</b></div></div>
+      <div class="card"><div class="label">PLACEHOLDER · ข้อมูลที่รอลูกค้า</div><span class="ph">[BTS/จุดสังเกต]</span><p class="note">สี ink-3 · ต้องแทนด้วยข้อมูลจริงก่อนขึ้นเว็บ</p></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><div class="label">MENU ITEM · รูป 1:1 + ชื่อ + ราคา</div>
+        <div class="row" style="gap:20px;align-items:flex-start">
+          <article class="item"><div class="item-img"><img src="img/butter-chicken.jpg" alt=""></div><div class="item-row"><h3>บัตเตอร์ชิคเก้น</h3><span class="price" style="font-size:20px">189.-</span></div></article>
+        </div>
+        <p class="note">ไม่ใส่คำบรรยายยาว ใส่บรรทัดเดียวเฉพาะเมนูที่คนไม่รู้จัก (เช่น อลูโกบิ)</p>
+      </div>
+      <div class="card"><div class="label">EYEBROW + DIVIDER</div>
+        <span class="eyebrow">ที่ตั้ง &amp; เวลาเปิด</span>
+        <div class="stripes" style="margin-top:28px"></div>
+        <p class="note">ลายเส้นขนาน 2px ห่าง 2px สี accent เป็นสัญลักษณ์เดียวที่หยิบจากเส้นไก่ในโลโก้ ใช้หน้า eyebrow และเส้นแบ่งท้ายเว็บ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 MOTIF -->
+<section>
+  <div class="wrap">
+    <span class="num">05</span><h2>ลายเส้นโค้งซ้อน</h2>
+    <p class="desc">ได้แรงบันดาลใจจากเส้นซ้อนของไก่ในโลโก้ เป็นลายตกแต่งเท่านั้น ไม่ใช่โลโก้ ใช้ได้ 2 ที่: มุมขวาบนของรูป Hero (เส้นค่อยๆ วาดตอนเปิดหน้า) และมุมการ์ด “มาที่ร้าน” (ขาวโปร่ง 22%)</p>
+    <div class="grid g2">
+      <div class="card" style="display:flex;align-items:center;justify-content:center;min-height:220px"><svg width="180" viewBox="0 0 200 200" fill="none" stroke="#E8602A" stroke-width="5" stroke-linecap="round"><path d="M30 200A170 170 0 0 1 200 30"/><path d="M50 200A150 150 0 0 1 200 50"/><path d="M70 200A130 130 0 0 1 200 70"/><path d="M90 200A110 110 0 0 1 200 90"/><path d="M110 200A90 90 0 0 1 200 110"/></svg></div>
+      <div class="card" style="background:var(--brand);border-color:var(--brand);display:flex;align-items:center;justify-content:center;min-height:220px"><svg width="180" viewBox="0 0 200 200" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="6"><path d="M30 200A170 170 0 0 1 200 30"/><path d="M55 200A145 145 0 0 1 200 55"/><path d="M80 200A120 120 0 0 1 200 80"/><path d="M105 200A95 95 0 0 1 200 105"/></svg></div>
+    </div>
+    <p class="note">ห้ามใช้เกิน 2 จุดต่อหน้า ห้ามวางทับตัวอักษรหรือรูปอาหาร</p>
+  </div>
+</section>
+
+<!-- 6 SPACING / RADIUS -->
+<section>
+  <div class="wrap">
+    <span class="num">06</span><h2>ระยะห่าง · มุม · Layout</h2>
+    <div class="grid g2">
+      <div class="card">
+        <div class="label">SPACING SCALE (px)</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="sp-bar"><i style="width:8px"></i>8 · ช่องระหว่าง pill</div>
+          <div class="sp-bar"><i style="width:12px"></i>12 · ระหว่างปุ่ม</div>
+          <div class="sp-bar"><i style="width:24px"></i>24 · ระหว่างการ์ดเมนู / padding การ์ด</div>
+          <div class="sp-bar"><i style="width:40px"></i>40 · หัว section → เนื้อหา</div>
+          <div class="sp-bar"><i style="width:64px"></i>64 · ช่องคอลัมน์ hero / section มือถือ</div>
+          <div class="sp-bar"><i style="width:96px"></i>96 · padding บน-ล่าง section (เดสก์ท็อป)</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="label">RADIUS</div>
+        <div class="row" style="gap:20px">
+          <div style="text-align:center;font-size:13px"><div class="rad" style="border-radius:6px"></div>6 · tag เล็ก</div>
+          <div style="text-align:center;font-size:13px"><div class="rad" style="border-radius:10px"></div>10 · ปุ่ม รูปเมนู</div>
+          <div style="text-align:center;font-size:13px"><div class="rad" style="border-radius:16px"></div>16 · การ์ดใหญ่ รูป hero</div>
+          <div style="text-align:center;font-size:13px"><div class="rad" style="border-radius:999px;height:44px"></div>pill · ป้าย/ฟิลเตอร์</div>
+        </div>
+        <div class="label" style="margin-top:24px">LAYOUT</div>
+        <ul class="rules">
+          <li>กว้างสุด 1200px · ขอบข้าง 32px (มือถือ 16px)</li>
+          <li>Breakpoint: 1080px (ซ่อนเมนู nav) · 860px (มือถือ 1 คอลัมน์)</li>
+          <li>เมนู 4 คอลัมน์ → 3 → 2 บนมือถือ</li>
+          <li>มือถือมีแถบปุ่มติดล่าง: นำทาง / Grab / LINE MAN</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 PHOTO -->
+<section>
+  <div class="wrap">
+    <span class="num">07</span><h2>รูปภาพ</h2>
+    <p class="desc">ใช้รูปจริงชุดที่ลูกค้าถ่าย (พื้นไม้ จานเซรามิก แสงอุ่น) รูปมีความเข้มอยู่แล้ว เลยวางบนพื้นครีมเพื่อให้หน้าเว็บยังสว่าง</p>
+    <div class="grid g4">
+      <div><img src="img/hero-staff.jpg" alt="" style="width:100%;border-radius:16px"><p class="note"><b>Hero</b> · 1:1 · รูปพนักงานถือจาน เห็นโลโก้บนผ้ากันเปื้อน</p></div>
+      <div><img src="img/set-grilled.jpg" alt="" style="width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover"><p class="note"><b>เซ็ต</b> · 4:3 · ถ่ายเฉียงใกล้ ใช้ชุด square</p></div>
+      <div><img src="img/soup.jpg" alt="" style="width:100%;border-radius:10px"><p class="note"><b>เมนู</b> · 1:1 · ตัดจานให้อยู่กลาง ใช้ชุด square / Top</p></div>
+      <div><img src="img/spread.jpg" alt="" style="width:100%;border-radius:16px"><p class="note"><b>บรรยากาศ</b> · 1:1 · รูปรวมหลายจาน (Set Top)</p></div>
+    </div>
+    <ul class="rules" style="margin-top:20px">
+      <li>ส่งออกเป็น JPG/WebP กว้าง 640px (เมนู) และ 1000px (hero) ไฟล์ละไม่เกิน ~250KB</li>
+      <li>ไฟล์ต้นฉบับ 20–70MB ห้ามอัปขึ้นเว็บตรงๆ</li>
+      <li>ไม่ใส่ฟิลเตอร์ ไม่ไล่สีทับรูป ไม่ใส่กรอบตกแต่ง</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 DO DONT -->
+<section style="border:0">
+  <div class="wrap">
+    <span class="num">08</span><h2>ทำ / ไม่ทำ</h2>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="do"><h3>ทำ</h3><ul class="rules"><li>ราคาเห็นชัดทุกเมนู สีส้ม ตัวหนา</li><li>ปุ่ม Maps / Grab / LINE MAN อยู่ใน hero, เซ็ต, section สั่งอาหาร และแถบล่างมือถือ</li><li>ข้อมูลที่ยังไม่รู้ใส่ใน [ ] สีเทา แล้วตามจากลูกค้า</li><li>รีวิวต้องดึงจาก Google จริงเท่านั้น</li></ul></div>
+      <div class="dont"><h3>ไม่ทำ</h3><ul class="rules"><li>ไม่ทำพื้นหลังดำ/น้ำตาลเข้มทั้ง section (ลูกค้าไม่ชอบ ตัดดาร์กโหมดทิ้ง)</li><li>ไม่ใช้ไล่สี (gradient) ไม่ใช้ลายเรขาคณิตอิสลามเต็มพื้น</li><li>ไม่ทำโลโก้ใหม่ ใช้ไฟล์จริงจากลูกค้า</li><li>ไม่แต่งรีวิว ไม่ใส่ตัวเลขยอดขายที่ไม่มีที่มา</li></ul></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
