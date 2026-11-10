@@ -319,8 +319,7 @@ a.is-pending:not(.btn){text-decoration:none}
   .tag-price{left:auto;right:16px;bottom:-32px;width:96px;height:96px}
   .tag-price b{font-size:24px}
   .tag-price small{font-size:12px;line-height:16px}
-  .cta-three{display:none}
-  .final .cta-three{display:grid;grid-template-columns:1fr}
+  .cta-three{grid-template-columns:1fr}
   .plate,.menu,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
   .menu-photo{position:relative;top:0}
@@ -659,34 +658,7 @@ a.is-pending:not(.btn){text-decoration:none}
     }
   });
 
-  /* Delivery: while both app links are pending, a GrabFood + LINE MAN pair becomes one button that opens the sheet.
-     The two .cta-three rows keep their three separate buttons. */
-  var sheet=document.getElementById('delivery-sheet'),canPop=!!sheet&&HTMLElement.prototype.hasOwnProperty('popover');
-  if(canPop){sheet.removeAttribute('hidden');sheet.setAttribute('popover','auto');}
-  var dmsg='ยังไม่มีลิงก์ร้านบนแอป · ค้นหา “อามัน ข้าวหมกไก่” ใน GrabFood หรือ LINE MAN ได้เลย';
-  var groups=[];
-  document.querySelectorAll('a.is-pending').forEach(function(a){
-    if(/GrabFood|LINE MAN/.test(a.dataset.todo)&&groups.indexOf(a.parentElement)<0)groups.push(a.parentElement);
-  });
-  groups.forEach(function(g){
-    var apps=[].filter.call(g.children,function(a){return a.classList.contains('is-pending')&&/GrabFood|LINE MAN/.test(a.dataset.todo||'')});
-    if(apps.length<2||g.classList.contains('cta-three'))return;
-    var inFoot=!!g.closest('.foot'),b=document.createElement('button');b.type='button';
-    if(inFoot){b.className='sheet-open';b.textContent='GrabFood · LINE MAN';}
-    else{b.className=apps[0].className.replace('is-pending','').trim();
-      b.innerHTML='<span class="dots" aria-hidden="true"><span class="dot" style="background:var(--grab)"></span><span class="dot" style="background:var(--lineman)"></span></span>สั่งเดลิเวอรี่';}
-    if(canPop)b.setAttribute('popovertarget','delivery-sheet');else b.addEventListener('click',function(){note(dmsg)});
-    g.insertBefore(b,apps[0]);apps.forEach(function(a){g.removeChild(a)});g.classList.add('is-merged');
-  });
-  if(canPop){
-    var cp=sheet.querySelector('[data-copy]');
-    sheet.addEventListener('toggle',function(e){if(e.newState==='open')cp.focus()});
-    cp.addEventListener('click',function(){
-      var done=function(){cp.textContent='คัดลอกแล้ว';setTimeout(function(){cp.textContent='คัดลอกชื่อ'},2000)};
-      var pick=function(){var r=document.createRange();r.selectNodeContents(document.getElementById('shop-name'));var sel=getSelection();sel.removeAllRanges();sel.addRange(r)};
-      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText('อามัน ข้าวหมกไก่').then(done,pick);else pick();
-    });
-  }
+  /* GrabFood and LINE MAN always stay as two separate buttons (no merged delivery button) */
 
   /* Open now? Bangkok time; holidays not known yet */
   document.querySelectorAll('.open[data-open]').forEach(function(el){
