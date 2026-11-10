@@ -162,7 +162,12 @@ a.is-pending:not(.btn){text-decoration:none}
 .menu{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
 .menu-photo{position:sticky;top:96px;border-radius:var(--r-xl);overflow:hidden}
 .menu-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.menu-photo figcaption{position:absolute;left:16px;bottom:16px;right:16px;font:500 14px/20px var(--font);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.menu-photo figcaption{position:absolute;z-index:1;left:16px;bottom:16px;font:600 14px/20px var(--font);color:#fff;background:rgba(36,24,18,.82);padding:4px 12px;border-radius:999px;transition:opacity .5s var(--ease)}
+.menu-photo figcaption.swap{opacity:0}
+/* menu photo slideshow: photos fade into each other */
+.slides{position:relative;aspect-ratio:4/5;background:var(--wood)}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease)}
+.slides img.on{opacity:1}
 .menu-photo{position:sticky}
 .menu-list{display:flex;flex-direction:column;gap:48px}
 .cat h3{margin-bottom:16px}
@@ -323,7 +328,7 @@ a.is-pending:not(.btn){text-decoration:none}
   .plate,.menu,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
   .menu-photo{position:relative;top:0}
-  .menu-photo img{aspect-ratio:4/3}
+  .slides{aspect-ratio:4/3}
   .item{grid-template-columns:48px minmax(0,1fr) auto;gap:12px}
   .item img{width:48px;height:48px}
   .item-name{flex-wrap:wrap;row-gap:0}
@@ -403,9 +408,20 @@ a.is-pending:not(.btn){text-decoration:none}
 <!-- MENU -->
 <section class="sec" id="menu" aria-labelledby="menu-h">
   <div class="wrap menu">
-    <figure class="menu-photo rv" style="margin:0">
-      <img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น แกงไก่ซอสเนยสีส้ม" width="640" height="640" loading="lazy">
-      <figcaption>บัตเตอร์ชิคเก้น 189 บาท</figcaption>
+    <figure class="menu-photo rv" style="margin:0" aria-roledescription="สไลด์รูปเมนู" aria-label="รูปเมนูของร้าน">
+      <div class="slides">
+        <img class="on" src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น แกงไก่ซอสเนยสีส้ม" data-name="บัตเตอร์ชิคเก้น" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอด สลัด และน้ำจิ้มเขียว" data-name="เซ็ตข้าวหมกไก่ทอด" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่าง สลัด และน้ำจิ้มเขียว" data-name="เซ็ตข้าวหมกไก่ย่าง" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/aloo-gobi.jpg" alt="อลูโกบิ แกงมันฝรั่งกับดอกกะหล่ำ" data-name="อลูโกบิ" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" data-name="ซุปน่องไก่แซ่บ" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/samosa.jpg" alt="ซาโมซ่าทอด" data-name="ซาโมซ่า" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/salad.jpg" alt="สลัดผักเกาหลี" data-name="สลัดผักเกาหลี" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/grilled-chicken.jpg" alt="ไก่ย่างหั่นชิ้น" data-name="ไก่ย่าง" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/fried-chicken.jpg" alt="ไก่ทอดหั่นชิ้น" data-name="ไก่ทอด" width="640" height="640" loading="lazy" decoding="async">
+        <img src="img/rice.jpg" alt="ข้าวหมกสีขมิ้นโรยหอมเจียว" data-name="ข้าวหมก" width="640" height="640" loading="lazy" decoding="async">
+      </div>
+      <figcaption id="slide-name">บัตเตอร์ชิคเก้น</figcaption>
     </figure>
     <div class="menu-list">
       <div class="sec-head" style="margin-bottom:0">
@@ -414,24 +430,23 @@ a.is-pending:not(.btn){text-decoration:none}
       </div>
       <div class="cat rv">
         <h3 class="heading-5">ไก่และข้าว</h3>
-        <div class="item"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="leader"></span></div><span class="price">189</span></div>
-        <div class="item"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="leader"></span></div><span class="price">189</span></div>
-        <div class="item"><img src="img/grilled-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ย่าง</b><span class="leader"></span></div><span class="price">89</span></div>
-        <div class="item"><img src="img/fried-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ทอด</b><span class="leader"></span></div><span class="price">89</span></div>
-        <div class="item"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ข้าวหมกแยก</b><span class="leader"></span></div><span class="price">59</span></div>
+        <div class="item"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="leader"></span></div><span class="price">฿189</span></div>
+        <div class="item"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="leader"></span></div><span class="price">฿189</span></div>
+        <div class="item"><img src="img/grilled-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ย่าง</b><span class="leader"></span></div><span class="price">฿89</span></div>
+        <div class="item"><img src="img/fried-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ทอด</b><span class="leader"></span></div><span class="price">฿89</span></div>
+        <div class="item"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ข้าวหมกแยก</b><span class="leader"></span></div><span class="price">฿59</span></div>
       </div>
       <div class="cat rv">
         <h3 class="heading-5">แกงอินเดีย</h3>
-        <div class="item"><img src="img/butter-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>บัตเตอร์ชิคเก้น</b><span class="leader"></span></div><span class="price">189</span></div>
-        <div class="item"><img src="img/aloo-gobi.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>อลูโกบิ</b><small>แกงมันฝรั่งกับดอกกะหล่ำ</small><span class="leader"></span></div><span class="price">149</span></div>
+        <div class="item"><img src="img/butter-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>บัตเตอร์ชิคเก้น</b><span class="leader"></span></div><span class="price">฿189</span></div>
+        <div class="item"><img src="img/aloo-gobi.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>อลูโกบิ</b><small>แกงมันฝรั่งกับดอกกะหล่ำ</small><span class="leader"></span></div><span class="price">฿149</span></div>
       </div>
       <div class="cat rv">
         <h3 class="heading-5">ซุป สลัด ทานเล่น</h3>
-        <div class="item"><img src="img/soup.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซุปน่องไก่แซ่บ</b><span class="leader"></span></div><span class="price">159</span></div>
-        <div class="item"><img src="img/salad.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>สลัดผักเกาหลี</b><span class="leader"></span></div><span class="price">109</span></div>
-        <div class="item"><img src="img/samosa.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซาโมซ่า</b><span class="leader"></span></div><span class="price">139</span></div>
+        <div class="item"><img src="img/soup.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซุปน่องไก่แซ่บ</b><span class="leader"></span></div><span class="price">฿159</span></div>
+        <div class="item"><img src="img/salad.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>สลัดผักเกาหลี</b><span class="leader"></span></div><span class="price">฿109</span></div>
+        <div class="item"><img src="img/samosa.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซาโมซ่า</b><span class="leader"></span></div><span class="price">฿139</span></div>
       </div>
-      <p class="menu-note">ราคาเป็นบาท</p>
     </div>
   </div>
   <div class="combo-label wrap"><span class="caption-1 muted">ชุดยอดนิยม</span></div>
@@ -697,6 +712,23 @@ a.is-pending:not(.btn){text-decoration:none}
     navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
   })},{rootMargin:'-45% 0px -50% 0px'});
   navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
+
+  /* Menu photo slideshow: next photo every 3.5s, name only in the caption */
+  var slides=[].slice.call(document.querySelectorAll('.slides img')),cap=document.getElementById('slide-name');
+  if(slides.length>1&&!reduce){
+    var cur=0,timer=null,seen=false,hover=false;
+    var show=function(n){
+      slides[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('on');
+      cap.classList.add('swap');setTimeout(function(){cap.textContent=slides[cur].dataset.name;cap.classList.remove('swap')},250);
+    };
+    var run=function(){var go=seen&&!hover&&!document.hidden;if(go&&!timer)timer=setInterval(function(){show(cur+1)},3500);if(!go&&timer){clearInterval(timer);timer=null}};
+    var fig=slides[0].closest('figure');
+    fig.addEventListener('mouseenter',function(){hover=true;run()});
+    fig.addEventListener('mouseleave',function(){hover=false;run()});
+    document.addEventListener('visibilitychange',run);
+    var fr=fig.getBoundingClientRect();seen=fr.top<innerHeight&&fr.bottom>0;run(); /* start right away if already on screen */
+    new IntersectionObserver(function(en){seen=en[0].isIntersecting;run()},{threshold:.2}).observe(fig);
+  }
 
   /* Reveal key blocks once as they enter (already visible ones stay put) */
   if(reduce)return;
