@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เทียบก่อนหลัง · อามัน ข้าวหมกไก่</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#FFFFFF; --ink:#2E1C17; --ink-2:#6B5246; --line:#E2DED6; --espresso:#2E1C17;
+  --brand:#C8401A; --turmeric:#E3A33A; --sand:#EDF2EB;
+  --ease:cubic-bezier(.32,.72,0,1);
+  --font:'Noto Sans Thai Looped',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;display:flex;flex-direction:column}
+::selection{background:var(--brand);color:#fff}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:12px 24px;border-bottom:1px solid var(--line)}
+.bar h1{margin:0;font-size:18px;font-weight:700;line-height:1.4;margin-right:auto}
+.group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.group > span{font-size:14px;color:var(--ink-2)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px;background:#fff}
+.seg button{border:0;background:none;color:var(--ink-2);font-size:14px;font-weight:600;min-height:36px;padding:4px 12px;border-radius:8px;cursor:pointer;transition:background-color .5s var(--ease),color .5s var(--ease)}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--espresso);color:#fff}
+select{font:inherit;font-size:14px;font-weight:600;color:var(--ink);min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.sync{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);cursor:pointer;min-height:44px}
+.sync input{accent-color:var(--brand);width:18px;height:18px}
+
+.stage{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.pane{display:flex;flex-direction:column;min-width:0;min-height:0}
+.pane + .pane{border-left:1px solid var(--line)}
+.pane-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--sand)}
+.pane-head b{font-size:14px}
+.pane-head a{font-size:14px;color:var(--ink-2);text-underline-offset:.2em}
+.pane-head a:hover{color:var(--ink)}
+.view{position:relative;flex:1;overflow:hidden;background:#F4F4F2}
+.view iframe{position:absolute;top:0;border:0;background:#fff;transform-origin:0 0}
+.view.mobile iframe{box-shadow:0 8px 24px -12px rgba(46,28,23,.35)}
+
+.notes{border-top:1px solid var(--line);padding:16px 24px;font-size:14px;color:var(--ink-2)}
+.notes summary{cursor:pointer;font-weight:600;color:var(--ink);min-height:32px;display:flex;align-items:center}
+.notes ol{margin:8px 0 0;padding-left:20px;display:grid;gap:8px;max-width:72ch}
+.notes b{color:var(--ink)}
+
+/* Narrow screens: one pane at a time */
+.only{display:none}
+@media (max-width:860px){
+  .bar{padding:12px 16px}
+  .only{display:flex}
+  .stage{grid-template-columns:1fr}
+  .pane + .pane{border-left:0}
+  .stage[data-show="after"] .pane-before,.stage[data-show="before"] .pane-after{display:none}
+  .notes{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <h1>เทียบก่อนหลัง อามัน ข้าวหมกไก่</h1>
+  <div class="group">
+    <span id="before-label">ฝั่งซ้าย</span>
+    <select id="before" aria-labelledby="before-label">
+      <option value="v1-original.html" selected>ต้นฉบับ</option>
+      <option value="v2-skill-pass.html">รอบ 1 · ปรับตามกฎ landing page</option>
+      <option value="v3-impeccable-pass.html">รอบ 2 · เอาจุดที่ดูเป็น AI ออก</option>
+    </select>
+  </div>
+  <div class="group">
+    <span>ขนาดจอ</span>
+    <div class="seg" role="group" aria-label="ขนาดจอ">
+      <button type="button" data-device="desktop" aria-pressed="true">คอม</button>
+      <button type="button" data-device="mobile" aria-pressed="false">มือถือ</button>
+    </div>
+  </div>
+  <div class="group only">
+    <div class="seg" role="group" aria-label="แสดงฝั่ง">
+      <button type="button" data-show="before" aria-pressed="false">ก่อน</button>
+      <button type="button" data-show="after" aria-pressed="true">หลัง</button>
+    </div>
+  </div>
+  <label class="sync"><input type="checkbox" id="sync" checked>เลื่อนพร้อมกัน</label>
+</header>
+
+<main class="stage" id="stage" data-show="after">
+  <section class="pane pane-before" aria-label="ก่อนแก้">
+    <div class="pane-head"><b id="before-name">ต้นฉบับ</b><a id="before-open" href="v1-original.html" target="_blank" rel="noopener">เปิดเต็มจอ</a></div>
+    <div class="view" id="view-before"><iframe id="f-before" title="ก่อนแก้" src="v1-original.html"></iframe></div>
+  </section>
+  <section class="pane pane-after" aria-label="หลังแก้">
+    <div class="pane-head"><b>ล่าสุด · ชุดสีใหม่</b><a href="index.html" target="_blank" rel="noopener">เปิดเต็มจอ</a></div>
+    <div class="view" id="view-after"><iframe id="f-after" title="หลังแก้" src="index.html"></iframe></div>
+  </section>
+</main>
+
+<details class="notes">
+  <summary>แก้อะไรไปบ้าง</summary>
+  <ol>
+    <li><b>รอบ 1 · ปรับตามกฎ landing page:</b> ขนาดตัวอักษรและระยะห่างตามสเกล ไอคอนชุดเดียวกันทั้งหน้า เอาลายไล่สีออก เพิ่มสถานะตอนชี้และกดปุ่ม และเพิ่มข้อความใหญ่คั่นกลางหน้า</li>
+    <li><b>รอบ 2 · เอาจุดที่ดูเป็น AI ออก:</b> ลบป้ายเล็กเหนือหัวข้อทุกส่วน ลบป้ายแคปซูลเหนือหัวข้อใหญ่ เปลี่ยนป้ายรายการในเซ็ตเป็นข้อความธรรมดา ใช้ไอคอนดาวจริง และเอาเอฟเฟกต์เบลอตอนเลื่อนออก</li>
+    <li><b>รอบ 3 · ชุดสีใหม่:</b> เปลี่ยนพื้นครีมเป็นสีจากรูปอาหาร พื้นขาวเหมือนจาน แถบขมิ้น แถบน้ำตาลเข้มเหมือนผ้ากันเปื้อน และเขียวน้ำจิ้ม</li>
+  </ol>
+</details>
+
+<script>
+(function(){
+  var W={desktop:1280,mobile:390};
+  var device='desktop';
+  var views=[document.getElementById('view-before'),document.getElementById('view-after')];
+  var frames=[document.getElementById('f-before'),document.getElementById('f-after')];
+
+  function fit(){
+    views.forEach(function(v,i){
+      var f=frames[i],iw=W[device],vw=v.clientWidth,vh=v.clientHeight;
+      var pad=device==='mobile'?24:0;
+      var s=Math.min(1,(vw-pad*2)/iw);
+      f.style.width=iw+'px';
+      f.style.height=Math.ceil(vh/s)+'px';
+      f.style.transform='scale('+s+')';
+      f.style.left=Math.max(0,(vw-iw*s)/2)+'px';
+      v.classList.toggle('mobile',device==='mobile');
+    });
+  }
+  window.addEventListener('resize',fit);
+
+  document.querySelectorAll('[data-device]').forEach(function(b){
+    b.addEventListener('click',function(){
+      device=b.dataset.device;
+      document.querySelectorAll('[data-device]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      fit();
+    });
+  });
+
+  var stage=document.getElementById('stage');
+  document.querySelectorAll('[data-show]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var from=frames[stage.dataset.show==='before'?0:1],to=frames[b.dataset.show==='before'?0:1];
+      var r=0;try{var w=from.contentWindow;r=w.scrollY/Math.max(1,w.document.documentElement.scrollHeight-w.innerHeight)}catch(e){}
+      stage.dataset.show=b.dataset.show;
+      document.querySelectorAll('[data-show]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      fit();
+      if(sync.checked&&from!==to)requestAnimationFrame(function(){try{var o=to.contentWindow;o.scrollTo({top:r*(o.document.documentElement.scrollHeight-o.innerHeight),behavior:"instant"})}catch(e){}});
+    });
+  });
+
+  var sel=document.getElementById('before');
+  sel.addEventListener('change',function(){
+    frames[0].src=sel.value;
+    document.getElementById('before-open').href=sel.value;
+    document.getElementById('before-name').textContent=sel.options[sel.selectedIndex].text;
+  });
+
+  /* Scroll both pages together, by how far down each page is (the pages have different lengths) */
+  var sync=document.getElementById('sync'),lock=false;
+  function hook(i){
+    var f=frames[i];
+    function attach(){
+      var w=f.contentWindow;
+      if(!w||w.__synced)return;
+      try{
+        w.__synced=true;
+        w.addEventListener('scroll',function(){
+          if(!sync.checked||lock)return;
+          var d=w.document.documentElement,o=frames[1-i].contentWindow,od=o.document.documentElement;
+          var r=w.scrollY/Math.max(1,d.scrollHeight-w.innerHeight);
+          lock=true;o.scrollTo({top:r*(od.scrollHeight-o.innerHeight),behavior:"instant"});
+          requestAnimationFrame(function(){lock=false});
+        },{passive:true});
+      }catch(e){}
+    }
+    f.addEventListener('load',attach); /* also fires again when the left version changes */
+    /* the pages wait on web fonts before "load", so also attach as soon as the document is readable */
+    setInterval(function(){try{var d=f.contentDocument;if(d&&d.readyState!=='loading'&&d.URL!=='about:blank')attach()}catch(e){}},300);
+  }
+  hook(0);hook(1);
+  fit();
+})();
+</script>
+</body>
+</html>
