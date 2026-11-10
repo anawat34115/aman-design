@@ -129,6 +129,15 @@ a.is-pending:not(.btn){text-decoration:none}
 .sec{padding:96px 0}
 .sec-head{display:flex;flex-direction:column;gap:12px;max-width:680px;margin-bottom:48px}
 
+/* Quick answers under the hero */
+.quick{border-bottom:1px solid var(--line);padding:8px 0}
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.q{display:flex;flex-direction:column;gap:4px;padding:32px 24px}
+.q:first-child{padding-left:8px}
+.q + .q{border-left:1px solid var(--line)}
+.combo-label{margin-top:96px;margin-bottom:16px}
+#plate{scroll-margin-top:96px}
+
 /* What's on the plate */
 .plate{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center}
 .plate-photo{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/1;background:var(--wood)}
@@ -147,15 +156,6 @@ a.is-pending:not(.btn){text-decoration:none}
 .legend .n{width:32px;height:32px;border-radius:50%;background:var(--wood);color:#fff;font:700 14px/32px var(--font);text-align:center}
 .legend b{display:block;font:600 16px/24px var(--font)}
 .legend span{font:400 14px/20px var(--font);color:var(--ink-2)}
-
-/* Tagline reveal */
-.tagline{padding:128px 0}
-.tagline p{max-width:880px;font:400 48px/1.45 var(--display)}
-.tagline .ln{display:block;white-space:nowrap}
-.tagline .w{color:var(--on-wood);transition:color .8s var(--ease)}
-.js .tagline.is-split .w{color:rgba(255,255,255,.28)}
-.js .tagline.is-split .w.on{color:var(--on-wood)}
-.tagline .w.hl,.js .tagline.is-split .w.hl.on{color:var(--turmeric)}
 
 /* Menu card */
 .menu{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
@@ -288,6 +288,12 @@ a.is-pending:not(.btn){text-decoration:none}
   .rlist{grid-template-columns:1fr 1fr}
   .reviews{grid-template-columns:1fr}
 }
+@media (max-width:1024px){
+  /* the five section links need ~900px; below that the menu button takes over */
+  .nav{padding:8px 8px 8px 16px;gap:12px;width:calc(100% - 32px);justify-content:space-between}
+  .nav-links,.nav .btn{display:none}
+  .toggle{display:block}
+}
 @media (max-width:860px){
   :root{--gutter:16px}
   body{padding-bottom:80px}
@@ -300,6 +306,12 @@ a.is-pending:not(.btn){text-decoration:none}
   .body-lead{font-size:16px}
   .sec{padding:64px 0}
   .sec-head{margin-bottom:32px}
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .q{padding:24px 16px 24px 8px}
+  .q + .q{border-left:0}
+  .q:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+  .q:nth-child(n+3){border-top:1px solid var(--line)}
+  .combo-label{margin-top:64px}
   .hero{grid-template-columns:1fr;min-height:0}
   .hero-photo{order:-1;min-height:0;aspect-ratio:1/1;margin-top:0}
   .hero-copy{padding:32px var(--gutter) 48px;gap:16px}
@@ -319,9 +331,6 @@ a.is-pending:not(.btn){text-decoration:none}
   .item .leader{display:none}
   .item-name b{font-size:16px;line-height:24px}
   .item .price{font-size:16px}
-  .tagline{padding:80px 0}
-  .tagline p{font-size:30px}
-  .tagline .ln{white-space:normal}
   .rlist{grid-template-columns:1fr;gap:24px}
   .ways{grid-template-columns:1fr;gap:48px}
   .map{min-height:280px}
@@ -349,13 +358,13 @@ a.is-pending:not(.btn){text-decoration:none}
 <nav class="nav" aria-label="เมนูหลัก">
   <a class="brand" href="#top" aria-label="อามัน ข้าวหมกไก่ กลับขึ้นบนสุด">อามัน ข้าวหมกไก่</a><!-- แทนด้วยโลโก้จริงเมื่อได้ไฟล์ -->
   <div class="nav-links">
-    <a href="#plate">เซ็ตขายดี</a><a href="#menu">เมนู</a><a href="#halal">หมกไก่อิสลาม</a><a href="#order">สั่งอาหาร</a><a href="#visit">ที่ร้าน</a><a href="#faq">คำถาม</a>
+    <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
   </div>
   <a class="btn btn-primary btn-sm" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางไปร้าน</a>
   <button class="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="เปิดเมนู"><span></span><span></span></button>
 </nav>
 <div class="panel" id="panel" aria-hidden="true">
-  <a href="#plate">เซ็ตขายดี</a><a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#order">สั่งอาหาร</a><a href="#visit">ที่ร้าน</a>
+  <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
 </div>
 
 <main id="top"><span id="main" tabindex="-1"></span>
@@ -381,43 +390,13 @@ a.is-pending:not(.btn){text-decoration:none}
   </div>
 </section>
 
-<!-- WHAT'S ON THE PLATE -->
-<section class="sec" id="plate" aria-labelledby="plate-h">
-  <div class="wrap plate">
-    <div class="plate-photo rv">
-      <img id="img-grilled" src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่างหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy" hidden>
-      <img id="img-fried" src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอดหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy">
-      <span class="pin" style="left:36%;top:38%" aria-hidden="true">1</span>
-      <span class="pin" style="left:66%;top:68%" aria-hidden="true">2</span>
-      <span class="pin" style="left:70%;top:20%" aria-hidden="true">3</span>
-      <span class="pin" style="left:12%;top:62%" aria-hidden="true">4</span>
-    </div>
-    <div class="plate-info rv">
-      <h2 class="heading-2" id="plate-h">มาครั้งแรก<br>เริ่มจากเซ็ตนี้</h2>
-      <div class="seg" role="group" aria-label="เลือกไก่">
-        <button type="button" data-set="fried" aria-pressed="true">ไก่ทอด</button>
-        <button type="button" data-set="grilled" aria-pressed="false">ไก่ย่าง</button>
-      </div>
-      <ol class="legend">
-        <li><span class="n">1</span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
-        <li><span class="n">2</span><div><b id="chicken-name">ไก่ทอดชิ้นโต</b><span>หั่นเป็นชิ้น กินคู่ข้าวได้ทุกคำ</span></div></li>
-        <li><span class="n">3</span><div><b>สลัดผัก</b><span>ผักสดเคียงจาน</span></div></li>
-        <li><span class="n">4</span><div><b>น้ำจิ้มเขียว</b><span>ราดข้าวหรือจิ้มไก่ก็ได้</span></div></li>
-      </ol>
-      <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
-      <div class="cta-row">
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
-      </div>
-      <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
-    </div>
-  </div>
-</section>
-
-<!-- TAGLINE REVEAL -->
-<section class="tagline wood" aria-label="จุดเด่นของร้าน">
-  <div class="wrap">
-    <p><span class="ln">ข้าวหมกหุงเครื่องเทศจนหอมทั้งจาน</span> <span class="ln">ได้ไก่ชิ้นโตกับน้ำจิ้มเขียว</span> <span class="ln hl">เซ็ตละ 189 บาท</span></p>
+<!-- QUICK ANSWERS: four things people check before they come -->
+<section class="quick" aria-label="ข้อมูลร้านโดยย่อ">
+  <div class="wrap quick-grid">
+    <div class="q"><span class="caption-1 muted">ทานได้สบายใจไหม?</span><b class="heading-6">หมกไก่อิสลาม</b><span class="body-6 muted">ไม่มีหมู ไม่มีแอลกอฮอล์ ทุกเมนู</span></div>
+    <div class="q"><span class="caption-1 muted">เปิดกี่โมง?</span><b class="heading-6">10:00–21:00</b><span class="body-6 muted">เปิดทุกวัน · ข้าวหมกหมดประมาณ <span class="tbd">[19:00]</span></span></div>
+    <div class="q"><span class="caption-1 muted">ไปยังไง?</span><b class="heading-6 tbd">[BTS/MRT สถานี] ทางออก [X]</b><span class="body-6 muted">เดิน <span class="tbd">[X]</span> นาที · จอดรถหน้าร้านได้</span></div>
+    <div class="q"><span class="caption-1 muted">ราคาเริ่มต้น?</span><b class="heading-6">ข้าวหมกแยก 59 บาท</b><span class="body-6 muted">เซ็ตข้าวหมกไก่ 189 บาท</span></div>
   </div>
 </section>
 
@@ -455,6 +434,36 @@ a.is-pending:not(.btn){text-decoration:none}
       <p class="menu-note">ราคาเป็นบาท</p>
     </div>
   </div>
+  <div class="combo-label wrap"><span class="caption-1 muted">ชุดยอดนิยม</span></div>
+  <div class="wrap plate" id="plate">
+    <div class="plate-photo rv">
+      <img id="img-grilled" src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่างหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy" hidden>
+      <img id="img-fried" src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอดหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy">
+      <span class="pin" style="left:36%;top:38%" aria-hidden="true">1</span>
+      <span class="pin" style="left:66%;top:68%" aria-hidden="true">2</span>
+      <span class="pin" style="left:70%;top:20%" aria-hidden="true">3</span>
+      <span class="pin" style="left:12%;top:62%" aria-hidden="true">4</span>
+    </div>
+    <div class="plate-info rv">
+      <h3 class="heading-2">มาครั้งแรก<br>เริ่มจากเซ็ตนี้</h3>
+      <div class="seg" role="group" aria-label="เลือกไก่">
+        <button type="button" data-set="fried" aria-pressed="true">ไก่ทอด</button>
+        <button type="button" data-set="grilled" aria-pressed="false">ไก่ย่าง</button>
+      </div>
+      <ol class="legend">
+        <li><span class="n">1</span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
+        <li><span class="n">2</span><div><b id="chicken-name">ไก่ทอดชิ้นโต</b><span>หั่นเป็นชิ้น กินคู่ข้าวได้ทุกคำ</span></div></li>
+        <li><span class="n">3</span><div><b>สลัดผัก</b><span>ผักสดเคียงจาน</span></div></li>
+        <li><span class="n">4</span><div><b>น้ำจิ้มเขียว</b><span>ราดข้าวหรือจิ้มไก่ก็ได้</span></div></li>
+      </ol>
+      <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
+      <div class="cta-row">
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+      </div>
+      <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
+    </div>
+  </div>
 </section>
 
 <!-- PEOPLE + PROMISES -->
@@ -478,55 +487,34 @@ a.is-pending:not(.btn){text-decoration:none}
   </div>
 </section>
 
-<!-- REVIEWS: ดึงจาก Google Business Profile จริงเท่านั้น -->
-<section class="sec" id="reviews" aria-labelledby="reviews-h">
+<!-- DELIVERY -->
+<section class="sec" id="delivery" aria-labelledby="delivery-sec-h">
   <div class="wrap">
-    <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
-    <div class="reviews">
-      <div class="score rv">
-        <span class="caption-1 muted">รีวิวบน Google</span>
-        <span class="num tbd">[4.X]</span>
-        <span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span>
-        <span class="body-6 muted">จาก <span class="tbd">[XXX]</span> รีวิว</span>
-        <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมดบน Google</a>
-      </div>
-      <div class="rlist rv">
-        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
-        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
-        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
-      </div>
+    <div class="sec-head">
+      <h2 class="heading-2" id="delivery-sec-h">สั่งถึงบ้าน<br>ได้ 3 ช่องทาง</h2>
+      <p class="body-3 muted">ส่งในรัศมี <span class="tbd">[X] กม.</span> ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
     </div>
-  </div>
-</section>
-
-<!-- ORDER -->
-<section class="sec" id="order" aria-labelledby="order-h" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head"><h2 class="heading-2" id="order-h">มาทานที่ร้าน<br>หรือให้ไปส่ง</h2></div>
     <div class="ways">
       <div class="way rv">
-        <div class="way-img"><img src="img/hero-staff.jpg" alt="" loading="lazy" width="1000" height="1000" style="object-position:50% 70%"></div>
-        <h3 class="heading-6">มาที่ร้าน</h3>
-        <p class="body-3 muted">ใกล้ <span class="tbd">[BTS/จุดสังเกต]</span> เปิดทุกวัน <span class="nw">10:00–21:00</span> ทานที่ร้านหรือสั่งกลับบ้านก็ได้</p>
+        <div class="way-img"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">GrabFood</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางด้วย Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>สั่งผ่าน GrabFood</a>
       </div>
       <div class="way rv">
-        <div class="way-img"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"></div>
-        <h3 class="heading-6">ให้ไปส่ง</h3>
-        <p class="body-3 muted">ค้นหา “อามัน ข้าวหมกไก่” ใน GrabFood หรือ LINE MAN ส่งในรัศมี <span class="tbd">[X] กม.</span></p>
+        <div class="way-img"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">LINE MAN</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <div class="cta-row">
-          <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
-          <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
-        </div>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>สั่งผ่าน LINE MAN</a>
       </div>
       <div class="way rv">
         <div class="way-img"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"></div>
-        <h3 class="heading-6">โทรสั่งไว้ก่อน แล้วมารับ</h3>
-        <p class="body-3 muted">ไม่ต้องรอคิวที่ร้าน · LINE <span class="tbd">[@ไอดีร้าน]</span></p>
+        <h3 class="heading-6">โทรสั่งหรือ LINE ร้าน</h3>
+        <p class="body-3 muted">สั่งไว้ก่อนแล้วมารับ ไม่ต้องรอคิว · LINE <span class="tbd">[@ไอดีร้าน]</span></p>
         <div class="sp"></div>
-        <a class="btn btn-line" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง <span class="tbd">[0X-XXX-XXXX]</span></a>
+        <a class="btn btn-primary" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง <span class="tbd" style="color:inherit">[0X-XXX-XXXX]</span></a>
       </div>
     </div>
     <div class="catering rv">
@@ -536,10 +524,10 @@ a.is-pending:not(.btn){text-decoration:none}
   </div>
 </section>
 
-<!-- VISIT -->
-<section class="sec" id="visit" aria-labelledby="visit-h" style="padding-top:0">
+<!-- LOCATION & HOURS -->
+<section class="sec" id="location" aria-labelledby="location-h" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head"><h2 class="heading-2" id="visit-h">ร้านอยู่ไหน มายังไง</h2></div>
+    <div class="sec-head"><h2 class="heading-2" id="location-h">ร้านอยู่ไหน มายังไง</h2></div>
     <div class="visit">
       <a class="map rv" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
       <div class="visit-info rv">
@@ -559,6 +547,27 @@ a.is-pending:not(.btn){text-decoration:none}
           <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">เปิดใน Google Maps</a>
           <a class="btn btn-line" href="tel:[เบอร์ร้าน]">โทรถามทาง</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS: ดึงจาก Google Business Profile จริงเท่านั้น -->
+<section class="sec" id="reviews" aria-labelledby="reviews-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
+    <div class="reviews">
+      <div class="score rv">
+        <span class="caption-1 muted">รีวิวบน Google</span>
+        <span class="num tbd">[4.X]</span>
+        <span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span>
+        <span class="body-6 muted">จาก <span class="tbd">[XXX]</span> รีวิว</span>
+        <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมดบน Google</a>
+      </div>
+      <div class="rlist rv">
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
       </div>
     </div>
   </div>
@@ -612,9 +621,9 @@ a.is-pending:not(.btn){text-decoration:none}
   <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
 </nav>
 
-<div class="sheet" id="delivery" role="dialog" aria-labelledby="delivery-h" hidden>
+<div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
   <!-- แสดงเฉพาะตอนลิงก์ GrabFood / LINE MAN ยังเป็น [placeholder] · ใส่ลิงก์จริงแล้วปุ่มแอปจะกลับมาเอง -->
-  <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
+  <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery-sheet" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
   <p>เปิดแอป GrabFood หรือ LINE MAN แล้วค้นหาชื่อร้าน</p>
   <div class="shop-name"><b id="shop-name">อามัน ข้าวหมกไก่</b><button type="button" class="btn btn-line btn-sm" data-copy>คัดลอกชื่อ</button></div>
   <div class="sheet-apps"><span><span class="dot" style="background:var(--grab)"></span>GrabFood</span><span><span class="dot" style="background:var(--lineman)"></span>LINE MAN</span></div>
@@ -651,7 +660,7 @@ a.is-pending:not(.btn){text-decoration:none}
 
   /* Delivery: while both app links are pending, a GrabFood + LINE MAN pair becomes one button that opens the sheet.
      The two .cta-three rows keep their three separate buttons. */
-  var sheet=document.getElementById('delivery'),canPop=!!sheet&&HTMLElement.prototype.hasOwnProperty('popover');
+  var sheet=document.getElementById('delivery-sheet'),canPop=!!sheet&&HTMLElement.prototype.hasOwnProperty('popover');
   if(canPop){sheet.removeAttribute('hidden');sheet.setAttribute('popover','auto');}
   var dmsg='ยังไม่มีลิงก์ร้านบนแอป · ค้นหา “อามัน ข้าวหมกไก่” ใน GrabFood หรือ LINE MAN ได้เลย';
   var groups=[];
@@ -665,7 +674,7 @@ a.is-pending:not(.btn){text-decoration:none}
     if(inFoot){b.className='sheet-open';b.textContent='GrabFood · LINE MAN';}
     else{b.className=apps[0].className.replace('is-pending','').trim();
       b.innerHTML='<span class="dots" aria-hidden="true"><span class="dot" style="background:var(--grab)"></span><span class="dot" style="background:var(--lineman)"></span></span>สั่งเดลิเวอรี่';}
-    if(canPop)b.setAttribute('popovertarget','delivery');else b.addEventListener('click',function(){note(dmsg)});
+    if(canPop)b.setAttribute('popovertarget','delivery-sheet');else b.addEventListener('click',function(){note(dmsg)});
     g.insertBefore(b,apps[0]);apps.forEach(function(a){g.removeChild(a)});g.classList.add('is-merged');
   });
   if(canPop){
@@ -715,25 +724,6 @@ a.is-pending:not(.btn){text-decoration:none}
     navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
   })},{rootMargin:'-45% 0px -50% 0px'});
   navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
-
-  /* Tagline: each word goes from muted to full colour as it crosses a line 60% down the screen */
-  var tag=document.querySelector('.tagline p');
-  if(tag&&!reduce&&window.Intl&&Intl.Segmenter){
-    var seg=new Intl.Segmenter('th',{granularity:'word'});
-    var wrapText=function(node,hl){
-      [].slice.call(node.childNodes).forEach(function(n){
-        if(n.nodeType===3){var f=document.createDocumentFragment();
-          Array.from(seg.segment(n.textContent)).forEach(function(x){
-            if(!x.isWordLike){f.appendChild(document.createTextNode(x.segment));return}
-            var w=document.createElement('span');w.className='w'+(hl?' hl':'');w.textContent=x.segment;f.appendChild(w)});
-          n.parentNode.replaceChild(f,n);
-        }else if(n.nodeType===1){wrapText(n,hl||n.classList.contains('hl'))}
-      });
-    };
-    wrapText(tag,false);tag.closest('.tagline').classList.add('is-split');
-    var wio=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');wio.unobserve(e.target)}})},{rootMargin:'0px 0px -40% 0px'});
-    tag.querySelectorAll('.w').forEach(function(w){wio.observe(w)});
-  }
 
   /* Reveal key blocks once as they enter (already visible ones stay put) */
   if(reduce)return;
