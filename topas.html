@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><!-- แบบทางเลือก ไม่ให้ Google เก็บซ้ำกับหน้าหลัก -->
+<!-- HALAL-PROOF: เมื่อได้เลขที่ใบรับรอง+หน่วยงาน title/description/JSON-LD กลับไปใช้ "ข้าวหมกไก่ฮาลาล" และเพิ่ม "Halal" ใน servesCuisine -->
+<title>อามัน ข้าวหมกไก่ (แบบโทน Topas) | ข้าวหมกไก่ย่าง ไก่ทอด [ย่าน] กรุงเทพฯ เซ็ตละ 189 บาท</title>
+<meta name="description" content="อามัน ข้าวหมกไก่ ใกล้ [BTS/จุดสังเกต] เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์ ทานที่ร้าน หรือสั่งผ่าน GrabFood และ LINE MAN">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="อามัน ข้าวหมกไก่ · เซ็ตข้าวหมกไก่ย่างหรือทอด 189 บาท">
+<meta property="og:description" content="ข้าวหมกหุงเครื่องเทศ ไก่ชิ้นโต สลัด น้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์">
+<meta property="og:image" content="img/spread.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23A3112E'/%3E%3Ccircle cx='16' cy='17' r='9' fill='%23F5B71A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Noto+Sans+Thai+Looped:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ===== Tokens ===== */
+:root{
+  /* fiesta palette: crimson, chilli, orange, saffron rice, chutney teal, on a cream table */
+  --wood:#A3112E; --wood-2:#850C24; --paper:#F3EDE1; --paper-2:#FBF7EF; --ink:#2B1216; --ink-2:#6A4A45; --ink-3:#7A5650; --line:#E0D6C6;
+  --on-wood:#F7F1E6; --on-wood-2:rgba(247,241,230,.9); --line-wood:rgba(247,241,230,.34);
+  --brand:#A3112E; --brand-hover:#850C24; --turmeric:#F5B71A; --chutney:#11594C; --chilli:#E8441E; --orange:#F2892A;
+  --grab:#00B14F; --lineman:#06C755;
+  --r-sm:6px; --r:12px; --r-lg:16px; --r-xl:24px; --r-2xl:32px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --display:'Kanit','Noto Sans Thai Looped',sans-serif;
+  --font:'Noto Sans Thai Looped',system-ui,sans-serif;
+  --max:1200px; --gutter:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;scrollbar-color:var(--ink-3) var(--paper);accent-color:var(--brand);caret-color:var(--brand)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--turmeric);color:var(--wood)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:.2em}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:3px solid var(--turmeric);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.nw{white-space:nowrap}
+.tbd{color:var(--ink-3);font-weight:500}
+:is(.wood,.teal) .tbd{color:rgba(247,241,230,.84)}
+.price,.hours td,.num{font-variant-numeric:tabular-nums}
+
+/* ===== Text styles (Tailwind scale; Thai needs taller lines than the scale's tight display leading) ===== */
+.heading-1{font:700 60px/1.15 var(--display);letter-spacing:-.01em;text-wrap:balance}
+.heading-2{font:700 60px/1.1 var(--display);letter-spacing:-.01em;text-wrap:balance}
+.heading-3{font:700 36px/1.2 var(--display);text-wrap:balance}
+.heading-4{font:700 30px/1.25 var(--display);text-wrap:balance}
+.heading-5{font:600 24px/32px var(--display);text-wrap:balance}
+.heading-6{font:600 20px/28px var(--display)}
+.title-1{font:500 20px/28px var(--font)}
+.title-2{font:500 18px/28px var(--font)}
+.title-3{font:500 16px/24px var(--font)}
+.body-1{font:600 16px/24px var(--font)}
+.body-3{font:400 16px/1.7 var(--font);text-wrap:pretty}
+.body-lead{font:400 18px/1.7 var(--font);text-wrap:pretty}
+.body-6{font:400 14px/20px var(--font);text-wrap:pretty}
+.caption-1{font:500 14px/20px var(--font)}
+.caption-4{font:500 12px/16px var(--font)}
+.muted{color:var(--ink-2)}
+:is(.wood,.teal) .muted{color:var(--on-wood-2)}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 12px;border-radius:var(--r);font:600 16px/24px var(--font);text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease),transform .5s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn i{font-size:20px;flex:none}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-hover)}
+.btn-line{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+:is(.wood,.teal) .btn-line{background:transparent;color:var(--on-wood);border-color:var(--line-wood)}
+:is(.wood,.teal) .btn-line:hover{border-color:var(--on-wood);background:rgba(255,255,255,.06)}
+.btn-sm{min-height:40px;font-size:14px;line-height:20px;padding:8px 12px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.dots{display:inline-flex}.dots .dot+.dot{margin-left:-4px;box-shadow:0 0 0 2px var(--paper)}
+:is(.wood,.teal) .dots .dot+.dot{box-shadow:0 0 0 2px var(--wood)}
+.cta-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px}
+.cta-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.cta-row.is-merged{grid-template-columns:minmax(0,1fr)}
+a.is-pending{cursor:pointer}
+a.is-pending:not(.btn){text-decoration:none}
+.skip{position:absolute;left:16px;top:-80px;z-index:60;background:var(--ink);color:#fff;padding:12px 16px;border-radius:var(--r);font-weight:600;text-decoration:none;transition:transform .5s var(--ease)}
+.skip:focus{top:16px}
+
+/* ===== Floating nav ===== */
+.nav{position:fixed;z-index:40;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:24px;width:max-content;max-width:calc(100% - 32px);padding:8px 8px 8px 24px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(46,28,23,.08);box-shadow:0 8px 24px -16px rgba(36,24,18,.5)}
+.brand{font:400 18px/28px var(--display);text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font:500 14px/20px var(--font);color:var(--ink-2);text-decoration:none;padding:8px 12px;border-radius:999px;transition:color .3s var(--ease),background-color .3s var(--ease)}
+.nav-links a:hover{color:var(--ink);background:rgba(46,28,23,.05)}
+.nav-links a[aria-current="true"]{color:var(--ink);background:rgba(46,28,23,.08)}
+.toggle{display:none;position:relative;width:44px;height:44px;border:0;border-radius:50%;background:var(--ink);cursor:pointer}
+.toggle span{position:absolute;left:12px;width:20px;height:2px;border-radius:2px;background:#fff;transition:transform .5s var(--ease)}
+.toggle span:nth-child(1){top:18px}.toggle span:nth-child(2){top:24px}
+.toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.toggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.panel{position:fixed;inset:0;z-index:35;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:96px 24px 48px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.panel.open{opacity:1;pointer-events:auto}
+.panel a{font:400 36px/1.4 var(--display);color:var(--ink);text-decoration:none;padding:8px 0;opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.panel.open a{opacity:1;transform:none}
+.panel.open a:nth-child(2){transition-delay:60ms}.panel.open a:nth-child(3){transition-delay:120ms}.panel.open a:nth-child(4){transition-delay:180ms}.panel.open a:nth-child(5){transition-delay:240ms}
+
+/* ===== Hero ===== */
+.wood{background:var(--wood);color:var(--on-wood)}
+.proof{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font:500 14px/20px var(--font);color:var(--on-wood-2)}
+.proof > span{display:inline-flex;align-items:center;gap:8px}
+.stars{display:inline-flex;gap:2px;color:var(--turmeric);font-size:16px}
+.open i{width:8px;height:8px;border-radius:50%;background:var(--on-wood-2);flex:none;display:inline-block}
+.open.is-open i{background:#3FCB7E}
+
+/* ===== Sections ===== */
+.sec{padding:96px 0}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:680px;margin-bottom:48px}
+
+/* Quick answers under the hero */
+.combo-label{margin-top:96px;margin-bottom:16px}
+#plate{scroll-margin-top:96px}
+
+/* What's on the plate */
+.plate{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:center}
+.plate-photo{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/1;background:var(--wood)}
+.plate-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.plate-photo img[hidden]{display:none}
+.pin{position:absolute;width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;background:var(--paper);color:var(--ink);font:700 14px/32px var(--font);text-align:center;box-shadow:0 0 0 4px rgba(255,255,255,.35),0 6px 12px -6px rgba(0,0,0,.6)}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:#F3F1EC;border:1px solid var(--line)}
+.seg button{border:0;background:none;font:600 14px/20px var(--font);color:var(--ink-2);padding:8px 16px;border-radius:999px;cursor:pointer;min-height:40px;transition:background-color .3s var(--ease),color .3s var(--ease)}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.plate-info{display:flex;flex-direction:column;gap:24px}
+.plate-price{display:flex;align-items:baseline;gap:12px}
+.plate-price b{font:400 60px/1.1 var(--display);color:var(--brand)}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.legend li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+.legend .n{width:32px;height:32px;border-radius:50%;background:var(--wood);color:#fff;font:700 14px/32px var(--font);text-align:center}
+.legend b{display:block;font:600 16px/24px var(--font)}
+.legend span{font:400 14px/20px var(--font);color:var(--ink-2)}
+
+/* Menu card */
+.menu{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
+.menu-photo{position:sticky;top:96px;border-radius:var(--r-xl);overflow:hidden}
+.menu-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.menu-photo figcaption{position:absolute;left:16px;bottom:16px;font:600 14px/20px var(--font);color:#fff;background:rgba(43,18,22,.82);padding:4px 12px;border-radius:999px}
+.menu-photo{position:sticky}
+.menu-list{display:flex;flex-direction:column;gap:48px}
+.cat h3{margin-bottom:16px}
+.item{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 0}
+.item + .item{border-top:1px dashed var(--line)}
+.item img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.item-name{display:flex;align-items:baseline;gap:8px;min-width:0}
+.item-name b{font:600 18px/28px var(--font)}
+.item-name small{font:400 14px/20px var(--font);color:var(--ink-2)}
+.item .leader{flex:1;min-width:24px;border-bottom:2px dotted rgba(46,28,23,.25);transform:translateY(-6px)}
+.item .price{font:600 18px/28px var(--font);color:var(--brand-hover)}
+.menu-note{font:400 14px/20px var(--font);color:var(--ink-2)}
+
+/* People + promises */
+.people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.people-photo{position:relative}
+.people-photo img{border-radius:var(--r-xl);aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;width:100%}
+.people-photo figcaption{margin-top:12px;font:400 14px/20px var(--font);color:var(--on-wood-2)}
+.people-copy{display:flex;flex-direction:column;gap:24px}
+.quote{font:400 24px/1.6 var(--display);color:var(--on-wood);padding:24px;border:1px solid var(--line-wood);border-radius:var(--r-lg)}
+.quote cite{display:block;margin-top:12px;font:500 14px/20px var(--font);font-style:normal;color:var(--on-wood-2)}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font:400 16px/24px var(--font);color:var(--on-wood)}
+.checks i{flex:none;font-size:20px;margin-top:2px;color:var(--turmeric)}
+
+/* Reviews */
+.reviews{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:32px;align-items:start}
+.score{display:flex;flex-direction:column;gap:8px}
+.score .num{font:400 60px/1.1 var(--display)}
+.score .stars{font-size:24px}
+.score .btn{margin-top:16px;align-self:flex-start}
+.rlist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.rcard{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:2px solid var(--ink)}
+.rcard p{font:400 18px/1.7 var(--font)}
+.who{display:flex;align-items:center;gap:12px;font:500 14px/20px var(--font);color:var(--ink-2)}
+.av{width:32px;height:32px;border-radius:50%;background:#EDE8E1;flex:none}
+
+/* Order */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.way{display:flex;flex-direction:column;gap:12px}
+.way-img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/2;margin-bottom:8px}
+.way-img img{width:100%;height:100%;object-fit:cover}
+.way .sp{flex:1}
+.way > .btn,.way > .cta-row{align-self:stretch;margin-top:8px}
+.catering{margin-top:48px;padding:24px;border-radius:var(--r-lg);border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+
+/* Visit */
+.visit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch}
+.map{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px;border-radius:var(--r-xl);background:#EEF0EA;color:inherit;text-decoration:none;overflow:hidden;border:1px solid var(--line);transition:border-color .3s var(--ease)}
+.map:hover{border-color:var(--ink)}
+.map-pin{display:flex;flex-direction:column;align-items:center;gap:8px;font:600 14px/20px var(--font)}
+.map-pin i{font-size:48px;color:var(--brand)}
+.visit-info{display:flex;flex-direction:column;gap:24px}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:12px 0;border-bottom:1px solid var(--line);font:400 16px/24px var(--font)}
+.hours td:last-child{text-align:right;font-weight:600}
+.how{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.how div{padding:12px 16px;border:1px solid var(--line);border-radius:var(--r)}
+.how div:nth-child(3){grid-column:1/-1}
+.how b{display:block;font:600 14px/20px var(--font)}
+.how span{font:400 14px/20px var(--font)}
+
+/* FAQ */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font:600 18px/28px var(--font);transition:color .3s var(--ease)}
+.faq summary:hover{color:var(--brand-hover)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;font-size:20px;transition:transform .5s var(--ease)}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq details p{padding:0 48px 24px 0;color:var(--ink-2)}
+.faq p a{font-weight:600;color:var(--ink)}
+
+/* Final CTA */
+.final{padding:96px 0;text-align:center}
+.final .wrap{display:flex;flex-direction:column;align-items:center;gap:24px}
+.final .cta-three{width:100%}
+
+/* Footer */
+.foot{padding:64px 0 32px;border-top:1px solid var(--line-wood)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot h3{font:600 14px/20px var(--font);color:var(--on-wood);margin-bottom:8px}
+.foot p,.foot a,.foot .sheet-open{font:400 14px/20px var(--font);color:var(--on-wood-2);text-decoration:none;display:flex;align-items:center;min-height:36px}
+.foot a:hover,.foot .sheet-open:hover{color:var(--on-wood)}
+.foot .sheet-open{background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.copy{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-wood);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font:400 12px/16px var(--font);color:var(--on-wood-2)}
+
+/* Mobile bar */
+.mbar{display:none}
+
+/* Reveal: content is visible by default; key blocks rise once as they enter */
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+.rv.play{animation:rise .7s var(--ease) both}
+
+/* Toast + delivery sheet */
+.note-toast{position:fixed;left:16px;right:16px;bottom:24px;margin:0 auto;width:fit-content;max-width:440px;z-index:50;background:var(--ink);color:#fff;font:400 14px/20px var(--font);padding:12px 16px;border-radius:var(--r);box-shadow:0 12px 32px -12px rgba(36,24,18,.6);opacity:0;transform:translateY(12px);pointer-events:none;cursor:pointer;transition:opacity .3s var(--ease),transform .5s var(--ease)}
+.note-toast.on{opacity:1;transform:none;pointer-events:auto}
+.sheet{border:0;padding:24px;margin:auto;width:min(420px,calc(100vw - 32px));border-radius:var(--r-lg);background:var(--paper);color:var(--ink);font:inherit;box-shadow:0 24px 64px -24px rgba(36,24,18,.6)}
+.sheet::backdrop{background:rgba(36,24,18,.4)}
+.sheet:popover-open{animation:sheet-in .5s var(--ease)}
+@keyframes sheet-in{from{opacity:0;transform:translateY(16px)}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.sheet-x{flex:none;width:44px;height:44px;margin:-8px -8px -8px 0;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .3s var(--ease)}
+.sheet-x:hover{border-color:var(--ink)}
+.sheet-x i{font-size:18px}
+.sheet p{font:400 14px/20px var(--font);color:var(--ink-2);margin-top:8px}
+.shop-name{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 16px;border:1px solid var(--line);border-radius:var(--r)}
+.shop-name b{font:600 18px/28px var(--font)}
+.sheet-apps{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:16px;font:600 14px/20px var(--font)}
+.sheet-apps span{display:inline-flex;align-items:center;gap:8px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv.play,.sheet:popover-open{animation:none}
+  .panel a{transform:none}
+  *{transition-duration:.01ms !important}
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1080px){
+  .heading-1{font-size:48px}
+  .plate,.menu,.people{gap:40px}
+  .rlist{grid-template-columns:1fr 1fr}
+  .reviews{grid-template-columns:1fr}
+}
+@media (max-width:1024px){
+  /* the five section links need ~900px; below that the menu button takes over */
+  .nav{padding:8px 8px 8px 16px;gap:12px;width:calc(100% - 32px);justify-content:space-between}
+  .nav-links,.nav .btn{display:none}
+  .toggle{display:block}
+}
+@media (max-width:860px){
+  :root{--gutter:16px}
+  body{padding-bottom:80px}
+  .nav{padding:8px 8px 8px 16px;gap:12px;width:calc(100% - 32px);justify-content:space-between}
+  .nav-links,.nav .btn{display:none}
+  .toggle{display:block}
+  .heading-1{font-size:36px;line-height:1.35}
+  .heading-2{font-size:30px;line-height:1.4}
+  .heading-3{font-size:30px;line-height:1.4}
+  .body-lead{font-size:16px}
+  .sec{padding:64px 0}
+  .sec-head{margin-bottom:32px}
+  .combo-label{margin-top:64px}
+  .cta-three{display:none}
+  .final .cta-three{display:grid;grid-template-columns:1fr}
+  .plate,.menu,.people,.visit{grid-template-columns:minmax(0,1fr)}
+  .plate-price b{font-size:48px}
+  .menu-photo{position:relative;top:0}
+  .menu-photo img{aspect-ratio:4/3}
+  .item{grid-template-columns:48px minmax(0,1fr) auto;gap:12px}
+  .item img{width:48px;height:48px}
+  .item-name{flex-wrap:wrap;row-gap:0}
+  .item-name small{flex-basis:100%;order:3}
+  .item .leader{display:none}
+  .item-name b{font-size:16px;line-height:24px}
+  .item .price{font-size:16px}
+  .rlist{grid-template-columns:1fr;gap:24px}
+  .ways{grid-template-columns:1fr;gap:48px}
+  .map{min-height:280px}
+  .faq summary{font-size:16px;line-height:24px;padding:16px 0}
+  .faq details p{padding-right:0}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+  .mbar.is-merged{grid-template-columns:1fr 1fr}
+  .mbar .btn{min-height:48px;font-size:14px;padding:8px;gap:8px}
+  .note-toast{bottom:calc(88px + env(safe-area-inset-bottom))}
+  .sheet{margin:auto 0 0;width:100%;max-width:none;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+}
+@media (max-width:380px){
+  .heading-1{font-size:30px}
+  .how{grid-template-columns:1fr}
+}
+
+/* ===== Fiesta mood ===== */
+body{overflow-x:clip}
+.btn{border-radius:999px;padding:8px 16px}
+.btn-line{background:var(--paper-2);border-color:rgba(43,18,22,.18)}
+:is(.wood,.teal) .btn-primary{background:var(--turmeric);color:var(--ink)}
+:is(.wood,.teal) .btn-primary:hover{background:#FFC93D}
+.teal{background:var(--chutney);color:var(--on-wood)}
+.teal .tbd{color:rgba(247,241,230,.86)}
+.nav{background:rgba(251,247,239,.88);border-color:rgba(163,17,46,.14)}
+.brand{font:700 20px/28px var(--display);color:var(--brand)}
+.nav-links a{font-weight:600}
+.panel{background:rgba(243,237,225,.94)}
+.panel a{font:700 36px/1.3 var(--display);color:var(--brand)}
+.sec:not(.wood) .heading-2{color:var(--brand)}
+.sec .teal .heading-2{color:var(--on-wood)}
+
+/* hero: giant word with tilted photo cards over it */
+.hero{position:relative;overflow:clip;padding-bottom:64px}
+.hero-stage{position:relative;min-height:min(720px,88svh);display:flex;align-items:center;justify-content:center;padding:112px var(--gutter) 32px;text-align:center}
+.hero h1{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-word{font:700 clamp(96px,19vw,256px)/1 var(--display);letter-spacing:-.02em;color:var(--on-wood);transform:rotate(-3deg)}
+.hero-sub{font:700 36px/1.2 var(--display);color:var(--turmeric);background:var(--wood-2);padding:4px 24px;border-radius:999px;transform:rotate(2deg)}
+.tilt{position:absolute;z-index:2;margin:0;border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 48px -16px rgba(0,0,0,.36);border:6px solid var(--paper-2);transition:transform .5s var(--ease)}
+.tilt img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.t1{width:min(280px,21vw);right:2%;top:52%;transform:rotate(7deg)}
+.t2{width:min(216px,16vw);left:2%;top:58%;transform:rotate(-8deg)}
+.t3{width:min(160px,12vw);right:20%;top:12%;transform:rotate(5deg)}
+.tilt:hover{transform:rotate(0) scale(1.03)}
+.hero .tag-price{position:absolute;z-index:3;right:calc(2% + min(280px,21vw) - 72px);top:68%;width:128px;height:128px;border-radius:50%;background:var(--turmeric);color:var(--brand);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);box-shadow:0 12px 24px -12px rgba(0,0,0,.37)}
+.tag-price small{font:600 14px/20px var(--font);color:var(--ink)}
+.tag-price b{font:700 36px/1 var(--display)}
+.hero-foot{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.hero-lead{display:flex;flex-direction:column;gap:24px;max-width:560px}
+.hero-lead .body-lead{color:var(--on-wood-2)}
+.hero .proof{flex-direction:column;align-items:flex-end;text-align:right;font:600 16px/24px var(--display);color:var(--on-wood)}
+
+/* scrolling ribbon */
+.ribbon-wrap{position:relative;z-index:5;overflow:clip;margin:-48px 0 0;padding:24px 0}
+.ribbon{background:var(--turmeric);color:var(--brand);transform:rotate(-2deg);margin:0 -32px;padding:12px 0;box-shadow:0 12px 24px -16px rgba(0,0,0,.35)}
+.ribbon-track{display:flex;align-items:center;gap:32px;padding:0 24px;width:max-content;font:700 36px/1.2 var(--display);white-space:nowrap;animation:marquee 32s linear infinite}
+.ribbon-track i{font-size:32px;color:var(--chilli)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* quick answers as stickers */
+.quick{padding:48px 0 16px}
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.q{display:flex;flex-direction:column;gap:4px;padding:24px;border-radius:var(--r-xl);transition:transform .5s var(--ease)}
+.q:nth-child(1){background:var(--brand);color:var(--on-wood);transform:rotate(-2deg)}
+.q:nth-child(2){background:var(--turmeric);color:var(--ink);transform:rotate(1.5deg)}
+.q:nth-child(3){background:var(--chutney);color:var(--on-wood);transform:rotate(-1deg)}
+.q:nth-child(4){background:var(--orange);color:var(--ink);transform:rotate(2deg)}
+.q:hover{transform:rotate(0) translateY(-4px)}
+.q .muted,.q .tbd{color:inherit;opacity:.86}
+.q b{font:700 24px/32px var(--display)}
+
+/* ghost word behind a section */
+.ghost{position:relative;overflow:clip}
+.ghost::before{content:attr(data-ghost);position:absolute;left:-2vw;top:24px;font:700 320px/1 var(--display);color:rgba(163,17,46,.06);white-space:nowrap;pointer-events:none}
+.ghost > *{position:relative}
+.menu-photo{transform:rotate(-2deg);border:6px solid var(--paper-2);box-shadow:0 24px 48px -24px rgba(40,4,12,.45)}
+.item img{border-radius:var(--r)}
+.item .price{font:700 20px/28px var(--display);color:var(--brand)}
+.sticker{display:inline-block;background:var(--turmeric);color:var(--ink);font:700 20px/28px var(--display);padding:8px 16px;border-radius:999px;transform:rotate(-3deg)}
+
+/* popular set: teal panel */
+.plate{padding:48px;border-radius:var(--r-2xl)}
+.plate-photo{transform:rotate(-3deg);border:6px solid var(--paper-2);box-shadow:0 24px 48px -16px rgba(0,0,0,.35)}
+.plate-price b{font:700 72px/1 var(--display);color:var(--turmeric)}
+.teal .legend span{color:var(--on-wood-2)}
+.teal .legend .n{background:var(--turmeric);color:var(--ink)}
+.teal .seg{background:rgba(247,241,230,.12);border-color:transparent}
+.teal .seg button{color:var(--on-wood)}
+.teal .seg button:hover{color:var(--on-wood)}
+.teal .seg button[aria-pressed="true"]{background:var(--paper-2);color:var(--chutney)}
+
+/* people, delivery, reviews */
+.people-photo img{transform:rotate(2deg);border:6px solid var(--paper-2)}
+.quote{font:600 24px/1.5 var(--display);border-color:var(--line-wood)}
+.way-img{border:6px solid var(--paper-2);box-shadow:0 16px 32px -20px rgba(40,4,12,.45)}
+.way:nth-child(1) .way-img{transform:rotate(-2deg)}
+.way:nth-child(2) .way-img{transform:rotate(1.5deg)}
+.way:nth-child(3) .way-img{transform:rotate(-1deg)}
+.catering{background:var(--paper-2)}
+.map{background:#EAE3D3}
+.score .num{font:700 72px/1 var(--display);color:var(--brand)}
+.rcard{border-top-color:var(--brand)}
+.faq summary{font-family:var(--display);font-weight:600}
+
+/* footer */
+.stripes{display:grid;grid-template-columns:repeat(5,1fr);height:24px}
+.stripes span:nth-child(1){background:var(--wood-2)}.stripes span:nth-child(2){background:var(--chilli)}.stripes span:nth-child(3){background:var(--orange)}.stripes span:nth-child(4){background:var(--turmeric)}.stripes span:nth-child(5){background:var(--chutney)}
+.badge{width:160px;height:160px;border-radius:50%;background:var(--turmeric);color:var(--brand);display:flex;align-items:center;justify-content:center;text-align:center;font:700 30px/1.1 var(--display);transform:rotate(-10deg);box-shadow:0 16px 32px -16px rgba(0,0,0,.37)}
+.final .heading-2{color:var(--on-wood)}
+
+@media (prefers-reduced-motion:reduce){
+  .ribbon-track{animation:none}
+}
+@media (max-width:1080px){
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .heading-2{font-size:48px}
+}
+@media (max-width:860px){
+  .heading-2{font-size:36px;line-height:1.15}
+  .hero-stage{min-height:0;flex-direction:column;padding:104px var(--gutter) 200px}
+  .hero-word{font-size:30vw}
+  .hero-sub{font-size:20px;line-height:28px;padding:4px 16px}
+  .t1{width:44vw;right:4%;top:auto;bottom:16px}
+  .t2{width:36vw;left:4%;top:auto;bottom:40px}
+  .t3{display:none}
+  .hero .tag-price{width:88px;height:88px;right:auto;left:38%;top:auto;bottom:0}
+  .tag-price b{font-size:24px}
+  .tag-price small{font-size:12px;line-height:16px}
+  .hero{padding-bottom:48px}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:16px}
+  .hero .proof{align-items:flex-start;text-align:left}
+  .ribbon-wrap{margin-top:-32px}
+  .ribbon-track{font-size:24px;gap:24px}
+  .ribbon-track i{font-size:20px}
+  .quick{padding:32px 0 0}
+  .quick-grid{gap:16px}
+  .q{padding:16px}
+  .q b{font-size:18px;line-height:28px}
+  .ghost::before{font-size:160px}
+  .plate{padding:24px 16px;border-radius:var(--r-xl)}
+  .plate-price b{font-size:48px}
+  .badge{width:120px;height:120px;font-size:24px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"อามัน ข้าวหมกไก่","alternateName":"Aman Briyani Rice","servesCuisine":["Thai-Muslim","Indian"],"priceRange":"฿","openingHours":"Mo-Su 10:00-21:00","hasMenu":"#menu","image":"img/spread.jpg"}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">ข้ามไปเนื้อหา</a>
+
+<nav class="nav" aria-label="เมนูหลัก">
+  <a class="brand" href="#top" aria-label="อามัน ข้าวหมกไก่ กลับขึ้นบนสุด">อามัน ข้าวหมกไก่</a><!-- แทนด้วยโลโก้จริงเมื่อได้ไฟล์ -->
+  <div class="nav-links">
+    <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
+  </div>
+  <a class="btn btn-primary btn-sm" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางไปร้าน</a>
+  <button class="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="เปิดเมนู"><span></span><span></span></button>
+</nav>
+<div class="panel" id="panel" aria-hidden="true">
+  <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
+</div>
+
+<main id="top"><span id="main" tabindex="-1"></span>
+
+<!-- HERO -->
+<section class="hero wood" aria-labelledby="hero-h">
+  <div class="hero-stage">
+    <h1 id="hero-h"><span class="hero-word">ข้าวหมก</span><span class="hero-sub">หอมเครื่องเทศ กับไก่ชิ้นโต</span></h1>
+    <figure class="tilt t1"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมกสีขมิ้น ไก่ทอดหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" fetchpriority="high"></figure>
+    <figure class="tilt t2"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง" width="640" height="640"></figure>
+    <figure class="tilt t3"><img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น" width="640" height="640"></figure>
+    <div class="tag-price" aria-hidden="true"><small>เซ็ตละ</small><b>189.-</b></div>
+  </div>
+  <div class="wrap hero-foot">
+    <div class="hero-lead">
+      <p class="body-lead">เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียวในจานเดียว ไม่มีหมู ไม่มีแอลกอฮอล์</p>
+      <div class="cta-three">
+        <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+      </div>
+    </div>
+    <div class="proof">
+      <span class="open" data-open="10:00-21:00"><i></i><span class="open-now">เปิด</span>ทุกวัน <span class="nw">10:00–21:00</span></span>
+      <span><span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span class="tbd">[4.X] จาก [XXX] รีวิวบน Google</span></span>
+    </div>
+  </div>
+</section>
+
+<div class="ribbon-wrap" aria-hidden="true"><div class="ribbon"><div class="ribbon-track"><span>ข้าวหมกหอมเครื่องเทศ</span><i class="ph-bold ph-asterisk"></i><span>ไก่ชิ้นโต</span><i class="ph-bold ph-asterisk"></i><span>น้ำจิ้มเขียว</span><i class="ph-bold ph-asterisk"></i><span>เซ็ตละ 189 บาท</span><i class="ph-bold ph-asterisk"></i><span>เปิดทุกวัน</span><i class="ph-bold ph-asterisk"></i><span>ข้าวหมกหอมเครื่องเทศ</span><i class="ph-bold ph-asterisk"></i><span>ไก่ชิ้นโต</span><i class="ph-bold ph-asterisk"></i><span>น้ำจิ้มเขียว</span><i class="ph-bold ph-asterisk"></i><span>เซ็ตละ 189 บาท</span><i class="ph-bold ph-asterisk"></i><span>เปิดทุกวัน</span><i class="ph-bold ph-asterisk"></i></div></div></div>
+
+<!-- QUICK ANSWERS: four things people check before they come -->
+<section class="quick" aria-label="ข้อมูลร้านโดยย่อ">
+  <div class="wrap quick-grid">
+    <div class="q"><span class="caption-1 muted">ทานได้สบายใจไหม?</span><b class="heading-6">หมกไก่อิสลาม</b><span class="body-6 muted">ไม่มีหมู ไม่มีแอลกอฮอล์ ทุกเมนู</span></div>
+    <div class="q"><span class="caption-1 muted">เปิดกี่โมง?</span><b class="heading-6">10:00–21:00</b><span class="body-6 muted">เปิดทุกวัน · ข้าวหมกหมดประมาณ <span class="tbd">[19:00]</span></span></div>
+    <div class="q"><span class="caption-1 muted">ไปยังไง?</span><b class="heading-6 tbd">[BTS/MRT สถานี] ทางออก [X]</b><span class="body-6 muted">เดิน <span class="tbd">[X]</span> นาที · จอดรถหน้าร้านได้</span></div>
+    <div class="q"><span class="caption-1 muted">ราคาเริ่มต้น?</span><b class="heading-6">ข้าวหมกแยก 59 บาท</b><span class="body-6 muted">เซ็ตข้าวหมกไก่ 189 บาท</span></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="sec ghost" id="menu" aria-labelledby="menu-h" data-ghost="เมนู">
+  <div class="wrap menu">
+    <figure class="menu-photo rv" style="margin:0">
+      <img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น แกงไก่ซอสเนยสีส้ม" width="640" height="640" loading="lazy">
+      <figcaption>บัตเตอร์ชิคเก้น 189 บาท</figcaption>
+    </figure>
+    <div class="menu-list">
+      <div class="sec-head" style="margin-bottom:0">
+        <h2 class="heading-2" id="menu-h">เมนูและราคา</h2>
+        <p class="body-3 muted">ราคาทานที่ร้าน ราคาบนแอปเดลิเวอรี่อาจต่างกันเล็กน้อย</p>
+      </div>
+      <div class="cat rv">
+        <h3 class="heading-5">ไก่และข้าว</h3>
+        <div class="item"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="leader"></span></div><span class="price">189</span></div>
+        <div class="item"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="leader"></span></div><span class="price">189</span></div>
+        <div class="item"><img src="img/grilled-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ย่าง</b><span class="leader"></span></div><span class="price">89</span></div>
+        <div class="item"><img src="img/fried-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ทอด</b><span class="leader"></span></div><span class="price">89</span></div>
+        <div class="item"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ข้าวหมกแยก</b><span class="leader"></span></div><span class="price">59</span></div>
+      </div>
+      <div class="cat rv">
+        <h3 class="heading-5">แกงอินเดีย</h3>
+        <div class="item"><img src="img/butter-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>บัตเตอร์ชิคเก้น</b><span class="leader"></span></div><span class="price">189</span></div>
+        <div class="item"><img src="img/aloo-gobi.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>อลูโกบิ</b><small>แกงมันฝรั่งกับดอกกะหล่ำ</small><span class="leader"></span></div><span class="price">149</span></div>
+      </div>
+      <div class="cat rv">
+        <h3 class="heading-5">ซุป สลัด ทานเล่น</h3>
+        <div class="item"><img src="img/soup.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซุปน่องไก่แซ่บ</b><span class="leader"></span></div><span class="price">159</span></div>
+        <div class="item"><img src="img/salad.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>สลัดผักเกาหลี</b><span class="leader"></span></div><span class="price">109</span></div>
+        <div class="item"><img src="img/samosa.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซาโมซ่า</b><span class="leader"></span></div><span class="price">139</span></div>
+      </div>
+      <p class="menu-note">ราคาเป็นบาท</p>
+    </div>
+  </div>
+  <div class="combo-label wrap"><span class="sticker">ชุดยอดนิยม</span></div>
+  <div class="wrap"><div class="plate teal" id="plate">
+    <div class="plate-photo rv">
+      <img id="img-grilled" src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่างหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy" hidden>
+      <img id="img-fried" src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอดหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy">
+      <span class="pin" style="left:36%;top:38%" aria-hidden="true">1</span>
+      <span class="pin" style="left:66%;top:68%" aria-hidden="true">2</span>
+      <span class="pin" style="left:70%;top:20%" aria-hidden="true">3</span>
+      <span class="pin" style="left:12%;top:62%" aria-hidden="true">4</span>
+    </div>
+    <div class="plate-info rv">
+      <h3 class="heading-2">มาครั้งแรก<br>เริ่มจากเซ็ตนี้</h3>
+      <div class="seg" role="group" aria-label="เลือกไก่">
+        <button type="button" data-set="fried" aria-pressed="true">ไก่ทอด</button>
+        <button type="button" data-set="grilled" aria-pressed="false">ไก่ย่าง</button>
+      </div>
+      <ol class="legend">
+        <li><span class="n">1</span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
+        <li><span class="n">2</span><div><b id="chicken-name">ไก่ทอดชิ้นโต</b><span>หั่นเป็นชิ้น กินคู่ข้าวได้ทุกคำ</span></div></li>
+        <li><span class="n">3</span><div><b>สลัดผัก</b><span>ผักสดเคียงจาน</span></div></li>
+        <li><span class="n">4</span><div><b>น้ำจิ้มเขียว</b><span>ราดข้าวหรือจิ้มไก่ก็ได้</span></div></li>
+      </ol>
+      <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
+      <div class="cta-row">
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+      </div>
+      <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
+    </div>
+  </div></div>
+</section>
+
+<!-- PEOPLE + PROMISES -->
+<section class="sec wood" id="halal" aria-labelledby="halal-h">
+  <div class="wrap people">
+    <figure class="people-photo rv" style="margin:0">
+      <img src="img/hero-staff.jpg" alt="พนักงานร้านอามันใส่ผ้ากันเปื้อนมีโลโก้ร้าน ถือจานเซ็ตข้าวหมกไก่ทอด" width="1000" height="1000" loading="lazy">
+      <figcaption class="tbd">[ชื่อพนักงานหรือเจ้าของในรูป]</figcaption>
+    </figure>
+    <div class="people-copy rv">
+      <h2 class="heading-2" id="halal-h">หมกไก่อิสลาม<br>ทานได้สบายใจทุกจาน</h2>
+      <p class="body-lead muted"><span class="tbd">[เล่าเรื่องร้านสั้นๆ 2–3 ประโยค: ใครเปิดร้าน เปิดมาตั้งแต่ปีไหน สูตรข้าวหมกได้มาจากใคร]</span></p>
+      <blockquote class="quote" style="margin:0"><span class="tbd" style="color:var(--on-wood-2)">“[คำพูดจากเจ้าของร้าน เช่น ทำไมถึงเปิดร้านข้าวหมก]”</span><cite class="tbd">[ชื่อเจ้าของร้าน]</cite></blockquote>
+      <ul class="checks">
+        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>ไม่มีหมู ไม่มีแอลกอฮอล์ ในร้านและทุกเมนู</span></li>
+        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>วัตถุดิบเนื้อสัตว์จาก <span class="tbd">[ซัพพลายเออร์ฮาลาล]</span></span></li>
+        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span class="tbd">[รอร้านยืนยัน: เจ้าของและทีมครัวเป็นมุสลิม]</span></li>
+        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span class="tbd">[ถ้ามี: มุมละหมาดสำหรับลูกค้า]</span></li><!-- ลบข้อที่ร้านไม่มีจริงออก -->
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="sec" id="delivery" aria-labelledby="delivery-sec-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="heading-2" id="delivery-sec-h">สั่งถึงบ้าน<br>ได้ 3 ช่องทาง</h2>
+      <p class="body-3 muted">ส่งในรัศมี <span class="tbd">[X] กม.</span> ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
+    </div>
+    <div class="ways">
+      <div class="way rv">
+        <div class="way-img"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">GrabFood</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
+        <div class="sp"></div>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>สั่งผ่าน GrabFood</a>
+      </div>
+      <div class="way rv">
+        <div class="way-img"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">LINE MAN</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
+        <div class="sp"></div>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>สั่งผ่าน LINE MAN</a>
+      </div>
+      <div class="way rv">
+        <div class="way-img"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">โทรสั่งหรือ LINE ร้าน</h3>
+        <p class="body-3 muted">สั่งไว้ก่อนแล้วมารับ ไม่ต้องรอคิว · LINE <span class="tbd">[@ไอดีร้าน]</span></p>
+        <div class="sp"></div>
+        <a class="btn btn-primary" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง <span class="tbd" style="color:inherit">[0X-XXX-XXXX]</span></a>
+      </div>
+    </div>
+    <div class="catering rv">
+      <div><h3 class="heading-6">สั่งจำนวนมาก จัดเลี้ยง กล่องข้าวประชุม</h3><p class="body-6 muted">สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span class="tbd">[XX]</span> กล่อง</p></div>
+      <a class="btn btn-line" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรถามรายละเอียด</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION & HOURS -->
+<section class="sec" id="location" aria-labelledby="location-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="location-h">ร้านอยู่ไหน มายังไง</h2></div>
+    <div class="visit">
+      <a class="map rv" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
+      <div class="visit-info rv">
+        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span class="tbd">[เลขที่] ถนน[ชื่อถนน] แขวง[แขวง] เขต[เขต] กรุงเทพฯ [รหัสไปรษณีย์]</span><br><span class="muted">จุดสังเกต: </span><span class="tbd">[ตรงข้าม… / ติดกับ… / ในซอย… ปากซอยมีป้ายร้าน]</span></p>
+        <table class="hours" aria-label="เวลาเปิดปิด"><tbody>
+          <tr><td>จันทร์ – ศุกร์</td><td>10:00 – 21:00</td></tr>
+          <tr><td>เสาร์ – อาทิตย์</td><td><span class="tbd">[10:00 หรือ 09:00]</span> – 21:00</td></tr>
+          <tr><td>วันศุกร์ พักละหมาด</td><td class="tbd">[12:00 – 13:30 ถ้ามี]</td></tr>
+          <tr><td>วันหยุดพิเศษ</td><td class="tbd">[วันอีด · แจ้งทางเพจ]</td></tr>
+        </tbody></table>
+        <div class="how">
+          <div><b>รถไฟฟ้า</b><span class="tbd">[สถานี] ทางออก [X]</span></div>
+          <div><b>ที่จอดรถ</b><span class="tbd">[X] คัน หน้าร้าน</span></div>
+          <div><b>รถเมล์</b><span class="tbd">[สาย XX, XX]</span></div>
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">เปิดใน Google Maps</a>
+          <a class="btn btn-line" href="tel:[เบอร์ร้าน]">โทรถามทาง</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS: ดึงจาก Google Business Profile จริงเท่านั้น -->
+<section class="sec" id="reviews" aria-labelledby="reviews-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
+    <div class="reviews">
+      <div class="score rv">
+        <span class="caption-1 muted">รีวิวบน Google</span>
+        <span class="num tbd">[4.X]</span>
+        <span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span>
+        <span class="body-6 muted">จาก <span class="tbd">[XXX]</span> รีวิว</span>
+        <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมดบน Google</a>
+      </div>
+      <div class="rlist rv">
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
+        <article class="rcard"><p class="tbd">[รีวิวจริงจาก Google ห้ามแต่งเอง]</p><div class="who"><span class="av"></span><span class="tbd">[ชื่อผู้รีวิว] · Google</span></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="faq-h">คำถามก่อนมาร้าน</h2></div>
+    <div class="faq rv">
+      <details open><summary>เป็นหมกไก่อิสลามไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>ใช่ครับ ทุกเมนูไม่มีหมูและแอลกอฮอล์ <a href="#halal">ดูรายละเอียดเพิ่มเติม</a></p></details>
+      <details><summary>ข้าวหมกไก่ราคาเท่าไหร่?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เซ็ตข้าวหมกไก่ย่างและเซ็ตข้าวหมกไก่ทอด เซ็ตละ 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ถ้าอยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p></details>
+      <details><summary>เปิดปิดกี่โมง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เปิดทุกวัน 10:00–21:00 วันหยุดพิเศษจะแจ้งทางเพจล่วงหน้า</p></details>
+      <details><summary>สั่งเดลิเวอรี่ได้ทางไหน?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>สั่งผ่าน GrabFood หรือ LINE MAN ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย</p></details>
+      <details><summary>มีที่จอดรถไหม ใกล้รถไฟฟ้าสถานีไหน?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>จอดหน้าร้านได้ <span class="tbd">[X]</span> คัน หรือลง <span class="tbd">[BTS/MRT สถานี]</span> ทางออก <span class="tbd">[X]</span> เดินประมาณ <span class="tbd">[X]</span> นาที</p></details>
+      <details><summary>รับจัดเลี้ยงหรือสั่งจำนวนมากได้ไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>รับครับ ทั้งกล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span class="tbd">[XX]</span> กล่อง โทร <a href="tel:[เบอร์ร้าน]">[0X-XXX-XXXX]</a></p></details>
+      <details><summary>มีเมนูอินเดียอะไรบ้าง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>มีบัตเตอร์ชิคเก้น 189 บาท อลูโกบิ 149 บาท และซาโมซ่า 139 บาท</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FINAL CTA + FOOTER -->
+<footer class="wood">
+  <div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <section class="final" aria-labelledby="final-h">
+    <div class="wrap">
+      <div class="badge" aria-hidden="true">แวะมา<br>ชิมกัน</div>
+      <h2 class="heading-2" id="final-h">หิวแล้วแวะมาได้เลย<br>เปิดทุกวัน 10:00–21:00</h2>
+      <div class="cta-three">
+        <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+      </div>
+    </div>
+  </section>
+  <div class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div><span class="brand" style="color:var(--on-wood)">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด ใกล้ <span class="tbd">[BTS/จุดสังเกต]</span> <span class="nw">กรุงเทพฯ</span></p></div>
+        <div><h3>เวลาเปิด</h3><p>ทุกวัน 10:00–21:00</p></div>
+        <div><h3>สั่งอาหาร</h3><a href="https://maps.google.com/?q=Aman+Briyani+Rice">Google Maps</a><a href="[ลิงก์ร้านบน GrabFood]">GrabFood</a><a href="[ลิงก์ร้านบน LINE MAN]">LINE MAN</a></div>
+        <div><h3>ติดต่อ</h3><a href="tel:[เบอร์ร้าน]" class="tbd">[0X-XXX-XXXX]</a><a href="#" class="tbd">[LINE @ไอดีร้าน]</a><a href="#" class="tbd">[Facebook · Instagram · TikTok]</a></div>
+      </div>
+      <div class="copy"><span>© 2026 อามัน ข้าวหมกไก่ (Aman Briyani Rice)</span><a href="#" class="tbd">[นโยบายความเป็นส่วนตัว]</a></div>
+    </div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="ปุ่มสั่งด่วน">
+  <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทาง</a>
+  <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>Grab</a>
+  <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+</nav>
+
+<div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
+  <!-- แสดงเฉพาะตอนลิงก์ GrabFood / LINE MAN ยังเป็น [placeholder] · ใส่ลิงก์จริงแล้วปุ่มแอปจะกลับมาเอง -->
+  <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery-sheet" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
+  <p>เปิดแอป GrabFood หรือ LINE MAN แล้วค้นหาชื่อร้าน</p>
+  <div class="shop-name"><b id="shop-name">อามัน ข้าวหมกไก่</b><button type="button" class="btn btn-line btn-sm" data-copy>คัดลอกชื่อ</button></div>
+  <div class="sheet-apps"><span><span class="dot" style="background:var(--grab)"></span>GrabFood</span><span><span class="dot" style="background:var(--lineman)"></span>LINE MAN</span></div>
+  <p>ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
+</div>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Links the client has not supplied yet ([placeholder] or "#"): look normal, show a short note on click.
+     Replace the href with the real URL and the link works as usual. */
+  var toast=document.createElement('div');toast.className='note-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');document.body.appendChild(toast);
+  var tt;function hide(){toast.classList.remove('on')}
+  function note(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(hide,6500)}
+  toast.addEventListener('click',hide);
+  function msgFor(h){
+    if(/GrabFood/.test(h))return 'ยังไม่มีลิงก์ร้านบน GrabFood · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
+    if(/LINE MAN/.test(h))return 'ยังไม่มีลิงก์ร้านบน LINE MAN · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
+    if(/^tel:/.test(h))return 'เบอร์โทรร้านกำลังอัปเดต · มาที่ร้านได้ทุกวัน 10:00–21:00';
+    return 'ลิงก์นี้กำลังอัปเดต';
+  }
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(h==='#'||/\[/.test(h)){
+      var m=msgFor(h);
+      a.dataset.todo=h;a.removeAttribute('href');
+      a.classList.add('is-pending');a.setAttribute('role','button');a.tabIndex=0;
+      a.setAttribute('aria-label',a.textContent.trim()+' — '+m);
+      a.addEventListener('click',function(e){e.preventDefault();note(m)});
+      a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();note(m)}});
+    }
+  });
+
+  /* Delivery: while both app links are pending, a GrabFood + LINE MAN pair becomes one button that opens the sheet.
+     The two .cta-three rows keep their three separate buttons. */
+  var sheet=document.getElementById('delivery-sheet'),canPop=!!sheet&&HTMLElement.prototype.hasOwnProperty('popover');
+  if(canPop){sheet.removeAttribute('hidden');sheet.setAttribute('popover','auto');}
+  var dmsg='ยังไม่มีลิงก์ร้านบนแอป · ค้นหา “อามัน ข้าวหมกไก่” ใน GrabFood หรือ LINE MAN ได้เลย';
+  var groups=[];
+  document.querySelectorAll('a.is-pending').forEach(function(a){
+    if(/GrabFood|LINE MAN/.test(a.dataset.todo)&&groups.indexOf(a.parentElement)<0)groups.push(a.parentElement);
+  });
+  groups.forEach(function(g){
+    var apps=[].filter.call(g.children,function(a){return a.classList.contains('is-pending')&&/GrabFood|LINE MAN/.test(a.dataset.todo||'')});
+    if(apps.length<2||g.classList.contains('cta-three'))return;
+    var inFoot=!!g.closest('.foot'),b=document.createElement('button');b.type='button';
+    if(inFoot){b.className='sheet-open';b.textContent='GrabFood · LINE MAN';}
+    else{b.className=apps[0].className.replace('is-pending','').trim();
+      b.innerHTML='<span class="dots" aria-hidden="true"><span class="dot" style="background:var(--grab)"></span><span class="dot" style="background:var(--lineman)"></span></span>สั่งเดลิเวอรี่';}
+    if(canPop)b.setAttribute('popovertarget','delivery-sheet');else b.addEventListener('click',function(){note(dmsg)});
+    g.insertBefore(b,apps[0]);apps.forEach(function(a){g.removeChild(a)});g.classList.add('is-merged');
+  });
+  if(canPop){
+    var cp=sheet.querySelector('[data-copy]');
+    sheet.addEventListener('toggle',function(e){if(e.newState==='open')cp.focus()});
+    cp.addEventListener('click',function(){
+      var done=function(){cp.textContent='คัดลอกแล้ว';setTimeout(function(){cp.textContent='คัดลอกชื่อ'},2000)};
+      var pick=function(){var r=document.createRange();r.selectNodeContents(document.getElementById('shop-name'));var sel=getSelection();sel.removeAllRanges();sel.addRange(r)};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText('อามัน ข้าวหมกไก่').then(done,pick);else pick();
+    });
+  }
+
+  /* Open now? Bangkok time; holidays not known yet */
+  document.querySelectorAll('.open[data-open]').forEach(function(el){
+    try{
+      var p=el.dataset.open.split('-').map(function(t){var x=t.split(':');return +x[0]*60+ +x[1]});
+      var parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+      var hh=+parts.find(function(x){return x.type==='hour'}).value%24,mm=+parts.find(function(x){return x.type==='minute'}).value;
+      var now=hh*60+mm,open=now>=p[0]&&now<p[1];
+      el.classList.add(open?'is-open':'is-closed');
+      el.querySelector('.open-now').textContent=open?'เปิดอยู่ · ':'ปิดแล้ว · เปิด';
+    }catch(e){}
+  });
+
+  /* Plate: switch fried / grilled */
+  var setBtns=document.querySelectorAll('[data-set]'),imgs={fried:document.getElementById('img-fried'),grilled:document.getElementById('img-grilled')};
+  setBtns.forEach(function(b){b.addEventListener('click',function(){
+    var k=b.dataset.set;
+    setBtns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    imgs.fried.hidden=k!=='fried';imgs.grilled.hidden=k!=='grilled';
+    document.getElementById('chicken-name').textContent=k==='fried'?'ไก่ทอดชิ้นโต':'ไก่ย่างชิ้นโต';
+  })});
+
+  /* Mobile menu */
+  var tg=document.querySelector('.toggle'),panel=document.getElementById('panel');
+  function setMenu(open){tg.setAttribute('aria-expanded',open);tg.setAttribute('aria-label',open?'ปิดเมนู':'เปิดเมนู');panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':''}
+  tg.addEventListener('click',function(){setMenu(tg.getAttribute('aria-expanded')!=='true')});
+  panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){hide();if(panel.classList.contains('open')){setMenu(false);tg.focus()}}});
+
+  if(!('IntersectionObserver' in window))return;
+
+  /* Nav: mark the section in view */
+  var navLinks=document.querySelectorAll('.nav-links a');
+  var spy=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(!e.isIntersecting)return;
+    navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  })},{rootMargin:'-45% 0px -50% 0px'});
+  navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
+
+  /* Reveal key blocks once as they enter (already visible ones stay put) */
+  if(reduce)return;
+  var vh=innerHeight;
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target,sib=el.parentElement.children,idx=[].indexOf.call(sib,el);
+    el.style.animationDelay=(sib.length>2?(idx%3)*80:0)+'ms';el.classList.add('play');io.unobserve(el);
+  })},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<vh&&r.bottom>0)return;io.observe(el)});
+})();
+</script>
+</body>
+</html>
