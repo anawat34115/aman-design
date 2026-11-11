@@ -365,7 +365,8 @@ a.is-pending:not(.btn){text-decoration:none}
   .tag-price{left:auto;right:16px;bottom:-32px;width:96px;height:96px}
   .tag-price b{font-size:24px}
   .tag-price small{font-size:12px;line-height:16px}
-  .cta-three{grid-template-columns:1fr}
+  .cta-three{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cta-three > :first-child{grid-column:1 / -1}
   .plate,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
   .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
@@ -474,7 +475,7 @@ a.is-pending:not(.btn){text-decoration:none}
       <img src="img/set-both.webp" alt="เซ็ตข้าวหมกไก่ทอดและเซ็ตข้าวหมกไก่ย่างวางคู่กัน แต่ละจานมีข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว" width="1024" height="572" loading="lazy">
     </figure>
     <div class="plate-info rv">
-      <h3 class="heading-3">เมนูแนะนำ<br>ที่ทุกคนห้ามพลาด</h3>
+      <h2 class="heading-2">เมนูแนะนำ<br>ที่ทุกคนห้ามพลาด</h2>
       <p class="body-3 muted">เลือกไก่ทอดหรือไก่ย่าง ราคาเดียวกัน ในจานมี</p>
       <ul class="legend">
         <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
@@ -483,7 +484,8 @@ a.is-pending:not(.btn){text-decoration:none}
         <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>น้ำจิ้มเขียว</b><span>ราดข้าวหรือจิ้มไก่ก็ได้</span></div></li>
       </ul>
       <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
-      <div class="cta-row">
+      <div class="cta-three">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
         <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
         <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
       </div>
