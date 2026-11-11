@@ -126,6 +126,9 @@ a.is-pending:not(.btn){text-decoration:none}
 .wood{background:var(--wood);color:var(--on-wood)}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(820px,100svh)}
 .hero-copy{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:128px 64px 80px max(var(--gutter),calc((100vw - var(--max))/2 + var(--gutter)))}
+.hero-copy{position:relative;isolation:isolate;overflow:hidden}
+/* faint rooster on the empty wood beside the heading */
+.hero-copy::before{content:"";position:absolute;z-index:-1;width:clamp(480px,40vw,760px);aspect-ratio:1;left:0;top:50%;transform:translateY(-50%);background:url(img/logo-mark.png) center/contain no-repeat;opacity:.04;pointer-events:none}
 .hero-copy h1{max-width:680px}
 .hero-copy h1 .hl{color:var(--turmeric)}
 /* each heading line stays whole, so the size follows the column width on desktop */
@@ -154,13 +157,10 @@ a.is-pending:not(.btn){text-decoration:none}
 #plate{scroll-margin-top:96px}
 
 /* What's on the plate */
-.plate{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr);gap:48px;align-items:center}
-/* Two sets, one price: one photo with both plates, labels on each plate */
+.plate{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+/* Two sets, one price: one photo with both plates */
 .sets{position:relative;margin:0;border-radius:var(--r-xl);overflow:hidden;background:var(--wood)}
 .sets img{display:block;width:100%;height:auto;aspect-ratio:1024/572;object-fit:cover}
-.set-tag{position:absolute;top:16px;font:600 16px/24px var(--font);color:#fff;background:rgba(36,24,18,.82);padding:4px 16px;border-radius:999px}
-.set-tag.a{left:16px}
-.set-tag.b{right:16px}
 .plate-info{display:flex;flex-direction:column;gap:24px}
 .plate-price{display:flex;align-items:baseline;gap:12px}
 .plate-price b{font:400 60px/1.1 var(--display);color:var(--brand)}
@@ -172,7 +172,7 @@ a.is-pending:not(.btn){text-decoration:none}
 
 /* Menu card */
 .menu-list{display:flex;flex-direction:column;gap:48px}
-.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .mcard{position:relative;display:flex;flex-direction:column;margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 8px 24px -16px rgba(36,24,18,.35)}
 .mimg{position:relative;background:var(--wood)}
 .mimg img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
@@ -234,8 +234,9 @@ a.is-pending:not(.btn){text-decoration:none}
 .facts i{font-size:16px;color:var(--turmeric)}
 
 /* Visit */
+#location{background:#EFEAE4}
 .visit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch}
-.map{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px;border-radius:var(--r-xl);background:#EEF0EA;color:inherit;text-decoration:none;overflow:hidden;border:1px solid var(--line);transition:border-color .3s var(--ease)}
+.map{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px;border-radius:var(--r-xl);background:var(--paper);color:inherit;text-decoration:none;overflow:hidden;border:1px solid var(--line);transition:border-color .3s var(--ease)}
 .map:hover{border-color:var(--ink)}
 .map-pin{display:flex;flex-direction:column;align-items:center;gap:8px;font:600 14px/20px var(--font)}
 .map-pin i{font-size:48px;color:var(--brand)}
@@ -271,9 +272,10 @@ a.is-pending:not(.btn){text-decoration:none}
 
 /* Mobile bar */
 /* Floating order buttons, right side: call, LINE MAN, Grab */
-.fab{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;flex-direction:column;align-items:center;gap:12px}
-.fab-bubble{position:relative;margin-bottom:4px;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 16px -8px rgba(36,24,18,.5);animation:fab-bob 2.4s var(--ease) infinite}
+.fab{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;flex-direction:column;align-items:center}
+.fab-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;translate:-50% 0;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 16px -8px rgba(36,24,18,.5);animation:fab-bob 2.4s var(--ease) infinite;transition:opacity .3s var(--ease)}
 .fab-bubble::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--brand)}
+.fab.open .fab-bubble{opacity:0;animation:none}
 .fab-btn{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px -8px rgba(36,24,18,.45);text-decoration:none;transition:transform .3s var(--ease)}
 .fab-btn:hover{transform:translateY(-2px)}
 .fab-btn:active{transform:scale(.96)}
@@ -281,10 +283,23 @@ a.is-pending:not(.btn){text-decoration:none}
 /* app icons fill the whole circle */
 .fab-btn img{width:100%;height:100%;border-radius:50%}
 .fab-tel{background:var(--brand);border-color:transparent;color:#fff;font-size:26px}
-.fab-label{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);white-space:nowrap;font:600 14px/20px var(--font);color:#fff;background:var(--ink);padding:6px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
-.fab-btn:hover .fab-label,.fab-btn:focus-visible .fab-label{opacity:1;transform:translate(0,-50%)}
+/* the main basket button: swaps to a close icon while the menu is open */
+.fab-main{background:var(--brand);border-color:transparent;color:#fff;font:inherit;cursor:pointer;padding:0}
+.fab-main i{grid-area:1/1;font-size:26px;transition:opacity .3s var(--ease),transform .5s var(--ease)}
+.fab-main .ph-x{opacity:0;transform:rotate(-90deg)}
+.fab.open .fab-main{background:var(--ink)}
+.fab.open .fab-main .ph-basket{opacity:0;transform:rotate(90deg)}
+.fab.open .fab-main .ph-x{opacity:1;transform:none}
+.fab-menu{position:absolute;bottom:calc(100% + 12px);left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fab:not(.open) .fab-menu .fab-btn{visibility:hidden;opacity:0;transform:translateY(16px) scale(.8)}
+.fab-menu .fab-btn{transition:opacity .3s var(--ease),transform .5s var(--ease),visibility 0s}
+.fab-menu .fab-btn:nth-child(2){transition-delay:40ms}
+.fab-menu .fab-btn:nth-child(1){transition-delay:80ms}
+.fab:not(.open) .fab-menu .fab-btn{transition-delay:0s,0s,.3s}
+/* names beside the buttons, shown while the menu is open */
+.fab-label{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;font:600 14px/20px var(--font);color:#fff;background:var(--ink);padding:6px 12px;border-radius:8px;pointer-events:none}
 @keyframes fab-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@media (prefers-reduced-motion:reduce){.fab-bubble{animation:none}}
+@media (prefers-reduced-motion:reduce){.fab-bubble{animation:none}.fab-menu .fab-btn,.fab-main i{transition:none}}
 
 /* Reveal: content is visible by default; key blocks rise once as they enter */
 @keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -353,10 +368,7 @@ a.is-pending:not(.btn){text-decoration:none}
   .cta-three{grid-template-columns:1fr}
   .plate,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
-  .set-tag{top:8px;font-size:12px;line-height:16px;padding:4px 8px}
-  .set-tag.a{left:8px}
-  .set-tag.b{right:8px}
-  .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
   .mbody{padding:12px 12px 16px}
   .mrow{flex-direction:column;align-items:flex-start;gap:8px}
   .mrow b{font-size:16px;line-height:24px}
@@ -375,9 +387,9 @@ a.is-pending:not(.btn){text-decoration:none}
   .faq summary{font-size:16px;line-height:24px;padding:16px 0}
   .faq details p{padding-right:0}
   .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
-  .fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));gap:8px}
+  .fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}
   .fab-btn{width:52px;height:52px}
-  .fab-label{display:none}
+  .fab-menu{gap:8px;bottom:calc(100% + 8px)}
   .note-toast{bottom:calc(16px + env(safe-area-inset-bottom));right:84px}
   .sheet{margin:auto 0 0;width:100%;max-width:none;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
 }
@@ -397,7 +409,7 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="nav-links">
     <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
   </div>
-  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางไปร้าน</a>
+  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
   <button class="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="เปิดเมนู"><span></span><span></span></button>
 </nav>
 <div class="panel" id="panel" aria-hidden="true">
@@ -460,11 +472,9 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="wrap plate" id="plate">
     <figure class="sets rv">
       <img src="img/set-both.webp" alt="เซ็ตข้าวหมกไก่ทอดและเซ็ตข้าวหมกไก่ย่างวางคู่กัน แต่ละจานมีข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว" width="1024" height="572" loading="lazy">
-      <span class="set-tag a">เซ็ตไก่ทอด</span>
-      <span class="set-tag b">เซ็ตไก่ย่าง</span>
     </figure>
     <div class="plate-info rv">
-      <h3 class="heading-3">มาครั้งแรก<br>เริ่มจากเซ็ตนี้</h3>
+      <h3 class="heading-3">เมนูแนะนำ<br>ที่ทุกคนห้ามพลาด</h3>
       <p class="body-3 muted">เลือกไก่ทอดหรือไก่ย่าง ราคาเดียวกัน ในจานมี</p>
       <ul class="legend">
         <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
@@ -540,13 +550,13 @@ a.is-pending:not(.btn){text-decoration:none}
 </section>
 
 <!-- LOCATION & HOURS -->
-<section class="sec" id="location" aria-labelledby="location-h" style="padding-top:0">
+<section class="sec" id="location" aria-labelledby="location-h">
   <div class="wrap">
     <div class="sec-head"><h2 class="heading-2" id="location-h">ร้านอยู่ไหน มายังไง</h2></div>
     <div class="visit">
       <a class="map rv" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
       <div class="visit-info rv">
-        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span>50 ถนนเจริญราษฎร์ แขวงบางโคล่ เขตบางคอแหลม กรุงเทพมหานคร 10120</span><br><span class="muted">โทร </span><a href="tel:+66819416462">081 941 6462</a></p>
+        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span>50 ถนนเจริญราษฎร์ แขวงบางโคล่ เขตบางคอแหลม กรุงเทพมหานคร 10120</span></p>
         <table class="hours" aria-label="เวลาเปิดปิด"><tbody>
           <tr><td>จันทร์ – ศุกร์</td><td>10:00 – 21:00</td></tr>
           <tr><td>เสาร์ – อาทิตย์</td><td><span>10:00</span> – 21:00</td></tr>
@@ -562,7 +572,7 @@ a.is-pending:not(.btn){text-decoration:none}
 </section>
 
 <!-- REVIEWS: ดึงจาก Google Business Profile จริงเท่านั้น -->
-<section class="sec" id="reviews" aria-labelledby="reviews-h" style="padding-top:0">
+<section class="sec" id="reviews" aria-labelledby="reviews-h">
   <div class="wrap">
     <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
     <div class="gsum rv">
@@ -657,11 +667,14 @@ a.is-pending:not(.btn){text-decoration:none}
   </div>
 </footer>
 
-<div class="fab" role="group" aria-label="สั่งอาหาร">
+<div class="fab" id="fab">
+  <div class="fab-menu" id="fab-menu" role="group" aria-label="ช่องทางสั่งอาหาร">
+    <a class="fab-btn fab-tel" href="tel:+66819416462"><i class="ph-fill ph-phone" aria-hidden="true"></i><span class="fab-label">โทร 081 941 6462</span></a>
+    <a class="fab-btn" href="[ลิงก์ร้านบน LINE MAN]"><img src="img/logo-lineman.png" alt="" width="52" height="52"><span class="fab-label">LINE MAN</span></a>
+    <a class="fab-btn" href="[ลิงก์ร้านบน GrabFood]"><img src="img/logo-grab.png" alt="" width="52" height="52"><span class="fab-label">GrabFood</span></a>
+  </div>
   <span class="fab-bubble" aria-hidden="true">สั่งเลย</span>
-  <a class="fab-btn fab-tel" href="tel:+66819416462"><i class="ph-fill ph-phone" aria-hidden="true"></i><span class="fab-label">โทรสั่ง 081 941 6462</span></a>
-  <a class="fab-btn" href="[ลิงก์ร้านบน LINE MAN]"><img src="img/logo-lineman.png" alt="" width="32" height="32"><span class="fab-label">สั่งผ่าน LINE MAN</span></a>
-  <a class="fab-btn" href="[ลิงก์ร้านบน GrabFood]"><img src="img/logo-grab.png" alt="" width="32" height="32"><span class="fab-label">สั่งผ่าน GrabFood</span></a>
+  <button class="fab-btn fab-main" type="button" aria-expanded="false" aria-controls="fab-menu" aria-label="สั่งเลย"><i class="ph-fill ph-basket" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i></button>
 </div>
 
 <div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
@@ -674,6 +687,15 @@ a.is-pending:not(.btn){text-decoration:none}
 </div>
 
 <script>
+(function(){
+  var fab=document.getElementById('fab'),fabBtn=fab&&fab.querySelector('.fab-main');
+  if(fab){
+    function setFab(o){fab.classList.toggle('open',o);fabBtn.setAttribute('aria-expanded',o?'true':'false');fabBtn.setAttribute('aria-label',o?'ปิดช่องทางสั่ง':'สั่งเลย')}
+    fabBtn.addEventListener('click',function(){setFab(!fab.classList.contains('open'))});
+    document.addEventListener('click',function(e){if(fab.classList.contains('open')&&!fab.contains(e.target))setFab(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&fab.classList.contains('open')){setFab(false);fabBtn.focus()}});
+  }
+})();
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
