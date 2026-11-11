@@ -15,7 +15,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23241812'/%3E%3Ccircle cx='16' cy='17' r='9' fill='%23E3A33A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chonburi&family=Noto+Sans+Thai+Looped:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Chonburi&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
@@ -30,8 +30,8 @@
   --grab:#00B14F; --lineman:#06C755;
   --r-sm:6px; --r:12px; --r-lg:16px; --r-xl:24px;
   --ease:cubic-bezier(.22,1,.36,1);
-  --display:'Chonburi','Noto Sans Thai Looped',serif;
-  --font:'Noto Sans Thai Looped',system-ui,sans-serif;
+  --display:'Chonburi','Anuphan',serif;
+  --font:'Anuphan',system-ui,sans-serif;
   --max:1200px; --gutter:32px;
 }
 *{box-sizing:border-box}
@@ -79,7 +79,7 @@ h1,h2,h3,p{margin:0}
 .wood .btn-line{background:transparent;color:var(--on-wood);border-color:var(--line-wood)}
 .wood .btn-line:hover{border-color:var(--on-wood);background:rgba(255,255,255,.06)}
 .btn-sm{min-height:40px;font-size:14px;line-height:20px;padding:8px 12px}
-.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.app-logo{width:20px;height:20px;border-radius:5px;flex:none}
 .dots{display:inline-flex}.dots .dot+.dot{margin-left:-4px;box-shadow:0 0 0 2px var(--paper)}
 .wood .dots .dot+.dot{box-shadow:0 0 0 2px var(--wood)}
 .cta-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px}
@@ -118,8 +118,6 @@ a.is-pending:not(.btn){text-decoration:none}
 .proof{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font:500 14px/20px var(--font);color:var(--on-wood-2)}
 .proof > span{display:inline-flex;align-items:center;gap:8px}
 .stars{display:inline-flex;gap:2px;color:var(--turmeric);font-size:16px}
-.open i{width:8px;height:8px;border-radius:50%;background:var(--on-wood-2);flex:none;display:inline-block}
-.open.is-open i{background:#3FCB7E}
 .hero-photo{position:relative;min-height:420px}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tag-price{position:absolute;left:-40px;bottom:64px;width:128px;height:128px;border-radius:50%;background:var(--turmeric);color:var(--wood);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-8deg);box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
@@ -161,39 +159,24 @@ a.is-pending:not(.btn){text-decoration:none}
 .legend span{font:400 14px/20px var(--font);color:var(--ink-2)}
 
 /* Menu card */
-.menu{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
-.menu-photo{position:sticky;top:96px;border-radius:var(--r-xl);overflow:hidden}
-.menu-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.menu-photo figcaption{position:absolute;z-index:1;left:16px;bottom:16px;font:600 14px/20px var(--font);color:#fff;background:rgba(36,24,18,.82);padding:4px 12px;border-radius:999px;transition:opacity .5s var(--ease)}
-.menu-photo figcaption.swap{opacity:0}
-/* menu photo slideshow: photos fade into each other */
-.slides{position:relative;aspect-ratio:4/5;background:var(--wood)}
-.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s var(--ease)}
-.slides img.on{opacity:1}
-.menu-photo{position:sticky}
 .menu-list{display:flex;flex-direction:column;gap:48px}
 .cat h3{margin-bottom:16px}
-.item{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 0}
-.item + .item{border-top:1px dashed var(--line)}
-.item img{width:56px;height:56px;border-radius:50%;object-fit:cover}
-.item-name{display:flex;align-items:baseline;gap:8px;min-width:0}
-.item-name b{font:600 18px/28px var(--font)}
-.item-name small{font:400 14px/20px var(--font);color:var(--ink-2)}
-.item .leader{flex:1;min-width:24px;border-bottom:2px dotted rgba(46,28,23,.25);transform:translateY(-6px)}
-.item .price{font:600 18px/28px var(--font);color:var(--brand-hover)}
-.menu-note{font:400 14px/20px var(--font);color:var(--ink-2)}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px}
+.mcard{display:flex;flex-direction:column;gap:12px;margin:0}
+.mcard img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg);background:var(--wood)}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.mrow b{font:600 18px/28px var(--font)}
+.mrow .price{font:600 18px/28px var(--font);color:var(--brand-hover);white-space:nowrap}
+.mcard small{margin-top:-8px;font:400 14px/20px var(--font);color:var(--ink-2)}
 
 /* People + promises */
 .people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .people-photo{position:relative}
 .people-photo img{border-radius:var(--r-xl);aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;width:100%}
-.people-photo figcaption{margin-top:12px;font:400 14px/20px var(--font);color:var(--on-wood-2)}
 .people-copy{display:flex;flex-direction:column;gap:24px}
-.quote{font:400 24px/1.6 var(--display);color:var(--on-wood);padding:24px;border:1px solid var(--line-wood);border-radius:var(--r-lg)}
+.quote{font:400 24px/1.6 var(--display);color:var(--turmeric)}
+.hl{color:var(--turmeric)}
 .quote cite{display:block;margin-top:12px;font:500 14px/20px var(--font);font-style:normal;color:var(--on-wood-2)}
-.checks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.checks li{display:flex;gap:12px;align-items:flex-start;font:400 16px/24px var(--font);color:var(--on-wood)}
-.checks i{flex:none;font-size:20px;margin-top:2px;color:var(--turmeric)}
 
 /* Reviews */
 .reviews{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:32px;align-items:start}
@@ -214,7 +197,11 @@ a.is-pending:not(.btn){text-decoration:none}
 .way-img img{width:100%;height:100%;object-fit:cover}
 .way .sp{flex:1}
 .way > .btn,.way > .cta-row{align-self:stretch;margin-top:8px}
-.catering{margin-top:48px;padding:24px;border-radius:var(--r-lg);border:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.catering{margin-top:64px;border-radius:var(--r-xl);border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:stretch}
+.catering-copy{padding:48px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;justify-content:center}
+.catering-copy .btn{margin-top:8px}
+.catering-img{min-height:320px}
+.catering-img img{width:100%;height:100%;object-fit:cover}
 
 /* Visit */
 .visit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch}
@@ -226,14 +213,9 @@ a.is-pending:not(.btn){text-decoration:none}
 .hours{width:100%;border-collapse:collapse}
 .hours td{padding:12px 0;border-bottom:1px solid var(--line);font:400 16px/24px var(--font)}
 .hours td:last-child{text-align:right;font-weight:600}
-.how{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.how div{padding:12px 16px;border:1px solid var(--line);border-radius:var(--r)}
-.how div:nth-child(3){grid-column:1/-1}
-.how b{display:block;font:600 14px/20px var(--font)}
-.how span{font:400 14px/20px var(--font)}
 
 /* FAQ */
-.faq{max-width:860px}
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font:600 18px/28px var(--font);transition:color .3s var(--ease)}
 .faq summary:hover{color:var(--brand-hover)}
@@ -292,7 +274,7 @@ a.is-pending:not(.btn){text-decoration:none}
 @media (max-width:1080px){
   .hero-copy{padding:128px 40px 64px var(--gutter)}
   .heading-1{font-size:48px}
-  .plate,.menu,.people{gap:40px}
+  .plate,.people{gap:40px}
   .rlist{grid-template-columns:1fr 1fr}
   .reviews{grid-template-columns:1fr}
 }
@@ -327,22 +309,21 @@ a.is-pending:not(.btn){text-decoration:none}
   .tag-price b{font-size:24px}
   .tag-price small{font-size:12px;line-height:16px}
   .cta-three{grid-template-columns:1fr}
-  .plate,.menu,.people,.visit{grid-template-columns:minmax(0,1fr)}
+  .plate,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
   .set-card figcaption{font-size:14px;line-height:20px;padding:4px 12px}
   .or{width:56px;height:56px;margin:-28px 0 0 -28px;font-size:18px}
-  .menu-photo{position:relative;top:0}
-  .slides{aspect-ratio:4/3}
-  .item{grid-template-columns:48px minmax(0,1fr) auto;gap:12px}
-  .item img{width:48px;height:48px}
-  .item-name{flex-wrap:wrap;row-gap:0}
-  .item-name small{flex-basis:100%;order:3}
-  .item .leader{display:none}
-  .item-name b{font-size:16px;line-height:24px}
-  .item .price{font-size:16px}
+  .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+  .mrow{flex-direction:column;gap:0}
+  .mrow b,.mrow .price{font-size:16px;line-height:24px}
+  .mcard small{margin-top:0}
   .rlist{grid-template-columns:1fr;gap:24px}
   .ways{grid-template-columns:1fr;gap:48px}
   .map{min-height:280px}
+  .faq{grid-template-columns:minmax(0,1fr)}
+  .catering{grid-template-columns:minmax(0,1fr);margin-top:48px}
+  .catering-copy{padding:24px}
+  .catering-img{min-height:0;aspect-ratio:16/10;order:-1}
   .faq summary{font-size:16px;line-height:24px;padding:16px 0}
   .faq details p{padding-right:0}
   .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
@@ -354,7 +335,6 @@ a.is-pending:not(.btn){text-decoration:none}
 }
 @media (max-width:380px){
   .heading-1{font-size:30px}
-  .how{grid-template-columns:1fr}
 }
 </style>
 <script type="application/ld+json">
@@ -385,12 +365,12 @@ a.is-pending:not(.btn){text-decoration:none}
     <p class="body-lead muted">เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียวในจานเดียว ไม่มีหมู ไม่มีแอลกอฮอล์</p>
     <div class="cta-three">
       <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
-      <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
-      <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
     </div>
     <div class="proof">
       <span><span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span>4.8 จาก 320 รีวิว</span></span>
-      <span class="open" data-open="10:00-21:00"><i></i><span class="open-now">เปิด</span>ทุกวัน <span class="nw">10:00–21:00</span></span>
+      <span class="open" data-open="10:00-21:00"><span class="open-now">เปิด</span>ทุกวัน <span class="nw">10:00–21:00</span></span>
     </div>
   </div>
   <div class="hero-photo">
@@ -411,45 +391,34 @@ a.is-pending:not(.btn){text-decoration:none}
 
 <!-- MENU -->
 <section class="sec" id="menu" aria-labelledby="menu-h">
-  <div class="wrap menu">
-    <figure class="menu-photo rv" style="margin:0" aria-roledescription="สไลด์รูปเมนู" aria-label="รูปเมนูของร้าน">
-      <div class="slides">
-        <img class="on" src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น แกงไก่ซอสเนยสีส้ม" data-name="บัตเตอร์ชิคเก้น" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอด สลัด และน้ำจิ้มเขียว" data-name="เซ็ตข้าวหมกไก่ทอด" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่าง สลัด และน้ำจิ้มเขียว" data-name="เซ็ตข้าวหมกไก่ย่าง" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/aloo-gobi.jpg" alt="อลูโกบิ แกงมันฝรั่งกับดอกกะหล่ำ" data-name="อลูโกบิ" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" data-name="ซุปน่องไก่แซ่บ" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/samosa.jpg" alt="ซาโมซ่าทอด" data-name="ซาโมซ่า" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/salad.jpg" alt="สลัดผักเกาหลี" data-name="สลัดผักเกาหลี" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/grilled-chicken.jpg" alt="ไก่ย่างหั่นชิ้น" data-name="ไก่ย่าง" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/fried-chicken.jpg" alt="ไก่ทอดหั่นชิ้น" data-name="ไก่ทอด" width="640" height="640" loading="lazy" decoding="async">
-        <img src="img/rice.jpg" alt="ข้าวหมกสีขมิ้นโรยหอมเจียว" data-name="ข้าวหมก" width="640" height="640" loading="lazy" decoding="async">
+  <div class="wrap menu-list">
+    <div class="sec-head" style="margin-bottom:0">
+      <h2 class="heading-2" id="menu-h">เมนูและราคา</h2>
+      <p class="body-3 muted">ราคาทานที่ร้าน ราคาบนแอปเดลิเวอรี่อาจต่างกันเล็กน้อย</p>
+    </div>
+    <div class="cat rv">
+      <h3 class="heading-5">ไก่และข้าว</h3>
+      <div class="mgrid">
+        <article class="mcard"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง" loading="lazy" width="640" height="640"><div class="mrow"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="price">฿189</span></div></article>
+        <article class="mcard"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด" loading="lazy" width="640" height="640"><div class="mrow"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="price">฿189</span></div></article>
+        <article class="mcard"><img src="img/grilled-chicken.jpg" alt="ไก่ย่าง" loading="lazy" width="640" height="640"><div class="mrow"><b>ไก่ย่าง</b><span class="price">฿89</span></div></article>
+        <article class="mcard"><img src="img/fried-chicken.jpg" alt="ไก่ทอด" loading="lazy" width="640" height="640"><div class="mrow"><b>ไก่ทอด</b><span class="price">฿89</span></div></article>
+        <article class="mcard"><img src="img/rice.jpg" alt="ข้าวหมกแยก" loading="lazy" width="640" height="640"><div class="mrow"><b>ข้าวหมกแยก</b><span class="price">฿59</span></div></article>
       </div>
-      <figcaption id="slide-name">บัตเตอร์ชิคเก้น</figcaption>
-    </figure>
-    <div class="menu-list">
-      <div class="sec-head" style="margin-bottom:0">
-        <h2 class="heading-2" id="menu-h">เมนูและราคา</h2>
-        <p class="body-3 muted">ราคาทานที่ร้าน ราคาบนแอปเดลิเวอรี่อาจต่างกันเล็กน้อย</p>
+    </div>
+    <div class="cat rv">
+      <h3 class="heading-5">แกงอินเดีย</h3>
+      <div class="mgrid">
+        <article class="mcard"><img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น" loading="lazy" width="640" height="640"><div class="mrow"><b>บัตเตอร์ชิคเก้น</b><span class="price">฿189</span></div></article>
+        <article class="mcard"><img src="img/aloo-gobi.jpg" alt="อลูโกบิ" loading="lazy" width="640" height="640"><div class="mrow"><b>อลูโกบิ</b><span class="price">฿149</span></div><small>แกงมันฝรั่งกับดอกกะหล่ำ</small></article>
       </div>
-      <div class="cat rv">
-        <h3 class="heading-5">ไก่และข้าว</h3>
-        <div class="item"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="leader"></span></div><span class="price">฿189</span></div>
-        <div class="item"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="leader"></span></div><span class="price">฿189</span></div>
-        <div class="item"><img src="img/grilled-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ย่าง</b><span class="leader"></span></div><span class="price">฿89</span></div>
-        <div class="item"><img src="img/fried-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ไก่ทอด</b><span class="leader"></span></div><span class="price">฿89</span></div>
-        <div class="item"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ข้าวหมกแยก</b><span class="leader"></span></div><span class="price">฿59</span></div>
-      </div>
-      <div class="cat rv">
-        <h3 class="heading-5">แกงอินเดีย</h3>
-        <div class="item"><img src="img/butter-chicken.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>บัตเตอร์ชิคเก้น</b><span class="leader"></span></div><span class="price">฿189</span></div>
-        <div class="item"><img src="img/aloo-gobi.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>อลูโกบิ</b><small>แกงมันฝรั่งกับดอกกะหล่ำ</small><span class="leader"></span></div><span class="price">฿149</span></div>
-      </div>
-      <div class="cat rv">
-        <h3 class="heading-5">ซุป สลัด ทานเล่น</h3>
-        <div class="item"><img src="img/soup.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซุปน่องไก่แซ่บ</b><span class="leader"></span></div><span class="price">฿159</span></div>
-        <div class="item"><img src="img/salad.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>สลัดผักเกาหลี</b><span class="leader"></span></div><span class="price">฿109</span></div>
-        <div class="item"><img src="img/samosa.jpg" alt="" loading="lazy" width="640" height="640"><div class="item-name"><b>ซาโมซ่า</b><span class="leader"></span></div><span class="price">฿139</span></div>
+    </div>
+    <div class="cat rv">
+      <h3 class="heading-5">ซุป สลัด ทานเล่น</h3>
+      <div class="mgrid">
+        <article class="mcard"><img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" loading="lazy" width="640" height="640"><div class="mrow"><b>ซุปน่องไก่แซ่บ</b><span class="price">฿159</span></div></article>
+        <article class="mcard"><img src="img/salad.jpg" alt="สลัดผักเกาหลี" loading="lazy" width="640" height="640"><div class="mrow"><b>สลัดผักเกาหลี</b><span class="price">฿109</span></div></article>
+        <article class="mcard"><img src="img/samosa.jpg" alt="ซาโมซ่า" loading="lazy" width="640" height="640"><div class="mrow"><b>ซาโมซ่า</b><span class="price">฿139</span></div></article>
       </div>
     </div>
   </div>
@@ -471,8 +440,8 @@ a.is-pending:not(.btn){text-decoration:none}
       </ul>
       <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
       <div class="cta-row">
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
       </div>
       <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
     </div>
@@ -484,18 +453,11 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="wrap people">
     <figure class="people-photo rv" style="margin:0">
       <img src="img/hero-staff.jpg" alt="พนักงานร้านอามันใส่ผ้ากันเปื้อนมีโลโก้ร้าน ถือจานเซ็ตข้าวหมกไก่ทอด" width="1000" height="1000" loading="lazy">
-      <figcaption>ทีมครัวอามัน</figcaption>
     </figure>
     <div class="people-copy rv">
-      <h2 class="heading-2" id="halal-h">หมกไก่อิสลาม<br>ทานได้สบายใจทุกจาน</h2>
+      <h2 class="heading-2" id="halal-h"><span class="hl">หมกไก่อิสลาม</span><br>ทานได้สบายใจทุกจาน</h2>
       <p class="body-lead muted"><span>อามันเริ่มจากครัวในบ้านของครอบครัว ข้าวหมกสูตรนี้ส่งต่อกันมาตั้งแต่รุ่นยาย ทุกเช้าเราหมักไก่และหุงข้าวกับเครื่องเทศทีละหม้อ ไม่หุงทิ้งไว้ข้ามวัน</span></p>
       <blockquote class="quote" style="margin:0"><span>“ข้าวหมกต้องหอมตั้งแต่เปิดฝาหม้อ ถ้าไม่หอมเราไม่ตักขาย”</span><cite>ป้าฟาตีมะห์ เจ้าของร้าน</cite></blockquote>
-      <ul class="checks">
-        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>ไม่มีหมู ไม่มีแอลกอฮอล์ ในร้านและทุกเมนู</span></li>
-        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>วัตถุดิบเนื้อสัตว์จาก <span>ฟาร์มที่ได้รับรองฮาลาล</span></span></li>
-        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>เจ้าของและทีมครัวเป็นมุสลิม</span></li>
-        <li><i class="ph-bold ph-check" aria-hidden="true"></i><span>มีมุมละหมาดเล็กๆ สำหรับลูกค้า</span></li><!-- ลบข้อที่ร้านไม่มีจริงออก -->
-      </ul>
     </div>
   </div>
 </section>
@@ -513,14 +475,14 @@ a.is-pending:not(.btn){text-decoration:none}
         <h3 class="heading-6">GrabFood</h3>
         <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>สั่งผ่าน GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">สั่งผ่าน GrabFood</a>
       </div>
       <div class="way rv">
         <div class="way-img"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"></div>
         <h3 class="heading-6">LINE MAN</h3>
         <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>สั่งผ่าน LINE MAN</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">สั่งผ่าน LINE MAN</a>
       </div>
       <div class="way rv">
         <div class="way-img"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"></div>
@@ -531,8 +493,13 @@ a.is-pending:not(.btn){text-decoration:none}
       </div>
     </div>
     <div class="catering rv">
-      <div><h3 class="heading-6">สั่งจำนวนมาก จัดเลี้ยง กล่องข้าวประชุม</h3><p class="body-6 muted">สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span>20</span> กล่อง</p></div>
-      <a class="btn btn-line" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรถามรายละเอียด</a>
+      <div class="catering-copy">
+        <h3 class="heading-3">รับทำข้าวกล่อง<br>รับจัดเลี้ยง</h3>
+        <p class="body-3 muted">กล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ 20 กล่อง</p>
+        <a class="btn btn-primary" href="[ลิงก์ LINE ร้าน]"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i>ติดต่อเราทาง LINE</a>
+      </div>
+      <!-- ชั่วคราว: แทนด้วยรูปแบนเนอร์โปรโมทจัดเลี้ยงจากร้าน -->
+      <div class="catering-img"><img src="img/spread.jpg" alt="ข้าวหมกไก่และกับข้าวหลายอย่างวางเต็มโต๊ะ" loading="lazy" width="1600" height="1000"></div>
     </div>
   </div>
 </section>
@@ -548,14 +515,8 @@ a.is-pending:not(.btn){text-decoration:none}
         <table class="hours" aria-label="เวลาเปิดปิด"><tbody>
           <tr><td>จันทร์ – ศุกร์</td><td>10:00 – 21:00</td></tr>
           <tr><td>เสาร์ – อาทิตย์</td><td><span>10:00</span> – 21:00</td></tr>
-          <tr><td>วันศุกร์ พักละหมาด</td><td>12:00 – 13:30</td></tr>
-          <tr><td>วันหยุดพิเศษ</td><td>วันอีด ปิด 2 วัน · แจ้งทางเพจ</td></tr>
         </tbody></table>
-        <div class="how">
-          <div><b>รถไฟฟ้า</b><span>ARL รามคำแหง ทางออก 1</span></div>
-          <div><b>ที่จอดรถ</b><span>4 คัน หน้าร้าน</span></div>
-          <div><b>รถเมล์</b><span>สาย 22, 40, 113</span></div>
-        </div>
+        <p class="body-3"><b>ที่จอดรถ</b> จอดหน้าร้านได้ 4 คัน</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">เปิดใน Google Maps</a>
           <a class="btn btn-line" href="tel:[เบอร์ร้าน]">โทรถามทาง</a>
@@ -610,8 +571,8 @@ a.is-pending:not(.btn){text-decoration:none}
       <h2 class="heading-2" id="final-h">หิวแล้วแวะมาได้เลย<br>เปิดทุกวัน 10:00–21:00</h2>
       <div class="cta-three">
         <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>GrabFood</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
       </div>
     </div>
   </section>
@@ -630,8 +591,8 @@ a.is-pending:not(.btn){text-decoration:none}
 
 <nav class="mbar" aria-label="ปุ่มสั่งด่วน">
   <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทาง</a>
-  <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><span class="dot" style="background:var(--grab)"></span>Grab</a>
-  <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><span class="dot" style="background:var(--lineman)"></span>LINE MAN</a>
+  <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">Grab</a>
+  <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
 </nav>
 
 <div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
@@ -639,7 +600,7 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery-sheet" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
   <p>เปิดแอป GrabFood หรือ LINE MAN แล้วค้นหาชื่อร้าน</p>
   <div class="shop-name"><b id="shop-name">อามัน ข้าวหมกไก่</b><button type="button" class="btn btn-line btn-sm" data-copy>คัดลอกชื่อ</button></div>
-  <div class="sheet-apps"><span><span class="dot" style="background:var(--grab)"></span>GrabFood</span><span><span class="dot" style="background:var(--lineman)"></span>LINE MAN</span></div>
+  <div class="sheet-apps"><span><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</span><span><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</span></div>
   <p>ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
 </div>
 
@@ -656,6 +617,7 @@ a.is-pending:not(.btn){text-decoration:none}
   function msgFor(h){
     if(/GrabFood/.test(h))return 'ยังไม่มีลิงก์ร้านบน GrabFood · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
     if(/LINE MAN/.test(h))return 'ยังไม่มีลิงก์ร้านบน LINE MAN · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
+    if(/LINE ร้าน/.test(h))return 'ลิงก์ LINE ร้านกำลังอัปเดต · ค้นหา @amanbriyani ในแอป LINE ได้เลย';
     if(/^tel:/.test(h))return 'เบอร์โทรร้านกำลังอัปเดต · มาที่ร้านได้ทุกวัน 10:00–21:00';
     return 'ลิงก์นี้กำลังอัปเดต';
   }
@@ -701,23 +663,6 @@ a.is-pending:not(.btn){text-decoration:none}
     navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
   })},{rootMargin:'-45% 0px -50% 0px'});
   navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
-
-  /* Menu photo slideshow: next photo every 3.5s, name only in the caption */
-  var slides=[].slice.call(document.querySelectorAll('.slides img')),cap=document.getElementById('slide-name');
-  if(slides.length>1&&!reduce){
-    var cur=0,timer=null,seen=false,hover=false;
-    var show=function(n){
-      slides[cur].classList.remove('on');cur=(n+slides.length)%slides.length;slides[cur].classList.add('on');
-      cap.classList.add('swap');setTimeout(function(){cap.textContent=slides[cur].dataset.name;cap.classList.remove('swap')},250);
-    };
-    var run=function(){var go=seen&&!hover&&!document.hidden;if(go&&!timer)timer=setInterval(function(){show(cur+1)},3500);if(!go&&timer){clearInterval(timer);timer=null}};
-    var fig=slides[0].closest('figure');
-    fig.addEventListener('mouseenter',function(){hover=true;run()});
-    fig.addEventListener('mouseleave',function(){hover=false;run()});
-    document.addEventListener('visibilitychange',run);
-    var fr=fig.getBoundingClientRect();seen=fr.top<innerHeight&&fr.bottom>0;run(); /* start right away if already on screen */
-    new IntersectionObserver(function(en){seen=en[0].isIntersecting;run()},{threshold:.2}).observe(fig);
-  }
 
   /* Reveal key blocks once as they enter (already visible ones stay put) */
   if(reduce)return;
