@@ -96,8 +96,12 @@ a.is-pending:not(.btn){text-decoration:none}
 .brand-logo{width:40px;height:40px;border-radius:8px;flex:none}
 /* Logo pattern behind the halal section, big mark behind the final CTA */
 #halal{position:relative;isolation:isolate;overflow:hidden}
-#halal::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/logo-pattern.png) 0 0/252px repeat;opacity:.05;pointer-events:none}
-@media (max-width:860px){#halal::before{background-size:190px}.final::before{width:240px;height:240px;margin-top:-120px;right:-64px}}
+/* two big faint roosters centred near the screen corners: top right and lower left */
+#halal{--rs:clamp(560px,45vw,900px)}
+#halal::before,#halal::after{content:"";position:absolute;z-index:-1;width:var(--rs);aspect-ratio:1;margin-top:calc(var(--rs) / -2);background:url(img/logo-mark.png) center/contain no-repeat;opacity:.03;pointer-events:none}
+#halal::before{left:calc(90% - var(--rs) / 2);top:80px}
+#halal::after{left:calc(10% - var(--rs) / 2);top:85%}
+@media (max-width:860px){#halal{--rs:420px}.final::before{width:240px;height:240px;margin-top:-120px;right:-64px}}
 .final{position:relative;isolation:isolate;overflow:hidden}
 .final::before{content:"";position:absolute;right:-48px;top:50%;z-index:-1;width:400px;height:400px;margin-top:-200px;background:url(img/logo-mark.png) center/contain no-repeat;opacity:.1;pointer-events:none}
 .nav-links{display:flex;gap:4px}
@@ -180,7 +184,7 @@ a.is-pending:not(.btn){text-decoration:none}
 /* People + promises */
 .people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
 .people-photo{position:relative}
-.people-photo img{border-radius:var(--r-xl);aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;width:100%}
+.people-photo img{border-radius:var(--r-xl);aspect-ratio:1;object-fit:cover;object-position:50% 45%;width:100%}
 .people-copy{display:flex;flex-direction:column;gap:24px}
 .quote{font:400 24px/1.6 var(--display);color:var(--turmeric)}
 .hl{color:var(--turmeric)}
