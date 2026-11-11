@@ -215,11 +215,14 @@ a.is-pending:not(.btn){text-decoration:none}
 .way-img img{width:100%;height:100%;object-fit:cover}
 .way .sp{flex:1}
 .way > .btn,.way > .cta-row{align-self:stretch;margin-top:8px}
-.catering{margin-top:64px;border-radius:var(--r-xl);border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:stretch}
-.catering-copy{padding:48px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;justify-content:center}
-.catering-copy .btn{margin-top:8px}
-.catering-img{min-height:320px}
-.catering-img img{width:100%;height:100%;object-fit:cover}
+.catering{margin-top:64px;border-radius:var(--r-xl);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.catering-copy{padding:40px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;justify-content:center}
+/* photo is only as tall as the text beside it */
+.catering-img{position:relative}
+.catering-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:999px;border:1px solid var(--line-wood);font:500 14px/20px var(--font)}
+.facts i{font-size:16px;color:var(--turmeric)}
 
 /* Visit */
 .visit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch}
@@ -345,7 +348,8 @@ a.is-pending:not(.btn){text-decoration:none}
   .faq{grid-template-columns:minmax(0,1fr)}
   .catering{grid-template-columns:minmax(0,1fr);margin-top:48px}
   .catering-copy{padding:24px}
-  .catering-img{min-height:0;aspect-ratio:16/10;order:-1}
+  .catering-img{aspect-ratio:16/10;order:-1}
+  .catering-img img{position:static}
   .faq summary{font-size:16px;line-height:24px;padding:16px 0}
   .faq details p{padding-right:0}
   .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
@@ -501,10 +505,11 @@ a.is-pending:not(.btn){text-decoration:none}
         <a class="btn btn-primary" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง</a>
       </div>
     </div>
-    <div class="catering rv">
+    <div class="catering wood rv">
       <div class="catering-copy">
         <h3 class="heading-3">รับทำข้าวกล่อง<br>รับจัดเลี้ยง</h3>
-        <p class="body-3 muted">กล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ 20 กล่อง</p>
+        <p class="body-3 muted">กล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง</p>
+        <div class="facts"><span><i class="ph ph-calendar-check" aria-hidden="true"></i>สั่งล่วงหน้าอย่างน้อย 1 วัน</span><span><i class="ph ph-package" aria-hidden="true"></i>เริ่มที่ 20 กล่อง</span></div>
         <a class="btn btn-primary" href="[ลิงก์ LINE ร้าน]"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i>ติดต่อเราทาง LINE</a>
       </div>
       <!-- ชั่วคราว: แทนด้วยรูปแบนเนอร์โปรโมทจัดเลี้ยงจากร้าน -->
