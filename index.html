@@ -163,14 +163,16 @@ a.is-pending:not(.btn){text-decoration:none}
 
 /* Menu card */
 .menu-list{display:flex;flex-direction:column;gap:48px}
-.cat h3{margin-bottom:16px}
 .mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px}
-.mcard{display:flex;flex-direction:column;gap:12px;margin:0}
-.mcard img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg);background:var(--wood)}
-.mrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.mrow b{font:600 18px/28px var(--font)}
-.mrow .price{font:600 18px/28px var(--font);color:var(--brand-hover);white-space:nowrap}
-.mcard small{margin-top:-8px;font:400 14px/20px var(--font);color:var(--ink-2)}
+.mcard{position:relative;display:flex;flex-direction:column;margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 8px 24px -16px rgba(36,24,18,.35)}
+.mimg{position:relative;background:var(--wood)}
+.mimg img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.mbody{display:flex;flex-direction:column;gap:8px;padding:16px 24px 24px}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mrow b{font:600 20px/28px var(--font)}
+.mrow .price{font:600 16px/24px var(--font);color:var(--brand-hover);white-space:nowrap;background:#FDF1DC;border:1px solid #EBC98A;border-radius:999px;padding:4px 12px}
+.mbody p{font:400 14px/20px var(--font);color:var(--ink-2)}
+.ribbon{position:absolute;top:16px;left:0;z-index:1;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 24px 4px 12px;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 50%,100% 100%,0 100%)}
 
 /* People + promises */
 .people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
@@ -330,9 +332,11 @@ a.is-pending:not(.btn){text-decoration:none}
   .set-tag.a{left:8px}
   .set-tag.b{right:8px}
   .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
-  .mrow{flex-direction:column;gap:0}
-  .mrow b,.mrow .price{font-size:16px;line-height:24px}
-  .mcard small{margin-top:0}
+  .mbody{padding:12px 12px 16px}
+  .mrow{flex-direction:column;align-items:flex-start;gap:8px}
+  .mrow b{font-size:16px;line-height:24px}
+  .mrow .price{font-size:14px;line-height:20px;padding:2px 8px}
+  .ribbon{top:8px;font-size:12px;line-height:16px;padding:4px 16px 4px 8px}
   .gtrack{grid-auto-columns:86%;gap:16px}
   .gsum{margin-top:-16px}
   .garrow{display:none}
@@ -414,30 +418,17 @@ a.is-pending:not(.btn){text-decoration:none}
       <h2 class="heading-2" id="menu-h">เมนูและราคา</h2>
       <p class="body-3 muted">ราคาทานที่ร้าน ราคาบนแอปเดลิเวอรี่อาจต่างกันเล็กน้อย</p>
     </div>
-    <div class="cat rv">
-      <h3 class="heading-5">ไก่และข้าว</h3>
-      <div class="mgrid">
-        <article class="mcard"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง" loading="lazy" width="640" height="640"><div class="mrow"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="price">฿189</span></div></article>
-        <article class="mcard"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด" loading="lazy" width="640" height="640"><div class="mrow"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="price">฿189</span></div></article>
-        <article class="mcard"><img src="img/grilled-chicken.jpg" alt="ไก่ย่าง" loading="lazy" width="640" height="640"><div class="mrow"><b>ไก่ย่าง</b><span class="price">฿89</span></div></article>
-        <article class="mcard"><img src="img/fried-chicken.jpg" alt="ไก่ทอด" loading="lazy" width="640" height="640"><div class="mrow"><b>ไก่ทอด</b><span class="price">฿89</span></div></article>
-        <article class="mcard"><img src="img/rice.jpg" alt="ข้าวหมกแยก" loading="lazy" width="640" height="640"><div class="mrow"><b>ข้าวหมกแยก</b><span class="price">฿59</span></div></article>
-      </div>
-    </div>
-    <div class="cat rv">
-      <h3 class="heading-5">แกงอินเดีย</h3>
-      <div class="mgrid">
-        <article class="mcard"><img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น" loading="lazy" width="640" height="640"><div class="mrow"><b>บัตเตอร์ชิคเก้น</b><span class="price">฿189</span></div></article>
-        <article class="mcard"><img src="img/aloo-gobi.jpg" alt="อลูโกบิ" loading="lazy" width="640" height="640"><div class="mrow"><b>อลูโกบิ</b><span class="price">฿149</span></div><small>แกงมันฝรั่งกับดอกกะหล่ำ</small></article>
-      </div>
-    </div>
-    <div class="cat rv">
-      <h3 class="heading-5">ซุป สลัด ทานเล่น</h3>
-      <div class="mgrid">
-        <article class="mcard"><img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" loading="lazy" width="640" height="640"><div class="mrow"><b>ซุปน่องไก่แซ่บ</b><span class="price">฿159</span></div></article>
-        <article class="mcard"><img src="img/salad.jpg" alt="สลัดผักเกาหลี" loading="lazy" width="640" height="640"><div class="mrow"><b>สลัดผักเกาหลี</b><span class="price">฿109</span></div></article>
-        <article class="mcard"><img src="img/samosa.jpg" alt="ซาโมซ่า" loading="lazy" width="640" height="640"><div class="mrow"><b>ซาโมซ่า</b><span class="price">฿139</span></div></article>
-      </div>
+    <div class="mgrid rv">
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="price">฿189</span></div><p>ข้าวหมกหอมเครื่องเทศ ไก่ย่างชิ้นโต สลัด และน้ำจิ้มเขียวในจานเดียว</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="price">฿189</span></div><p>ข้าวหมกหอมเครื่องเทศ ไก่ทอดกรอบนอกนุ่มใน สลัด และน้ำจิ้มเขียว</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/grilled-chicken.jpg" alt="ไก่ย่าง" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ไก่ย่าง</b><span class="price">฿89</span></div><p>ไก่หมักเครื่องเทศ ย่างจนหอม สั่งเพิ่มกินคู่ข้าวหมก</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/fried-chicken.jpg" alt="ไก่ทอด" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ไก่ทอด</b><span class="price">฿89</span></div><p>ไก่ทอดชิ้นใหญ่ กรอบนอกนุ่มใน สั่งเพิ่มกินคู่ข้าวหมก</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>บัตเตอร์ชิคเก้น</b><span class="price">฿189</span></div><p>แกงไก่ซอสมะเขือเทศและเนย เข้มข้น กินคู่ข้าวหมกลงตัว</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/aloo-gobi.jpg" alt="อลูโกบิ" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>อลูโกบิ</b><span class="price">฿149</span></div><p>แกงมันฝรั่งกับดอกกะหล่ำ สูตรอินเดีย</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ซุปน่องไก่แซ่บ</b><span class="price">฿159</span></div><p>ซุปน่องไก่รสจัดจ้าน ซดร้อน ๆ</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/samosa.jpg" alt="ซาโมซ่า" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ซาโมซ่า</b><span class="price">฿139</span></div><p>แป้งทอดกรอบ ไส้ผัดเครื่องเทศ ทานเล่นระหว่างรอ</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/rice.jpg" alt="ข้าวหมกแยก" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ข้าวหมกแยก</b><span class="price">฿59</span></div><p>ข้าวหมกหุงกับเครื่องเทศทีละหม้อ ไม่มีไก่</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/salad.jpg" alt="สลัดผักเกาหลี" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>สลัดผักเกาหลี</b><span class="price">฿109</span></div><p>ผักสดกรอบ ราดน้ำสลัด กินแกล้มให้สดชื่น</p></div></article>
     </div>
   </div>
   <div class="combo-label wrap"><span class="caption-1 muted">ชุดยอดนิยม</span></div>
