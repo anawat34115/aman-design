@@ -91,7 +91,7 @@ a.is-pending:not(.btn){text-decoration:none}
 .skip:focus{top:16px}
 
 /* ===== Floating nav ===== */
-.nav{position:fixed;z-index:40;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:24px;width:max-content;max-width:calc(100% - 32px);padding:8px 8px 8px 24px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(46,28,23,.08);box-shadow:0 8px 24px -16px rgba(36,24,18,.5)}
+.nav{position:fixed;z-index:40;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(calc(var(--max) * .9),calc(100% - 32px));padding:8px 12px;border-radius:var(--r-lg);transition:transform .5s var(--ease);background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(46,28,23,.08);box-shadow:0 8px 24px -16px rgba(36,24,18,.5)}
 .brand{font:400 18px/28px var(--display);text-decoration:none;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
 .brand-logo{width:40px;height:40px;border-radius:8px;flex:none}
 /* Logo pattern behind the halal section, big mark behind the final CTA */
@@ -101,6 +101,9 @@ a.is-pending:not(.btn){text-decoration:none}
 .final{position:relative;isolation:isolate;overflow:hidden}
 .final::before{content:"";position:absolute;right:-48px;top:50%;z-index:-1;width:400px;height:400px;margin-top:-200px;background:url(img/logo-mark.png) center/contain no-repeat;opacity:.1;pointer-events:none}
 .nav-links{display:flex;gap:4px}
+/* hide the bar while scrolling down, bring it back on any scroll up */
+.nav.is-hidden{transform:translate(-50%,calc(-100% - 24px))}
+@media (prefers-reduced-motion:reduce){.nav{transition:opacity .3s linear}.nav.is-hidden{transform:translateX(-50%);opacity:0;pointer-events:none}}
 .nav-links a{font:500 14px/20px var(--font);color:var(--ink-2);text-decoration:none;padding:8px 12px;border-radius:999px;transition:color .3s var(--ease),background-color .3s var(--ease)}
 .nav-links a:hover{color:var(--ink);background:rgba(46,28,23,.05)}
 .nav-links a[aria-current="true"]{color:var(--ink);background:rgba(46,28,23,.08)}
@@ -300,14 +303,14 @@ a.is-pending:not(.btn){text-decoration:none}
 }
 @media (max-width:1024px){
   /* the five section links need ~900px; below that the menu button takes over */
-  .nav{padding:8px 8px 8px 16px;gap:12px;width:calc(100% - 32px);justify-content:space-between}
+  .nav{padding:8px;gap:12px;width:calc(100% - 32px)}
   .nav-links,.nav .btn{display:none}
   .toggle{display:block}
 }
 @media (max-width:860px){
   :root{--gutter:16px}
   body{padding-bottom:80px}
-  .nav{padding:8px 8px 8px 16px;gap:12px;width:calc(100% - 32px);justify-content:space-between}
+  .nav{padding:8px;gap:12px;width:calc(100% - 32px)}
   .nav-links,.nav .btn{display:none}
   .toggle{display:block}
   .heading-1{font-size:36px;line-height:1.35}
@@ -697,6 +700,18 @@ a.is-pending:not(.btn){text-decoration:none}
   var tg=document.querySelector('.toggle'),panel=document.getElementById('panel');
   function setMenu(open){tg.setAttribute('aria-expanded',open);tg.setAttribute('aria-label',open?'ปิดเมนู':'เปิดเมนู');panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':''}
   tg.addEventListener('click',function(){setMenu(tg.getAttribute('aria-expanded')!=='true')});
+  /* header hides on scroll down, shows on scroll up */
+  var nav=document.querySelector('.nav'),lastY=window.scrollY,ticking=false;
+  window.addEventListener('scroll',function(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY,d=y-lastY;
+      if(Math.abs(d)>6){nav.classList.toggle('is-hidden',d>0&&y>120&&!panel.classList.contains('open'));lastY=y}
+      ticking=false;
+    });
+  },{passive:true});
+  nav.addEventListener('focusin',function(){nav.classList.remove('is-hidden')});
+
   panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'){hide();if(panel.classList.contains('open')){setMenu(false);tg.focus()}}});
 
