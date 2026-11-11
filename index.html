@@ -12,7 +12,7 @@
 <meta property="og:description" content="ข้าวหมกหุงเครื่องเทศ ไก่ชิ้นโต สลัด น้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์">
 <meta property="og:image" content="img/spread.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23241812'/%3E%3Ccircle cx='16' cy='17' r='9' fill='%23E3A33A'/%3E%3C/svg%3E">
+<link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Chonburi&display=swap">
@@ -92,7 +92,14 @@ a.is-pending:not(.btn){text-decoration:none}
 
 /* ===== Floating nav ===== */
 .nav{position:fixed;z-index:40;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:24px;width:max-content;max-width:calc(100% - 32px);padding:8px 8px 8px 24px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(46,28,23,.08);box-shadow:0 8px 24px -16px rgba(36,24,18,.5)}
-.brand{font:400 18px/28px var(--display);text-decoration:none;color:var(--ink);white-space:nowrap}
+.brand{font:400 18px/28px var(--display);text-decoration:none;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
+.brand-logo{width:40px;height:40px;border-radius:8px;flex:none}
+/* Logo pattern behind the halal section, big mark behind the final CTA */
+#halal{position:relative;isolation:isolate;overflow:hidden}
+#halal::before{content:"";position:absolute;top:-24px;right:-48px;z-index:-1;width:440px;height:440px;background:url(img/logo-mark.png) center/contain no-repeat;opacity:.08;pointer-events:none}
+@media (max-width:860px){#halal::before{width:280px;height:280px;top:-16px;right:-48px}.final::before{width:240px;height:240px;margin-top:-120px;right:-64px}}
+.final{position:relative;isolation:isolate;overflow:hidden}
+.final::before{content:"";position:absolute;right:-48px;top:50%;z-index:-1;width:400px;height:400px;margin-top:-200px;background:url(img/logo-mark.png) center/contain no-repeat;opacity:.1;pointer-events:none}
 .nav-links{display:flex;gap:4px}
 .nav-links a{font:500 14px/20px var(--font);color:var(--ink-2);text-decoration:none;padding:8px 12px;border-radius:999px;transition:color .3s var(--ease),background-color .3s var(--ease)}
 .nav-links a:hover{color:var(--ink);background:rgba(46,28,23,.05)}
@@ -139,16 +146,12 @@ a.is-pending:not(.btn){text-decoration:none}
 
 /* What's on the plate */
 .plate{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr);gap:48px;align-items:center}
-/* Two sets, one price: fried set front left, grilled set behind on the right, "หรือ" on the seam */
-.sets{position:relative;aspect-ratio:16/10}
-.set-card{position:absolute;width:56%;aspect-ratio:1/1;margin:0;border-radius:var(--r-xl);overflow:hidden;background:var(--wood)}
-.set-card img{width:100%;height:100%;object-fit:cover;display:block}
-.set-card:first-child{left:0;top:0;z-index:1;transform:rotate(-3deg);box-shadow:0 32px 48px -24px rgba(36,24,18,.55)}
-.set-card:nth-child(2){right:0;bottom:0;transform:rotate(3deg)}
-.set-card figcaption{position:absolute;font:600 16px/24px var(--font);color:#fff;background:rgba(36,24,18,.82);padding:4px 16px;border-radius:999px}
-.set-card:first-child figcaption{left:16px;top:16px}
-.set-card:nth-child(2) figcaption{right:16px;bottom:16px}
-.or{position:absolute;left:56%;top:50%;z-index:2;width:80px;height:80px;margin:-40px 0 0 -40px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font:400 24px/1 var(--display);transform:rotate(-8deg);box-shadow:0 12px 24px -8px rgba(36,24,18,.6)}
+/* Two sets, one price: one photo with both plates, labels on each plate */
+.sets{position:relative;margin:0;border-radius:var(--r-xl);overflow:hidden;background:var(--wood)}
+.sets img{display:block;width:100%;height:auto;aspect-ratio:1024/572;object-fit:cover}
+.set-tag{position:absolute;top:16px;font:600 16px/24px var(--font);color:#fff;background:rgba(36,24,18,.82);padding:4px 16px;border-radius:999px}
+.set-tag.a{left:16px}
+.set-tag.b{right:16px}
 .plate-info{display:flex;flex-direction:column;gap:24px}
 .plate-price{display:flex;align-items:baseline;gap:12px}
 .plate-price b{font:400 60px/1.1 var(--display);color:var(--brand)}
@@ -179,16 +182,29 @@ a.is-pending:not(.btn){text-decoration:none}
 .quote cite{display:block;margin-top:12px;font:500 14px/20px var(--font);font-style:normal;color:var(--on-wood-2)}
 
 /* Reviews */
-.reviews{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:32px;align-items:start}
-.score{display:flex;flex-direction:column;gap:8px}
-.score .num{font:400 60px/1.1 var(--display)}
-.score .stars{font-size:24px}
-.score .btn{margin-top:16px;align-self:flex-start}
-.rlist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
-.rcard{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:2px solid var(--ink)}
-.rcard p{font:400 18px/1.7 var(--font)}
-.who{display:flex;align-items:center;gap:12px;font:500 14px/20px var(--font);color:var(--ink-2)}
-.av{width:32px;height:32px;border-radius:50%;background:#EDE8E1;flex:none}
+/* Reviews styled like Google review cards */
+.gsum{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:-24px 0 32px}
+.gsum > div{display:flex;flex-direction:column;gap:4px}
+.gnum{font:400 48px/1 var(--display)}
+.gstars{display:inline-flex;gap:2px;color:#FBBC04;font-size:20px}
+.gcarousel{position:relative}
+.gtrack{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px) / 3);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0}
+.gtrack::-webkit-scrollbar{display:none}
+.gcard{scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:var(--r-lg);background:#F3F1EC}
+.ghead{display:flex;align-items:center;gap:12px}
+.gav{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font:600 16px/1 var(--font)}
+.ghead b{display:block;font:600 16px/24px var(--font)}
+.ghead div span{font:400 14px/20px var(--font);color:var(--ink-2)}
+.grate{display:flex;align-items:center;gap:8px}
+.gverified{color:#1A73E8;font-size:20px}
+.gtext{font:400 16px/1.7 var(--font);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.gcard.open .gtext{-webkit-line-clamp:unset;display:block}
+.gmore{align-self:flex-start;border:0;background:none;padding:0;font:500 14px/20px var(--font);color:var(--ink-2);cursor:pointer;min-height:32px}
+.gmore:hover{color:var(--ink)}
+.garrow{position:absolute;top:50%;z-index:1;width:44px;height:44px;margin-top:-22px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:18px;cursor:pointer;box-shadow:0 8px 16px -8px rgba(36,24,18,.35);transition:opacity .3s var(--ease)}
+.garrow.prev{left:-22px}
+.garrow.next{right:-22px}
+.garrow[disabled]{opacity:0;pointer-events:none}
 
 /* Order */
 .ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
@@ -275,8 +291,7 @@ a.is-pending:not(.btn){text-decoration:none}
   .hero-copy{padding:128px 40px 64px var(--gutter)}
   .heading-1{font-size:48px}
   .plate,.people{gap:40px}
-  .rlist{grid-template-columns:1fr 1fr}
-  .reviews{grid-template-columns:1fr}
+  .gtrack{grid-auto-columns:calc((100% - 24px) / 2)}
 }
 @media (max-width:1024px){
   /* the five section links need ~900px; below that the menu button takes over */
@@ -311,13 +326,16 @@ a.is-pending:not(.btn){text-decoration:none}
   .cta-three{grid-template-columns:1fr}
   .plate,.people,.visit{grid-template-columns:minmax(0,1fr)}
   .plate-price b{font-size:48px}
-  .set-card figcaption{font-size:14px;line-height:20px;padding:4px 12px}
-  .or{width:56px;height:56px;margin:-28px 0 0 -28px;font-size:18px}
+  .set-tag{top:8px;font-size:12px;line-height:16px;padding:4px 8px}
+  .set-tag.a{left:8px}
+  .set-tag.b{right:8px}
   .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
   .mrow{flex-direction:column;gap:0}
   .mrow b,.mrow .price{font-size:16px;line-height:24px}
   .mcard small{margin-top:0}
-  .rlist{grid-template-columns:1fr;gap:24px}
+  .gtrack{grid-auto-columns:86%;gap:16px}
+  .gsum{margin-top:-16px}
+  .garrow{display:none}
   .ways{grid-template-columns:1fr;gap:48px}
   .map{min-height:280px}
   .faq{grid-template-columns:minmax(0,1fr)}
@@ -345,7 +363,7 @@ a.is-pending:not(.btn){text-decoration:none}
 <a class="skip" href="#main">ข้ามไปเนื้อหา</a>
 
 <nav class="nav" aria-label="เมนูหลัก">
-  <a class="brand" href="#top" aria-label="อามัน ข้าวหมกไก่ กลับขึ้นบนสุด">อามัน ข้าวหมกไก่</a><!-- แทนด้วยโลโก้จริงเมื่อได้ไฟล์ -->
+  <a class="brand" href="#top" aria-label="อามัน ข้าวหมกไก่ กลับขึ้นบนสุด"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</a>
   <div class="nav-links">
     <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
   </div>
@@ -424,11 +442,11 @@ a.is-pending:not(.btn){text-decoration:none}
   </div>
   <div class="combo-label wrap"><span class="caption-1 muted">ชุดยอดนิยม</span></div>
   <div class="wrap plate" id="plate">
-    <div class="sets rv">
-      <figure class="set-card"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด มีข้าวหมก ไก่ทอดหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy"><figcaption>เซ็ตไก่ทอด</figcaption></figure>
-      <figure class="set-card"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง มีข้าวหมก ไก่ย่างหั่นชิ้น สลัด และน้ำจิ้มเขียว" width="640" height="640" loading="lazy"><figcaption>เซ็ตไก่ย่าง</figcaption></figure>
-      <span class="or" aria-hidden="true">หรือ</span>
-    </div>
+    <figure class="sets rv">
+      <img src="img/set-both.webp" alt="เซ็ตข้าวหมกไก่ทอดและเซ็ตข้าวหมกไก่ย่างวางคู่กัน แต่ละจานมีข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว" width="1024" height="572" loading="lazy">
+      <span class="set-tag a">เซ็ตไก่ทอด</span>
+      <span class="set-tag b">เซ็ตไก่ย่าง</span>
+    </figure>
     <div class="plate-info rv">
       <h3 class="heading-3">มาครั้งแรก<br>เริ่มจากเซ็ตนี้</h3>
       <p class="body-3 muted">เลือกไก่ทอดหรือไก่ย่าง ราคาเดียวกัน ในจานมี</p>
@@ -518,7 +536,7 @@ a.is-pending:not(.btn){text-decoration:none}
         </tbody></table>
         <p class="body-3"><b>ที่จอดรถ</b> จอดหน้าร้านได้ 4 คัน</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">เปิดใน Google Maps</a>
+          <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>เปิดใน Google Maps</a>
           <a class="btn btn-line" href="tel:[เบอร์ร้าน]">โทรถามทาง</a>
         </div>
       </div>
@@ -530,19 +548,52 @@ a.is-pending:not(.btn){text-decoration:none}
 <section class="sec" id="reviews" aria-labelledby="reviews-h" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
-    <div class="reviews">
-      <div class="score rv">
-        <span class="caption-1 muted">คะแนนจากลูกค้า</span>
-        <span class="num">4.8</span>
-        <span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span>
-        <span class="body-6 muted">จาก <span>320</span> รีวิว</span>
-        <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมดบน Google</a>
+    <div class="gsum rv">
+      <span class="gnum">4.8</span>
+      <div><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span class="body-6 muted">จาก 320 รีวิวบน Google</span></div>
+      <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมด</a>
+    </div>
+    <div class="gcarousel rv">
+      <button type="button" class="garrow prev" aria-label="รีวิวก่อนหน้า"><i class="ph-bold ph-caret-left" aria-hidden="true"></i></button>
+      <div class="gtrack" tabindex="0" aria-label="รีวิวจากลูกค้า">
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#0B7A75" aria-hidden="true">น</span><div><b>นัท</b><span>28 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">ข้าวหมกหอมเครื่องเทศมาก ไก่ทอดชิ้นใหญ่ กรอบนอกนุ่มใน น้ำจิ้มเขียวเด็ดสุด มาซ้ำแทบทุกอาทิตย์</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#3B6E2B" aria-hidden="true">อ</span><div><b>อิบรอฮีม</b><span>21 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">สั่งกล่องข้าวหมกไปงานประชุมบริษัท 40 กล่อง มาส่งตรงเวลา ทุกคนในห้องชม แพ็คมาเรียบร้อย ข้าวยังอุ่นอยู่เลยตอนเปิดกล่อง ครั้งหน้าจะสั่งอีกแน่นอน</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#8A4FBF" aria-hidden="true">พ</span><div><b>แพร</b><span>14 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">บัตเตอร์ชิคเก้นเข้มข้นกำลังดี กินคู่ข้าวหมกแล้วลงตัว ร้านสะอาด พนักงานเป็นกันเอง</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#1A73E8" aria-hidden="true">ฟ</span><div><b>ฟาริดา</b><span>9 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">เป็นมุสลิม หาร้านที่ทานได้สบายใจแถวรามคำแหงไม่ง่าย ร้านนี้ตอบโจทย์ ซาโมซ่าแป้งบางกรอบ ไส้แน่น อลูโกบิรสชาติเหมือนที่เคยกินตอนไปอินเดีย</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#B0721A" aria-hidden="true">ส</span><div><b>สมชาย</b><span>2 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">มาทานตอนเที่ยงวันธรรมดา คิวไม่นาน ข้าวหมกร้อนๆ ไก่ย่างหอมเครื่องเทศ ราคานี้คุ้มมาก</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#C8401A" aria-hidden="true">จ</span><div><b>เจ</b><span>25 ก.ย. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">สั่งผ่านแอปมาส่งที่หอ ข้าวยังร้อน แพ็คมาดี น้ำจิ้มเขียวให้มาเยอะ ซุปน่องไก่แซ่บจัดจ้าน</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
       </div>
-      <div class="rlist rv">
-        <article class="rcard"><p>ข้าวหมกหอมเครื่องเทศมาก ไก่ทอดชิ้นใหญ่ กรอบนอกนุ่มใน น้ำจิ้มเขียวเด็ดสุด มาซ้ำแทบทุกอาทิตย์</p><div class="who"><span class="av"></span><span>นัท · ลูกค้าประจำ</span></div></article>
-        <article class="rcard"><p>สั่งกล่องข้าวหมกไปงานประชุมบริษัท 40 กล่อง มาส่งตรงเวลา ทุกคนในห้องชม</p><div class="who"><span class="av"></span><span>อิบรอฮีม · สั่งจัดเลี้ยง</span></div></article>
-        <article class="rcard"><p>บัตเตอร์ชิคเก้นเข้มข้นกำลังดี กินคู่ข้าวหมกแล้วลงตัว ร้านสะอาด พนักงานเป็นกันเอง</p><div class="who"><span class="av"></span><span>แพร · มาทานที่ร้าน</span></div></article>
-      </div>
+      <button type="button" class="garrow next" aria-label="รีวิวถัดไป"><i class="ph-bold ph-caret-right" aria-hidden="true"></i></button>
     </div>
   </div>
 </section>
@@ -579,7 +630,7 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="foot">
     <div class="wrap">
       <div class="foot-grid">
-        <div><span class="brand" style="color:var(--on-wood)">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด ใกล้ <span>ARL รามคำแหง</span> <span class="nw">กรุงเทพฯ</span></p></div>
+        <div><span class="brand" style="color:var(--on-wood)"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด ใกล้ <span>ARL รามคำแหง</span> <span class="nw">กรุงเทพฯ</span></p></div>
         <div><h3>เวลาเปิด</h3><p>ทุกวัน 10:00–21:00</p></div>
         <div><h3>สั่งอาหาร</h3><a href="https://maps.google.com/?q=Aman+Briyani+Rice">Google Maps</a><a href="[ลิงก์ร้านบน GrabFood]">GrabFood</a><a href="[ลิงก์ร้านบน LINE MAN]">LINE MAN</a></div>
         <div><h3>ติดต่อ</h3><a href="tel:[เบอร์ร้าน]" >โทรหาร้าน</a><a href="#">LINE @amanbriyani</a><a href="#">Facebook · Instagram · TikTok</a></div>
@@ -663,6 +714,22 @@ a.is-pending:not(.btn){text-decoration:none}
     navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
   })},{rootMargin:'-45% 0px -50% 0px'});
   navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
+
+  /* Reviews carousel */
+  var gt=document.querySelector('.gtrack');
+  if(gt){
+    var gp=document.querySelector('.garrow.prev'),gn=document.querySelector('.garrow.next');
+    var step=function(){var c=gt.querySelector('.gcard');return c?c.getBoundingClientRect().width+24:gt.clientWidth};
+    var ends=function(){gp.disabled=gt.scrollLeft<4;gn.disabled=gt.scrollLeft+gt.clientWidth>=gt.scrollWidth-4};
+    gp.addEventListener('click',function(){gt.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'})});
+    gn.addEventListener('click',function(){gt.scrollBy({left:step(),behavior:reduce?'auto':'smooth'})});
+    gt.addEventListener('scroll',ends,{passive:true});window.addEventListener('resize',ends);ends();
+    gt.querySelectorAll('.gcard').forEach(function(c){
+      var t=c.querySelector('.gtext'),b=c.querySelector('.gmore');
+      if(t.scrollHeight>t.clientHeight+2)b.hidden=false;
+      b.addEventListener('click',function(){var o=c.classList.toggle('open');b.textContent=o?'ย่อ':'อ่านเพิ่มเติม'});
+    });
+  }
 
   /* Reveal key blocks once as they enter (already visible ones stay put) */
   if(reduce)return;
