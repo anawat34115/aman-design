@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- MOCK DATA: ที่อยู่ สถานี ที่จอดรถ สายรถเมล์ เวลาพักละหมาด รัศมีส่ง จำนวนกล่องขั้นต่ำ LINE ID เรื่องเล่าร้าน ชื่อเจ้าของ คำพูด รีวิว และคะแนน เป็นข้อมูลตัวอย่าง ต้องแทนด้วยข้อมูลจริงของร้านก่อนเปิดใช้งานจริง · ลิงก์ GrabFood / LINE MAN / เบอร์โทร ยังเป็น [placeholder] ในโค้ด ปุ่มจึงขึ้นข้อความแจ้งแทน -->
 <!-- HALAL-PROOF: เมื่อได้เลขที่ใบรับรอง+หน่วยงาน title/description/JSON-LD กลับไปใช้ "ข้าวหมกไก่ฮาลาล" และเพิ่ม "Halal" ใน servesCuisine -->
-<title>อามัน ข้าวหมกไก่ | ข้าวหมกไก่ย่าง ไก่ทอด รามคำแหง กรุงเทพฯ เซ็ตละ 189 บาท</title>
-<meta name="description" content="อามัน ข้าวหมกไก่ ใกล้ ARL รามคำแหง เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์ ทานที่ร้าน หรือสั่งผ่าน GrabFood และ LINE MAN">
+<title>อามัน ข้าวหมกไก่ | ข้าวหมกไก่ย่าง ไก่ทอด บางคอแหลม กรุงเทพฯ เซ็ตละ 189 บาท</title>
+<meta name="description" content="อามัน ข้าวหมกไก่ ถนนเจริญราษฎร์ บางคอแหลม เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์ ทานที่ร้าน หรือสั่งผ่าน GrabFood และ LINE MAN">
 <meta property="og:type" content="restaurant">
 <meta property="og:title" content="อามัน ข้าวหมกไก่ · เซ็ตข้าวหมกไก่ย่างหรือทอด 189 บาท">
 <meta property="og:description" content="ข้าวหมกหุงเครื่องเทศ ไก่ชิ้นโต สลัด น้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์">
@@ -127,7 +127,9 @@ a.is-pending:not(.btn){text-decoration:none}
 .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(820px,100svh)}
 .hero-copy{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:128px 64px 80px max(var(--gutter),calc((100vw - var(--max))/2 + var(--gutter)))}
 .hero-copy h1{max-width:680px}
-.hero-copy h1 span{color:var(--turmeric)}
+.hero-copy h1 .hl{color:var(--turmeric)}
+/* each heading line stays whole, so the size follows the column width on desktop */
+@media (min-width:861px){.hero-copy h1{font-size:clamp(30px,3.9vw,56px)}}
 .hero-copy .body-lead{max-width:520px}
 .proof{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font:500 14px/20px var(--font);color:var(--on-wood-2)}
 .proof > span{display:inline-flex;align-items:center;gap:8px}
@@ -268,7 +270,21 @@ a.is-pending:not(.btn){text-decoration:none}
 .copy{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-wood);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font:400 12px/16px var(--font);color:var(--on-wood-2)}
 
 /* Mobile bar */
-.mbar{display:none}
+/* Floating order buttons, right side: call, LINE MAN, Grab */
+.fab{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fab-bubble{position:relative;margin-bottom:4px;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 16px -8px rgba(36,24,18,.5);animation:fab-bob 2.4s var(--ease) infinite}
+.fab-bubble::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--brand)}
+.fab-btn{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px -8px rgba(36,24,18,.45);text-decoration:none;transition:transform .3s var(--ease)}
+.fab-btn:hover{transform:translateY(-2px)}
+.fab-btn:active{transform:scale(.96)}
+.fab-btn:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+/* app icons fill the whole circle */
+.fab-btn img{width:100%;height:100%;border-radius:50%}
+.fab-tel{background:var(--brand);border-color:transparent;color:#fff;font-size:26px}
+.fab-label{position:absolute;right:calc(100% + 12px);top:50%;transform:translate(8px,-50%);white-space:nowrap;font:600 14px/20px var(--font);color:#fff;background:var(--ink);padding:6px 12px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.fab-btn:hover .fab-label,.fab-btn:focus-visible .fab-label{opacity:1;transform:translate(0,-50%)}
+@keyframes fab-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.fab-bubble{animation:none}}
 
 /* Reveal: content is visible by default; key blocks rise once as they enter */
 @keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
@@ -313,7 +329,6 @@ a.is-pending:not(.btn){text-decoration:none}
 }
 @media (max-width:860px){
   :root{--gutter:16px}
-  body{padding-bottom:80px}
   .nav{padding:8px;gap:12px;width:calc(100% - 32px)}
   .nav-links,.nav .btn{display:none}
   .toggle{display:block}
@@ -360,10 +375,10 @@ a.is-pending:not(.btn){text-decoration:none}
   .faq summary{font-size:16px;line-height:24px;padding:16px 0}
   .faq details p{padding-right:0}
   .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
-  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
-  .mbar.is-merged{grid-template-columns:1fr 1fr}
-  .mbar .btn{min-height:48px;font-size:14px;padding:8px;gap:8px}
-  .note-toast{bottom:calc(88px + env(safe-area-inset-bottom))}
+  .fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));gap:8px}
+  .fab-btn{width:52px;height:52px}
+  .fab-label{display:none}
+  .note-toast{bottom:calc(16px + env(safe-area-inset-bottom));right:84px}
   .sheet{margin:auto 0 0;width:100%;max-width:none;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
 }
 @media (max-width:380px){
@@ -371,7 +386,7 @@ a.is-pending:not(.btn){text-decoration:none}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Restaurant","name":"อามัน ข้าวหมกไก่","alternateName":"Aman Briyani Rice","servesCuisine":["Thai-Muslim","Indian"],"priceRange":"฿","openingHours":"Mo-Su 10:00-21:00","hasMenu":"#menu","image":"img/spread.jpg"}
+{"@context":"https://schema.org","@type":"Restaurant","name":"อามัน ข้าวหมกไก่","alternateName":"Aman Briyani Rice","servesCuisine":["Thai-Muslim","Indian"],"priceRange":"฿","telephone":"+66819416462","address":{"@type":"PostalAddress","streetAddress":"50 ถนนเจริญราษฎร์ แขวงบางโคล่","addressLocality":"เขตบางคอแหลม","addressRegion":"กรุงเทพมหานคร","postalCode":"10120","addressCountry":"TH"},"openingHours":"Mo-Su 10:00-21:00","hasMenu":"#menu","image":"img/spread.jpg"}
 </script>
 </head>
 <body>
@@ -382,7 +397,7 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="nav-links">
     <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
   </div>
-  <a class="btn btn-primary btn-sm" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางไปร้าน</a>
+  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทางไปร้าน</a>
   <button class="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="เปิดเมนู"><span></span><span></span></button>
 </nav>
 <div class="panel" id="panel" aria-hidden="true">
@@ -394,12 +409,12 @@ a.is-pending:not(.btn){text-decoration:none}
 <!-- HERO -->
 <section class="hero wood" aria-labelledby="hero-h">
   <div class="hero-copy">
-    <h1 class="heading-1" id="hero-h">ข้าวหมกหอม<br>เครื่องเทศ<br><span>กับไก่ชิ้นโต</span></h1>
+    <h1 class="heading-1" id="hero-h"><span class="nw">ข้าวหมกไก่อิสลาม</span><br><span class="nw hl">อามัน ข้าวหมกไก่</span></h1>
     <p class="body-lead muted">เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียวในจานเดียว ไม่มีหมู ไม่มีแอลกอฮอล์</p>
     <div class="cta-three">
-      <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
-      <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
-      <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
     </div>
     <div class="proof">
       <span><span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span>4.8 จาก 320 รีวิว</span></span>
@@ -417,7 +432,7 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="wrap quick-grid">
     <div class="q"><span class="caption-1 muted">ทานได้สบายใจไหม?</span><b class="heading-6">หมกไก่อิสลาม</b><span class="body-6 muted">ไม่มีหมู ไม่มีแอลกอฮอล์ ทุกเมนู</span></div>
     <div class="q"><span class="caption-1 muted">เปิดกี่โมง?</span><b class="heading-6">10:00–21:00</b><span class="body-6 muted">เปิดทุกวัน · ข้าวหมกหมดประมาณ <span>19:00</span></span></div>
-    <div class="q"><span class="caption-1 muted">ไปยังไง?</span><b class="heading-6">ARL รามคำแหง ทางออก 1</b><span class="body-6 muted">เดิน 5 นาที · จอดรถหน้าร้านได้</span></div>
+    <div class="q"><span class="caption-1 muted">ไปยังไง?</span><b class="heading-6">ถนนเจริญราษฎร์</b><span class="body-6 muted">เขตบางคอแหลม · จอดรถหน้าร้านได้</span></div>
     <div class="q"><span class="caption-1 muted">ราคาเริ่มต้น?</span><b class="heading-6">ข้าวหมกแยก 59 บาท</b><span class="body-6 muted">เซ็ตข้าวหมกไก่ 189 บาท</span></div>
   </div>
 </section>
@@ -459,8 +474,8 @@ a.is-pending:not(.btn){text-decoration:none}
       </ul>
       <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
       <div class="cta-row">
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
       </div>
       <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
     </div>
@@ -494,21 +509,21 @@ a.is-pending:not(.btn){text-decoration:none}
         <h3 class="heading-6">GrabFood</h3>
         <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">สั่งผ่าน GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">สั่งผ่าน GrabFood</a>
       </div>
       <div class="way rv">
         <div class="way-img"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"></div>
         <h3 class="heading-6">LINE MAN</h3>
         <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
         <div class="sp"></div>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">สั่งผ่าน LINE MAN</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">สั่งผ่าน LINE MAN</a>
       </div>
       <div class="way rv">
         <div class="way-img"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"></div>
         <h3 class="heading-6">โทรสั่งหรือ LINE ร้าน</h3>
         <p class="body-3 muted">สั่งไว้ก่อนแล้วมารับ ไม่ต้องรอคิว · LINE <span>@amanbriyani</span></p>
         <div class="sp"></div>
-        <a class="btn btn-primary" href="tel:[เบอร์ร้าน]"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง</a>
+        <a class="btn btn-primary" href="tel:+66819416462"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง</a>
       </div>
     </div>
     <div class="catering wood rv">
@@ -529,17 +544,17 @@ a.is-pending:not(.btn){text-decoration:none}
   <div class="wrap">
     <div class="sec-head"><h2 class="heading-2" id="location-h">ร้านอยู่ไหน มายังไง</h2></div>
     <div class="visit">
-      <a class="map rv" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
+      <a class="map rv" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
       <div class="visit-info rv">
-        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span>88/8 ซอยรามคำแหง 21 แขวงพลับพลา เขตวังทองหลาง กรุงเทพฯ 10310</span><br><span class="muted">จุดสังเกต: </span><span>เข้าซอยรามคำแหง 21 มาประมาณ 100 เมตร ร้านอยู่ซ้ายมือ ป้ายสีแดง</span></p>
+        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span>50 ถนนเจริญราษฎร์ แขวงบางโคล่ เขตบางคอแหลม กรุงเทพมหานคร 10120</span><br><span class="muted">โทร </span><a href="tel:+66819416462">081 941 6462</a></p>
         <table class="hours" aria-label="เวลาเปิดปิด"><tbody>
           <tr><td>จันทร์ – ศุกร์</td><td>10:00 – 21:00</td></tr>
           <tr><td>เสาร์ – อาทิตย์</td><td><span>10:00</span> – 21:00</td></tr>
         </tbody></table>
         <p class="body-3"><b>ที่จอดรถ</b> จอดหน้าร้านได้ 4 คัน</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>เปิดใน Google Maps</a>
-          <a class="btn btn-line" href="tel:[เบอร์ร้าน]">โทรถามทาง</a>
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>เปิดใน Google Maps</a>
+          <a class="btn btn-line" href="tel:+66819416462"><i class="ph ph-phone" aria-hidden="true"></i>081 941 6462</a>
         </div>
       </div>
     </div>
@@ -553,7 +568,7 @@ a.is-pending:not(.btn){text-decoration:none}
     <div class="gsum rv">
       <span class="gnum">4.8</span>
       <div><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span class="body-6 muted">จาก 320 รีวิวบน Google</span></div>
-      <a class="btn btn-line" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener">อ่านรีวิวทั้งหมด</a>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener">อ่านรีวิวทั้งหมด</a>
     </div>
     <div class="gcarousel rv">
       <button type="button" class="garrow prev" aria-label="รีวิวก่อนหน้า"><i class="ph-bold ph-caret-left" aria-hidden="true"></i></button>
@@ -579,7 +594,7 @@ a.is-pending:not(.btn){text-decoration:none}
           <article class="gcard">
             <div class="ghead"><span class="gav" style="background:#1A73E8" aria-hidden="true">ฟ</span><div><b>ฟาริดา</b><span>9 ต.ค. 2026</span></div></div>
             <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
-            <p class="gtext">เป็นมุสลิม หาร้านที่ทานได้สบายใจแถวรามคำแหงไม่ง่าย ร้านนี้ตอบโจทย์ ซาโมซ่าแป้งบางกรอบ ไส้แน่น อลูโกบิรสชาติเหมือนที่เคยกินตอนไปอินเดีย</p>
+            <p class="gtext">เป็นมุสลิม หาร้านที่ทานได้สบายใจแถวบางคอแหลมไม่ง่าย ร้านนี้ตอบโจทย์ ซาโมซ่าแป้งบางกรอบ ไส้แน่น อลูโกบิรสชาติเหมือนที่เคยกินตอนไปอินเดีย</p>
             <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
           </article>
           <article class="gcard">
@@ -609,8 +624,8 @@ a.is-pending:not(.btn){text-decoration:none}
       <details><summary>ข้าวหมกไก่ราคาเท่าไหร่?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เซ็ตข้าวหมกไก่ย่างและเซ็ตข้าวหมกไก่ทอด เซ็ตละ 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ถ้าอยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p></details>
       <details><summary>เปิดปิดกี่โมง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เปิดทุกวัน 10:00–21:00 วันหยุดพิเศษจะแจ้งทางเพจล่วงหน้า</p></details>
       <details><summary>สั่งเดลิเวอรี่ได้ทางไหน?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>สั่งผ่าน GrabFood หรือ LINE MAN ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย</p></details>
-      <details><summary>มีที่จอดรถไหม ใกล้รถไฟฟ้าสถานีไหน?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>จอดหน้าร้านได้ 4 คัน หรือลง <span>ARL รามคำแหง</span> ทางออก 1 เดินประมาณ 5 นาที</p></details>
-      <details><summary>รับจัดเลี้ยงหรือสั่งจำนวนมากได้ไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>รับครับ ทั้งกล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span>20</span> กล่อง <a href="tel:[เบอร์ร้าน]">โทรหาร้าน</a></p></details>
+      <details><summary>มีที่จอดรถไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>จอดหน้าร้านได้ 4 คัน</p></details>
+      <details><summary>รับจัดเลี้ยงหรือสั่งจำนวนมากได้ไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>รับครับ ทั้งกล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span>20</span> กล่อง <a href="tel:+66819416462">โทรหาร้าน</a></p></details>
       <details><summary>มีเมนูอินเดียอะไรบ้าง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>มีบัตเตอร์ชิคเก้น 189 บาท อลูโกบิ 149 บาท และซาโมซ่า 139 บาท</p></details>
     </div>
   </div>
@@ -623,37 +638,38 @@ a.is-pending:not(.btn){text-decoration:none}
     <div class="wrap">
       <h2 class="heading-2" id="final-h">หิวแล้วแวะมาได้เลย<br>เปิดทุกวัน 10:00–21:00</h2>
       <div class="cta-three">
-        <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</a>
-        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
       </div>
     </div>
   </section>
   <div class="foot">
     <div class="wrap">
       <div class="foot-grid">
-        <div><span class="brand" style="color:var(--on-wood)"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด ใกล้ <span>ARL รามคำแหง</span> <span class="nw">กรุงเทพฯ</span></p></div>
+        <div><span class="brand" style="color:var(--on-wood)"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด <span>ถนนเจริญราษฎร์</span> <span class="nw">บางคอแหลม</span></p></div>
         <div><h3>เวลาเปิด</h3><p>ทุกวัน 10:00–21:00</p></div>
-        <div><h3>สั่งอาหาร</h3><a href="https://maps.google.com/?q=Aman+Briyani+Rice">Google Maps</a><a href="[ลิงก์ร้านบน GrabFood]">GrabFood</a><a href="[ลิงก์ร้านบน LINE MAN]">LINE MAN</a></div>
-        <div><h3>ติดต่อ</h3><a href="tel:[เบอร์ร้าน]" >โทรหาร้าน</a><a href="#">LINE @amanbriyani</a><a href="#">Facebook · Instagram · TikTok</a></div>
+        <div><h3>สั่งอาหาร</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3">Google Maps</a><a href="[ลิงก์ร้านบน GrabFood]">GrabFood</a><a href="[ลิงก์ร้านบน LINE MAN]">LINE MAN</a></div>
+        <div><h3>ติดต่อ</h3><a href="tel:+66819416462">โทร 081 941 6462</a><a href="#">LINE @amanbriyani</a><a href="#">Facebook · Instagram · TikTok</a></div>
       </div>
       <div class="copy"><span>© 2026 อามัน ข้าวหมกไก่ (Aman Briyani Rice)</span><a href="#">นโยบายความเป็นส่วนตัว</a></div>
     </div>
   </div>
 </footer>
 
-<nav class="mbar" aria-label="ปุ่มสั่งด่วน">
-  <a class="btn btn-primary" href="https://maps.google.com/?q=Aman+Briyani+Rice" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>นำทาง</a>
-  <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">Grab</a>
-  <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</a>
-</nav>
+<div class="fab" role="group" aria-label="สั่งอาหาร">
+  <span class="fab-bubble" aria-hidden="true">สั่งเลย</span>
+  <a class="fab-btn fab-tel" href="tel:+66819416462"><i class="ph-fill ph-phone" aria-hidden="true"></i><span class="fab-label">โทรสั่ง 081 941 6462</span></a>
+  <a class="fab-btn" href="[ลิงก์ร้านบน LINE MAN]"><img src="img/logo-lineman.png" alt="" width="32" height="32"><span class="fab-label">สั่งผ่าน LINE MAN</span></a>
+  <a class="fab-btn" href="[ลิงก์ร้านบน GrabFood]"><img src="img/logo-grab.png" alt="" width="32" height="32"><span class="fab-label">สั่งผ่าน GrabFood</span></a>
+</div>
 
 <div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
   <!-- แสดงเฉพาะตอนลิงก์ GrabFood / LINE MAN ยังเป็น [placeholder] · ใส่ลิงก์จริงแล้วปุ่มแอปจะกลับมาเอง -->
   <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery-sheet" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
   <p>เปิดแอป GrabFood หรือ LINE MAN แล้วค้นหาชื่อร้าน</p>
   <div class="shop-name"><b id="shop-name">อามัน ข้าวหมกไก่</b><button type="button" class="btn btn-line btn-sm" data-copy>คัดลอกชื่อ</button></div>
-  <div class="sheet-apps"><span><img class="app-logo" src="img/logo-grab.svg" alt="" width="20" height="20">GrabFood</span><span><img class="app-logo" src="img/logo-lineman.svg" alt="" width="20" height="20">LINE MAN</span></div>
+  <div class="sheet-apps"><span><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</span><span><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</span></div>
   <p>ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
 </div>
 
