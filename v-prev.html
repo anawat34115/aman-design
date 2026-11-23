@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- MOCK DATA: ที่อยู่ สถานี ที่จอดรถ สายรถเมล์ เวลาพักละหมาด รัศมีส่ง จำนวนกล่องขั้นต่ำ LINE ID เรื่องเล่าร้าน ชื่อเจ้าของ คำพูด รีวิว และคะแนน เป็นข้อมูลตัวอย่าง ต้องแทนด้วยข้อมูลจริงของร้านก่อนเปิดใช้งานจริง · ลิงก์ GrabFood / LINE MAN / เบอร์โทร ยังเป็น [placeholder] ในโค้ด ปุ่มจึงขึ้นข้อความแจ้งแทน -->
+<!-- HALAL-PROOF: เมื่อได้เลขที่ใบรับรอง+หน่วยงาน title/description/JSON-LD กลับไปใช้ "ข้าวหมกไก่ฮาลาล" และเพิ่ม "Halal" ใน servesCuisine -->
+<title>อามัน ข้าวหมกไก่ | ข้าวหมกไก่ย่าง ไก่ทอด บางคอแหลม กรุงเทพฯ เซ็ตละ 189 บาท</title>
+<meta name="description" content="อามัน ข้าวหมกไก่ ถนนเจริญราษฎร์ บางคอแหลม เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์ ทานที่ร้าน หรือสั่งผ่าน GrabFood และ LINE MAN">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="อามัน ข้าวหมกไก่ · เซ็ตข้าวหมกไก่ย่างหรือทอด 189 บาท">
+<meta property="og:description" content="ข้าวหมกหุงเครื่องเทศ ไก่ชิ้นโต สลัด น้ำจิ้มเขียว ไม่มีหมู ไม่มีแอลกอฮอล์">
+<meta property="og:image" content="img/spread.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Chonburi&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ===== Tokens ===== */
+:root{
+  /* colours taken from the food photos: dark wood table, turmeric rice, chilli red logo, green chutney, white plate */
+  --wood:#241812; --wood-2:#33231B; --paper:#FFFFFF; --ink:#2E1C17; --ink-2:#6B5246; --ink-3:#7A6253; --line:#E2DED6;
+  --on-wood:#FFFFFF; --on-wood-2:rgba(255,255,255,.74); --line-wood:rgba(255,255,255,.16);
+  --brand:#C8401A; --brand-hover:#A9340F; --turmeric:#E3A33A; --chutney:#2F6B45;
+  --grab:#00B14F; --lineman:#06C755;
+  --r-sm:6px; --r:12px; --r-lg:16px; --r-xl:24px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --display:'Chonburi','Anuphan',serif;
+  --font:'Anuphan',system-ui,sans-serif;
+  --max:1200px; --gutter:32px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;scrollbar-color:var(--ink-3) var(--paper);accent-color:var(--brand);caret-color:var(--brand)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--turmeric);color:var(--wood)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:.2em}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:3px solid var(--turmeric);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.nw{white-space:nowrap}
+.tbd{color:var(--ink-3);font-weight:500}
+.wood .tbd{color:rgba(255,255,255,.62)}
+.price,.hours td,.num{font-variant-numeric:tabular-nums}
+
+/* ===== Text styles (Tailwind scale; Thai needs taller lines than the scale's tight display leading) ===== */
+.heading-1{font:400 60px/1.25 var(--display);letter-spacing:-.01em;text-wrap:balance}
+.heading-2{font:400 48px/1.3 var(--display);text-wrap:balance}
+.heading-3{font:400 36px/1.35 var(--display);text-wrap:balance}
+.heading-4{font:400 30px/1.4 var(--display);text-wrap:balance}
+.heading-5{font:600 24px/32px var(--font);text-wrap:balance}
+.heading-6{font:600 20px/28px var(--font)}
+.title-1{font:500 20px/28px var(--font)}
+.title-2{font:500 18px/28px var(--font)}
+.title-3{font:500 16px/24px var(--font)}
+.body-1{font:600 16px/24px var(--font)}
+.body-3{font:400 16px/1.7 var(--font);text-wrap:pretty}
+.body-lead{font:400 18px/1.7 var(--font);text-wrap:pretty}
+.body-6{font:400 14px/20px var(--font);text-wrap:pretty}
+.caption-1{font:500 14px/20px var(--font)}
+.caption-4{font:500 12px/16px var(--font)}
+.muted{color:var(--ink-2)}
+.wood .muted{color:var(--on-wood-2)}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:8px 12px;border-radius:var(--r);font:600 16px/24px var(--font);text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .3s var(--ease),border-color .3s var(--ease),color .3s var(--ease),transform .5s var(--ease)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn i{font-size:20px;flex:none}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-hover)}
+.btn-line{background:var(--paper);color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.wood .btn-line{background:transparent;color:var(--on-wood);border-color:var(--line-wood)}
+.wood .btn-line:hover{border-color:var(--on-wood);background:rgba(255,255,255,.06)}
+.btn-sm{min-height:40px;font-size:14px;line-height:20px;padding:8px 12px}
+.app-logo{width:20px;height:20px;border-radius:5px;flex:none}
+.dots{display:inline-flex}.dots .dot+.dot{margin-left:-4px;box-shadow:0 0 0 2px var(--paper)}
+.wood .dots .dot+.dot{box-shadow:0 0 0 2px var(--wood)}
+.cta-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:560px}
+.cta-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.cta-row.is-merged{grid-template-columns:minmax(0,1fr)}
+a.is-pending{cursor:pointer}
+a.is-pending:not(.btn){text-decoration:none}
+.skip{position:absolute;left:16px;top:-80px;z-index:60;background:var(--ink);color:#fff;padding:12px 16px;border-radius:var(--r);font-weight:600;text-decoration:none;transition:transform .5s var(--ease)}
+.skip:focus{top:16px}
+
+/* ===== Floating nav ===== */
+.nav{position:fixed;z-index:40;top:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(calc(var(--max) * .9),calc(100% - 32px));padding:8px 12px;border-radius:var(--r-lg);transition:transform .5s var(--ease);background:rgba(255,255,255,.82);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border:1px solid rgba(46,28,23,.08);box-shadow:0 8px 24px -16px rgba(36,24,18,.5)}
+.brand{font:400 18px/28px var(--display);text-decoration:none;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:12px}
+.brand-logo{width:40px;height:40px;border-radius:8px;flex:none}
+/* Logo pattern behind the halal section, big mark behind the final CTA */
+#halal{position:relative;isolation:isolate;overflow:hidden}
+/* two big faint roosters centred near the screen corners: top right and lower left */
+#halal{--rs:clamp(560px,45vw,900px)}
+#halal::before,#halal::after{content:"";position:absolute;z-index:-1;width:var(--rs);aspect-ratio:1;margin-top:calc(var(--rs) / -2);background:url(img/logo-mark.png) center/contain no-repeat;opacity:.03;pointer-events:none}
+#halal::before{left:calc(90% - var(--rs) / 2);top:80px}
+#halal::after{left:calc(10% - var(--rs) / 2);top:85%}
+@media (max-width:860px){#halal{--rs:420px}.final::before{width:240px;height:240px;margin-top:-120px;right:-64px}}
+.final{position:relative;isolation:isolate;overflow:hidden}
+.final::before{content:"";position:absolute;right:-48px;top:50%;z-index:-1;width:400px;height:400px;margin-top:-200px;background:url(img/logo-mark.png) center/contain no-repeat;opacity:.1;pointer-events:none}
+.nav-links{display:flex;gap:4px}
+/* hide the bar while scrolling down, bring it back on any scroll up */
+.nav.is-hidden{transform:translate(-50%,calc(-100% - 24px))}
+@media (prefers-reduced-motion:reduce){.nav{transition:opacity .3s linear}.nav.is-hidden{transform:translateX(-50%);opacity:0;pointer-events:none}}
+.nav-links a{font:500 14px/20px var(--font);color:var(--ink-2);text-decoration:none;padding:8px 12px;border-radius:999px;transition:color .3s var(--ease),background-color .3s var(--ease)}
+.nav-links a:hover{color:var(--ink);background:rgba(46,28,23,.05)}
+.nav-links a[aria-current="true"]{color:var(--ink);background:rgba(46,28,23,.08)}
+.toggle{display:none;position:relative;width:44px;height:44px;border:0;border-radius:50%;background:var(--ink);cursor:pointer}
+.toggle span{position:absolute;left:12px;width:20px;height:2px;border-radius:2px;background:#fff;transition:transform .5s var(--ease)}
+.toggle span:nth-child(1){top:18px}.toggle span:nth-child(2){top:24px}
+.toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+.toggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+.panel{position:fixed;inset:0;z-index:35;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:96px 24px 48px;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
+.panel.open{opacity:1;pointer-events:auto}
+.panel a{font:400 36px/1.4 var(--display);color:var(--ink);text-decoration:none;padding:8px 0;opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.panel.open a{opacity:1;transform:none}
+.panel.open a:nth-child(2){transition-delay:60ms}.panel.open a:nth-child(3){transition-delay:120ms}.panel.open a:nth-child(4){transition-delay:180ms}.panel.open a:nth-child(5){transition-delay:240ms}
+
+/* ===== Hero ===== */
+.wood{background:var(--wood);color:var(--on-wood)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(820px,100svh)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;gap:24px;padding:128px 64px 80px max(var(--gutter),calc((100vw - var(--max))/2 + var(--gutter)))}
+.hero-copy{position:relative;isolation:isolate;overflow:hidden}
+/* faint rooster on the empty wood beside the heading */
+.hero-copy::before{content:"";position:absolute;z-index:-1;width:clamp(480px,40vw,760px);aspect-ratio:1;left:0;top:50%;transform:translateY(-50%);background:url(img/logo-mark.png) center/contain no-repeat;opacity:.04;pointer-events:none}
+.hero-copy h1{max-width:680px}
+.hero-copy h1 .hl{color:var(--turmeric)}
+/* each heading line stays whole, so the size follows the column width on desktop */
+@media (min-width:861px){.hero-copy h1{font-size:clamp(30px,3.9vw,56px)}}
+.hero-copy .body-lead{max-width:520px}
+.proof{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;font:500 14px/20px var(--font);color:var(--on-wood-2)}
+.proof > span{display:inline-flex;align-items:center;gap:8px}
+.stars{display:inline-flex;gap:2px;color:var(--turmeric);font-size:16px}
+.hero-photo{position:relative;min-height:420px}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tag-price{position:absolute;left:-40px;bottom:64px;width:128px;height:128px;border-radius:50%;background:var(--turmeric);color:var(--wood);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-8deg);box-shadow:0 12px 24px -12px rgba(0,0,0,.6)}
+.tag-price small{font:600 14px/20px var(--font)}
+.tag-price b{font:400 36px/1.1 var(--display)}
+
+/* ===== Sections ===== */
+.sec{padding:96px 0}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:680px;margin-bottom:48px}
+
+/* Quick answers under the hero */
+.quick{border-bottom:1px solid var(--line);padding:8px 0}
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.q{display:flex;flex-direction:column;gap:4px;padding:32px 24px}
+.q:first-child{padding-left:8px}
+.q + .q{border-left:1px solid var(--line)}
+.plate{margin-top:96px}
+#plate{scroll-margin-top:96px}
+
+/* What's on the plate */
+.plate{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+/* Two sets, one price: one photo with both plates */
+.sets{position:relative;margin:0;border-radius:var(--r-xl);overflow:hidden;background:var(--wood)}
+.sets img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.plate-info{display:flex;flex-direction:column;gap:24px}
+.plate-price{display:flex;align-items:baseline;gap:12px}
+.plate-price b{font:400 60px/1.1 var(--display);color:var(--brand)}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.legend li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+.legend .n{width:32px;height:32px;border-radius:50%;background:var(--wood);color:#fff;font:700 14px/32px var(--font);text-align:center}
+.legend b{display:block;font:600 16px/24px var(--font)}
+.legend span{font:400 14px/20px var(--font);color:var(--ink-2)}
+
+/* Menu card */
+.menu-list{display:flex;flex-direction:column;gap:48px}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mcard{position:relative;display:flex;flex-direction:column;margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 8px 24px -16px rgba(36,24,18,.35)}
+.mimg{position:relative;background:var(--wood)}
+.mimg img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.mbody{display:flex;flex-direction:column;gap:8px;padding:16px 24px 24px}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.mrow b{font:600 20px/28px var(--font)}
+.mrow .price{font:600 16px/24px var(--font);color:var(--brand-hover);white-space:nowrap;background:#FDF1DC;border:1px solid #EBC98A;border-radius:999px;padding:4px 12px}
+.mbody p{font:400 14px/20px var(--font);color:var(--ink-2)}
+.ribbon{position:absolute;top:16px;left:0;z-index:1;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 24px 4px 12px;clip-path:polygon(0 0,100% 0,calc(100% - 10px) 50%,100% 100%,0 100%)}
+
+/* People + promises */
+.people{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.people-photo{position:relative}
+.people-photo img{border-radius:var(--r-xl);aspect-ratio:1;object-fit:cover;object-position:50% 45%;width:100%}
+.people-copy{display:flex;flex-direction:column;gap:24px}
+.quote{font:400 24px/1.6 var(--display);color:var(--turmeric)}
+.hl{color:var(--turmeric)}
+.quote cite{display:block;margin-top:12px;font:500 14px/20px var(--font);font-style:normal;color:var(--on-wood-2)}
+
+/* Reviews */
+/* Reviews styled like Google review cards */
+.gsum{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:-24px 0 32px}
+.gsum > div{display:flex;flex-direction:column;gap:4px}
+.gnum{font:400 48px/1 var(--display)}
+.gstars{display:inline-flex;gap:2px;color:#FBBC04;font-size:20px}
+.gcarousel{position:relative}
+.gtrack{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px) / 3);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0}
+.gtrack::-webkit-scrollbar{display:none}
+.gcard{scroll-snap-align:start;display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:var(--r-lg);background:#F3F1EC}
+.ghead{display:flex;align-items:center;gap:12px}
+.gav{width:40px;height:40px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font:600 16px/1 var(--font)}
+.ghead b{display:block;font:600 16px/24px var(--font)}
+.ghead div span{font:400 14px/20px var(--font);color:var(--ink-2)}
+.grate{display:flex;align-items:center;gap:8px}
+.gverified{color:#1A73E8;font-size:20px}
+.gtext{font:400 16px/1.7 var(--font);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.gcard.open .gtext{-webkit-line-clamp:unset;display:block}
+.gmore{align-self:flex-start;border:0;background:none;padding:0;font:500 14px/20px var(--font);color:var(--ink-2);cursor:pointer;min-height:32px}
+.gmore:hover{color:var(--ink)}
+.garrow{position:absolute;top:50%;z-index:1;width:44px;height:44px;margin-top:-22px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:18px;cursor:pointer;box-shadow:0 8px 16px -8px rgba(36,24,18,.35);transition:opacity .3s var(--ease)}
+.garrow.prev{left:-22px}
+.garrow.next{right:-22px}
+.garrow[disabled]{opacity:0;pointer-events:none}
+
+/* Order */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.way{display:flex;flex-direction:column;gap:12px}
+.way-img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/2;margin-bottom:8px}
+.way-img img{width:100%;height:100%;object-fit:cover}
+.way .sp{flex:1}
+.way > .btn,.way > .cta-row{align-self:stretch;margin-top:8px}
+.catering{margin-top:64px;border-radius:var(--r-xl);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.catering-copy{padding:40px 48px;display:flex;flex-direction:column;align-items:flex-start;gap:16px;justify-content:center}
+/* photo is only as tall as the text beside it */
+.catering-img{position:relative}
+.catering-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border-radius:999px;border:1px solid var(--line-wood);font:500 14px/20px var(--font)}
+.facts i{font-size:16px;color:var(--turmeric)}
+
+/* Visit */
+#location{background:#EFEAE4}
+.visit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:stretch}
+.map{position:relative;display:flex;align-items:center;justify-content:center;min-height:440px;border-radius:var(--r-xl);background:var(--paper);color:inherit;text-decoration:none;overflow:hidden;border:1px solid var(--line);transition:border-color .3s var(--ease)}
+.map:hover{border-color:var(--ink)}
+.map-pin{display:flex;flex-direction:column;align-items:center;gap:8px;font:600 14px/20px var(--font)}
+.map-pin i{font-size:48px;color:var(--brand)}
+.visit-info{display:flex;flex-direction:column;gap:24px}
+.hours{width:100%;border-collapse:collapse}
+.hours td{padding:12px 0;border-bottom:1px solid var(--line);font:400 16px/24px var(--font)}
+.hours td:last-child{text-align:right;font-weight:600}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;align-items:start}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font:600 18px/28px var(--font);transition:color .3s var(--ease)}
+.faq summary:hover{color:var(--brand-hover)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;font-size:20px;transition:transform .5s var(--ease)}
+.faq details[open] summary i{transform:rotate(45deg)}
+.faq details p{padding:0 48px 24px 0;color:var(--ink-2)}
+.faq p a{font-weight:600;color:var(--ink)}
+
+/* Final CTA */
+.final{padding:96px 0;text-align:center}
+.final .wrap{display:flex;flex-direction:column;align-items:center;gap:24px}
+.final .cta-three{width:100%}
+
+/* Footer */
+.foot{padding:64px 0 32px;border-top:1px solid var(--line-wood)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot h3{font:600 14px/20px var(--font);color:var(--on-wood);margin-bottom:8px}
+.foot p,.foot a,.foot .sheet-open{font:400 14px/20px var(--font);color:var(--on-wood-2);text-decoration:none;display:flex;align-items:center;min-height:36px}
+.foot a:hover,.foot .sheet-open:hover{color:var(--on-wood)}
+.foot .sheet-open{background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.copy{margin-top:48px;padding-top:24px;border-top:1px solid var(--line-wood);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font:400 12px/16px var(--font);color:var(--on-wood-2)}
+
+/* Mobile bar */
+/* Floating order buttons, right side: call, LINE MAN, Grab */
+.fab{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;flex-direction:column;align-items:center}
+.fab-bubble{position:absolute;bottom:calc(100% + 10px);left:50%;translate:-50% 0;font:600 14px/20px var(--font);color:#fff;background:var(--brand);padding:4px 12px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 16px -8px rgba(36,24,18,.5);animation:fab-bob 2.4s var(--ease) infinite;transition:opacity .3s var(--ease)}
+.fab-bubble::after{content:"";position:absolute;left:50%;bottom:-6px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:var(--brand)}
+.fab.open .fab-bubble{opacity:0;animation:none}
+.fab-btn{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 24px -8px rgba(36,24,18,.45);text-decoration:none;transition:transform .3s var(--ease)}
+.fab-btn:hover{transform:translateY(-2px)}
+.fab-btn:active{transform:scale(.96)}
+.fab-btn:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+/* app icons fill the whole circle */
+.fab-btn img{width:100%;height:100%;border-radius:50%}
+.fab-tel{background:var(--brand);border-color:transparent;color:#fff;font-size:26px}
+/* the main basket button: swaps to a close icon while the menu is open */
+.fab-main{background:var(--brand);border-color:transparent;color:#fff;font:inherit;cursor:pointer;padding:0}
+.fab-main i{grid-area:1/1;font-size:26px;transition:opacity .3s var(--ease),transform .5s var(--ease)}
+.fab-main .ph-x{opacity:0;transform:rotate(-90deg)}
+.fab.open .fab-main{background:var(--ink)}
+.fab.open .fab-main .ph-basket{opacity:0;transform:rotate(90deg)}
+.fab.open .fab-main .ph-x{opacity:1;transform:none}
+.fab-menu{position:absolute;bottom:calc(100% + 12px);left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px}
+.fab:not(.open) .fab-menu .fab-btn{visibility:hidden;opacity:0;transform:translateY(16px) scale(.8)}
+.fab-menu .fab-btn{transition:opacity .3s var(--ease),transform .5s var(--ease),visibility 0s}
+.fab-menu .fab-btn:nth-child(2){transition-delay:40ms}
+.fab-menu .fab-btn:nth-child(1){transition-delay:80ms}
+.fab:not(.open) .fab-menu .fab-btn{transition-delay:0s,0s,.3s}
+/* names beside the buttons, shown while the menu is open */
+.fab-label{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;font:600 14px/20px var(--font);color:#fff;background:var(--ink);padding:6px 12px;border-radius:8px;pointer-events:none}
+@keyframes fab-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.fab-bubble{animation:none}.fab-menu .fab-btn,.fab-main i{transition:none}}
+
+/* Reveal: content is visible by default; key blocks rise once as they enter */
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+.rv.play{animation:rise .7s var(--ease) both}
+
+/* Toast + delivery sheet */
+.note-toast{position:fixed;left:16px;right:16px;bottom:24px;margin:0 auto;width:fit-content;max-width:440px;z-index:50;background:var(--ink);color:#fff;font:400 14px/20px var(--font);padding:12px 16px;border-radius:var(--r);box-shadow:0 12px 32px -12px rgba(36,24,18,.6);opacity:0;transform:translateY(12px);pointer-events:none;cursor:pointer;transition:opacity .3s var(--ease),transform .5s var(--ease)}
+.note-toast.on{opacity:1;transform:none;pointer-events:auto}
+.sheet{border:0;padding:24px;margin:auto;width:min(420px,calc(100vw - 32px));border-radius:var(--r-lg);background:var(--paper);color:var(--ink);font:inherit;box-shadow:0 24px 64px -24px rgba(36,24,18,.6)}
+.sheet::backdrop{background:rgba(36,24,18,.4)}
+.sheet:popover-open{animation:sheet-in .5s var(--ease)}
+@keyframes sheet-in{from{opacity:0;transform:translateY(16px)}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.sheet-x{flex:none;width:44px;height:44px;margin:-8px -8px -8px 0;border-radius:50%;border:1px solid var(--line);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:border-color .3s var(--ease)}
+.sheet-x:hover{border-color:var(--ink)}
+.sheet-x i{font-size:18px}
+.sheet p{font:400 14px/20px var(--font);color:var(--ink-2);margin-top:8px}
+.shop-name{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 16px;border:1px solid var(--line);border-radius:var(--r)}
+.shop-name b{font:600 18px/28px var(--font)}
+.sheet-apps{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:16px;font:600 14px/20px var(--font)}
+.sheet-apps span{display:inline-flex;align-items:center;gap:8px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv.play,.sheet:popover-open{animation:none}
+  .panel a{transform:none}
+  *{transition-duration:.01ms !important}
+}
+
+/* ===== Responsive ===== */
+@media (max-width:1080px){
+  .hero-copy{padding:128px 40px 64px var(--gutter)}
+  .heading-1{font-size:48px}
+  .plate,.people{gap:40px}
+  .gtrack{grid-auto-columns:calc((100% - 24px) / 2)}
+}
+@media (max-width:1024px){
+  /* the five section links need ~900px; below that the menu button takes over */
+  .nav{padding:8px;gap:12px;width:calc(100% - 32px)}
+  .nav-links,.nav .btn{display:none}
+  .toggle{display:block}
+}
+@media (max-width:860px){
+  :root{--gutter:16px}
+  .nav{padding:8px;gap:12px;width:calc(100% - 32px)}
+  .nav-links,.nav .btn{display:none}
+  .toggle{display:block}
+  .heading-1{font-size:36px;line-height:1.35}
+  .heading-2{font-size:30px;line-height:1.4}
+  .heading-3{font-size:30px;line-height:1.4}
+  .body-lead{font-size:16px}
+  .sec{padding:64px 0}
+  .sec-head{margin-bottom:32px}
+  .quick-grid{grid-template-columns:1fr 1fr}
+  .q{padding:24px 16px 24px 8px}
+  .q + .q{border-left:0}
+  .q:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+  .q:nth-child(n+3){border-top:1px solid var(--line)}
+  .plate{margin-top:64px}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-photo{order:-1;min-height:0;aspect-ratio:1/1;margin-top:0}
+  .hero-copy{padding:32px var(--gutter) 48px;gap:16px}
+  .tag-price{left:auto;right:16px;bottom:-32px;width:96px;height:96px}
+  .tag-price b{font-size:24px}
+  .tag-price small{font-size:12px;line-height:16px}
+  .cta-three{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cta-three > :first-child{grid-column:1 / -1}
+  .plate,.people,.visit{grid-template-columns:minmax(0,1fr)}
+  .plate-price b{font-size:48px}
+  .mgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .mbody{padding:12px 12px 16px}
+  .mrow{flex-direction:column;align-items:flex-start;gap:8px}
+  .mrow b{font-size:16px;line-height:24px}
+  .mrow .price{font-size:14px;line-height:20px;padding:2px 8px}
+  .ribbon{top:8px;font-size:12px;line-height:16px;padding:4px 16px 4px 8px}
+  .gtrack{grid-auto-columns:86%;gap:16px}
+  .gsum{margin-top:-16px}
+  .garrow{display:none}
+  .ways{grid-template-columns:1fr;gap:48px}
+  .map{min-height:280px}
+  .faq{grid-template-columns:minmax(0,1fr)}
+  .catering{grid-template-columns:minmax(0,1fr);margin-top:48px}
+  .catering-copy{padding:24px}
+  .catering-img{aspect-ratio:16/10;order:-1}
+  .catering-img img{position:static}
+  .faq summary{font-size:16px;line-height:24px;padding:16px 0}
+  .faq details p{padding-right:0}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}
+  .fab-btn{width:52px;height:52px}
+  .fab-menu{gap:8px;bottom:calc(100% + 8px)}
+  .note-toast{bottom:calc(16px + env(safe-area-inset-bottom));right:84px}
+  .sheet{margin:auto 0 0;width:100%;max-width:none;border-radius:var(--r-lg) var(--r-lg) 0 0;padding:24px 16px calc(24px + env(safe-area-inset-bottom))}
+}
+@media (max-width:380px){
+  .heading-1{font-size:30px}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"อามัน ข้าวหมกไก่","alternateName":"Aman Briyani Rice","servesCuisine":["Thai-Muslim","Indian"],"priceRange":"฿","telephone":"+66819416462","address":{"@type":"PostalAddress","streetAddress":"50 ถนนเจริญราษฎร์ แขวงบางโคล่","addressLocality":"เขตบางคอแหลม","addressRegion":"กรุงเทพมหานคร","postalCode":"10120","addressCountry":"TH"},"openingHours":"Mo-Su 10:00-21:00","hasMenu":"#menu","image":"img/spread.jpg"}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">ข้ามไปเนื้อหา</a>
+
+<nav class="nav" aria-label="เมนูหลัก">
+  <a class="brand" href="#top" aria-label="อามัน ข้าวหมกไก่ กลับขึ้นบนสุด"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</a>
+  <div class="nav-links">
+    <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
+  </div>
+  <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+  <button class="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="เปิดเมนู"><span></span><span></span></button>
+</nav>
+<div class="panel" id="panel" aria-hidden="true">
+  <a href="#menu">เมนูและราคา</a><a href="#halal">หมกไก่อิสลาม</a><a href="#delivery">สั่งเดลิเวอรี่</a><a href="#location">ที่ตั้งและเวลาเปิด</a><a href="#faq">คำถามที่พบบ่อย</a>
+</div>
+
+<main id="top"><span id="main" tabindex="-1"></span>
+
+<!-- HERO -->
+<section class="hero wood" aria-labelledby="hero-h">
+  <div class="hero-copy">
+    <h1 class="heading-1" id="hero-h"><span class="nw">ข้าวหมกไก่อิสลาม</span><br><span class="nw hl">อามัน ข้าวหมกไก่</span></h1>
+    <p class="body-lead muted">เซ็ตข้าวหมกไก่ย่างหรือไก่ทอด ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียวในจานเดียว ไม่มีหมู ไม่มีแอลกอฮอล์</p>
+    <div class="cta-three">
+      <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+      <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
+    </div>
+    <div class="proof">
+      <span><span class="stars" aria-hidden="true"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span>4.8 จาก 320 รีวิว</span></span>
+      <span class="open" data-open="10:00-21:00"><span class="open-now">เปิด</span>ทุกวัน <span class="nw">10:00–21:00</span></span>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="img/spread.jpg" alt="โต๊ะไม้เต็มไปด้วยเมนูของร้าน ข้าวหมกสีขมิ้น ไก่ย่าง ไก่ทอด สลัด แกงอลูโกบิ บัตเตอร์ชิคเก้น และซุปไก่" width="1000" height="1000" fetchpriority="high">
+    <div class="tag-price" aria-hidden="true"><small>เซ็ตละ</small><b>189.-</b></div>
+  </div>
+</section>
+
+<!-- QUICK ANSWERS: four things people check before they come -->
+<section class="quick" aria-label="ข้อมูลร้านโดยย่อ">
+  <div class="wrap quick-grid">
+    <div class="q"><span class="caption-1 muted">ทานได้สบายใจไหม?</span><b class="heading-6">หมกไก่อิสลาม</b><span class="body-6 muted">ไม่มีหมู ไม่มีแอลกอฮอล์ ทุกเมนู</span></div>
+    <div class="q"><span class="caption-1 muted">เปิดกี่โมง?</span><b class="heading-6">10:00–21:00</b><span class="body-6 muted">เปิดทุกวัน · ข้าวหมกหมดประมาณ <span>19:00</span></span></div>
+    <div class="q"><span class="caption-1 muted">ไปยังไง?</span><b class="heading-6">ถนนเจริญราษฎร์</b><span class="body-6 muted">เขตบางคอแหลม · จอดรถหน้าร้านได้</span></div>
+    <div class="q"><span class="caption-1 muted">ราคาเริ่มต้น?</span><b class="heading-6">ข้าวหมกแยก 59 บาท</b><span class="body-6 muted">เซ็ตข้าวหมกไก่ 189 บาท</span></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="sec" id="menu" aria-labelledby="menu-h">
+  <div class="wrap menu-list">
+    <div class="sec-head" style="margin-bottom:0">
+      <h2 class="heading-2" id="menu-h">เมนูและราคา</h2>
+      <p class="body-3 muted">ราคาทานที่ร้าน ราคาบนแอปเดลิเวอรี่อาจต่างกันเล็กน้อย</p>
+    </div>
+    <div class="mgrid rv">
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/set-grilled.jpg" alt="เซ็ตข้าวหมกไก่ย่าง" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>เซ็ตข้าวหมกไก่ย่าง</b><span class="price">฿189</span></div><p>ข้าวหมกหอมเครื่องเทศ ไก่ย่างชิ้นโต สลัด และน้ำจิ้มเขียวในจานเดียว</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/set-fried.jpg" alt="เซ็ตข้าวหมกไก่ทอด" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>เซ็ตข้าวหมกไก่ทอด</b><span class="price">฿189</span></div><p>ข้าวหมกหอมเครื่องเทศ ไก่ทอดกรอบนอกนุ่มใน สลัด และน้ำจิ้มเขียว</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/grilled-chicken.jpg" alt="ไก่ย่าง" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ไก่ย่าง</b><span class="price">฿89</span></div><p>ไก่หมักเครื่องเทศ ย่างจนหอม สั่งเพิ่มกินคู่ข้าวหมก</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/fried-chicken.jpg" alt="ไก่ทอด" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ไก่ทอด</b><span class="price">฿89</span></div><p>ไก่ทอดชิ้นใหญ่ กรอบนอกนุ่มใน สั่งเพิ่มกินคู่ข้าวหมก</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/butter-chicken.jpg" alt="บัตเตอร์ชิคเก้น" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>บัตเตอร์ชิคเก้น</b><span class="price">฿189</span></div><p>แกงไก่ซอสมะเขือเทศและเนย เข้มข้น กินคู่ข้าวหมกลงตัว</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/aloo-gobi.jpg" alt="อลูโกบิ" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>อลูโกบิ</b><span class="price">฿149</span></div><p>แกงมันฝรั่งกับดอกกะหล่ำ สูตรอินเดีย</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/soup.jpg" alt="ซุปน่องไก่แซ่บ" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ซุปน่องไก่แซ่บ</b><span class="price">฿159</span></div><p>ซุปน่องไก่รสจัดจ้าน ซดร้อน ๆ</p></div></article>
+      <article class="mcard"><span class="ribbon">แนะนำ</span><div class="mimg"><img src="img/samosa.jpg" alt="ซาโมซ่า" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ซาโมซ่า</b><span class="price">฿139</span></div><p>แป้งทอดกรอบ ไส้ผัดเครื่องเทศ ทานเล่นระหว่างรอ</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/rice.jpg" alt="ข้าวหมกแยก" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>ข้าวหมกแยก</b><span class="price">฿59</span></div><p>ข้าวหมกหุงกับเครื่องเทศทีละหม้อ ไม่มีไก่</p></div></article>
+      <article class="mcard"><div class="mimg"><img src="img/salad.jpg" alt="สลัดผักเกาหลี" loading="lazy" width="640" height="640"></div><div class="mbody"><div class="mrow"><b>สลัดผักเกาหลี</b><span class="price">฿109</span></div><p>ผักสดกรอบ ราดน้ำสลัด กินแกล้มให้สดชื่น</p></div></article>
+    </div>
+  </div>
+  <div class="wrap plate" id="plate">
+    <figure class="sets rv">
+      <img src="img/set-both-square.webp" alt="เซ็ตข้าวหมกไก่ทอดและเซ็ตข้าวหมกไก่ย่าง แต่ละจานมีข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว" width="1080" height="1080" loading="lazy">
+    </figure>
+    <div class="plate-info rv">
+      <h2 class="heading-2">เมนูแนะนำ<br>ที่ทุกคนห้ามพลาด</h2>
+      <p class="body-3 muted">เลือกไก่ทอดหรือไก่ย่าง ราคาเดียวกัน ในจานมี</p>
+      <ul class="legend">
+        <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>ข้าวหมก</b><span>หุงกับเครื่องเทศจนเป็นสีขมิ้น โรยหอมเจียว</span></div></li>
+        <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>ไก่ทอดหรือไก่ย่างชิ้นโต</b><span>หั่นเป็นชิ้น กินคู่ข้าวได้ทุกคำ</span></div></li>
+        <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>สลัดผัก</b><span>ผักสดเคียงจาน</span></div></li>
+        <li><span class="n"><i class="ph ph-check" aria-hidden="true"></i></span><div><b>น้ำจิ้มเขียว</b><span>ราดข้าวหรือจิ้มไก่ก็ได้</span></div></li>
+      </ul>
+      <div class="plate-price"><b class="price">189</b><span class="title-2">บาท ต่อเซ็ต</span></div>
+      <div class="cta-three">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
+      </div>
+      <p class="body-6 muted">อยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE + PROMISES -->
+<section class="sec wood" id="halal" aria-labelledby="halal-h">
+  <div class="wrap people">
+    <figure class="people-photo rv" style="margin:0">
+      <img src="img/hero-staff.jpg" alt="พนักงานร้านอามันใส่ผ้ากันเปื้อนมีโลโก้ร้าน ถือจานเซ็ตข้าวหมกไก่ทอด" width="1000" height="1000" loading="lazy">
+    </figure>
+    <div class="people-copy rv">
+      <h2 class="heading-2" id="halal-h"><span class="hl">หมกไก่อิสลาม</span><br>ทานได้สบายใจทุกจาน</h2>
+      <p class="body-lead muted"><span>อามันเริ่มจากครัวในบ้านของครอบครัว ข้าวหมกสูตรนี้ส่งต่อกันมาตั้งแต่รุ่นยาย ทุกเช้าเราหมักไก่และหุงข้าวกับเครื่องเทศทีละหม้อ ไม่หุงทิ้งไว้ข้ามวัน</span></p>
+      <blockquote class="quote" style="margin:0"><span>“ข้าวหมกต้องหอมตั้งแต่เปิดฝาหม้อ ถ้าไม่หอมเราไม่ตักขาย”</span><cite>ป้าฟาตีมะห์ เจ้าของร้าน</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="sec" id="delivery" aria-labelledby="delivery-sec-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="heading-2" id="delivery-sec-h">สั่งถึงบ้าน<br>ได้ 3 ช่องทาง</h2>
+      <p class="body-3 muted">ส่งในรัศมี <span>5 กม.</span> ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
+    </div>
+    <div class="ways">
+      <div class="way rv">
+        <div class="way-img"><img src="img/set-grilled.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">GrabFood</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
+        <div class="sp"></div>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">สั่งผ่าน GrabFood</a>
+      </div>
+      <div class="way rv">
+        <div class="way-img"><img src="img/set-fried.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">LINE MAN</h3>
+        <p class="body-3 muted">เปิดแอปแล้วค้นหา “อามัน ข้าวหมกไก่”</p>
+        <div class="sp"></div>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">สั่งผ่าน LINE MAN</a>
+      </div>
+      <div class="way rv">
+        <div class="way-img"><img src="img/rice.jpg" alt="" loading="lazy" width="640" height="640"></div>
+        <h3 class="heading-6">โทรสั่งหรือ LINE ร้าน</h3>
+        <p class="body-3 muted">สั่งไว้ก่อนแล้วมารับ ไม่ต้องรอคิว · LINE <span>@amanbriyani</span></p>
+        <div class="sp"></div>
+        <a class="btn btn-primary" href="tel:+66819416462"><i class="ph ph-phone" aria-hidden="true"></i>โทรสั่ง</a>
+      </div>
+    </div>
+    <div class="catering wood rv">
+      <div class="catering-copy">
+        <h3 class="heading-3">รับทำข้าวกล่อง<br>รับจัดเลี้ยง</h3>
+        <p class="body-3 muted">กล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง</p>
+        <div class="facts"><span><i class="ph ph-calendar-check" aria-hidden="true"></i>สั่งล่วงหน้าอย่างน้อย 1 วัน</span><span><i class="ph ph-package" aria-hidden="true"></i>เริ่มที่ 20 กล่อง</span></div>
+        <a class="btn btn-primary" href="[ลิงก์ LINE ร้าน]"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i>ติดต่อเราทาง LINE</a>
+      </div>
+      <!-- ชั่วคราว: แทนด้วยรูปแบนเนอร์โปรโมทจัดเลี้ยงจากร้าน -->
+      <div class="catering-img"><img src="img/spread.jpg" alt="ข้าวหมกไก่และกับข้าวหลายอย่างวางเต็มโต๊ะ" loading="lazy" width="1600" height="1000"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION & HOURS -->
+<section class="sec" id="location" aria-labelledby="location-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="location-h">ร้านอยู่ไหน มายังไง</h2></div>
+    <div class="visit">
+      <a class="map rv" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="เปิดแผนที่ร้านใน Google Maps"><!-- แทนที่ด้วย Google Maps embed เมื่อได้ที่อยู่จริง --><span class="map-pin" aria-hidden="true"><i class="ph-fill ph-map-pin"></i>เปิดแผนที่ใน Google Maps</span></a>
+      <div class="visit-info rv">
+        <p class="body-3"><b class="heading-6" style="display:block;margin-bottom:4px">อามัน ข้าวหมกไก่</b><span>50 ถนนเจริญราษฎร์ แขวงบางโคล่ เขตบางคอแหลม กรุงเทพมหานคร 10120</span></p>
+        <table class="hours" aria-label="เวลาเปิดปิด"><tbody>
+          <tr><td>จันทร์ – ศุกร์</td><td>10:00 – 21:00</td></tr>
+          <tr><td>เสาร์ – อาทิตย์</td><td><span>10:00</span> – 21:00</td></tr>
+        </tbody></table>
+        <p class="body-3"><b>ที่จอดรถ</b> จอดหน้าร้านได้ 4 คัน</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener"><i class="ph ph-map-pin" aria-hidden="true"></i>เปิดใน Google Maps</a>
+          <a class="btn btn-line" href="tel:+66819416462"><i class="ph ph-phone" aria-hidden="true"></i>081 941 6462</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS: ดึงจาก Google Business Profile จริงเท่านั้น -->
+<section class="sec" id="reviews" aria-labelledby="reviews-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="reviews-h">คนที่มาทานแล้วว่ายังไง</h2></div>
+    <div class="gsum rv">
+      <span class="gnum">4.8</span>
+      <div><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><span class="body-6 muted">จาก 320 รีวิวบน Google</span></div>
+      <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener">อ่านรีวิวทั้งหมด</a>
+    </div>
+    <div class="gcarousel rv">
+      <button type="button" class="garrow prev" aria-label="รีวิวก่อนหน้า"><i class="ph-bold ph-caret-left" aria-hidden="true"></i></button>
+      <div class="gtrack" tabindex="0" aria-label="รีวิวจากลูกค้า">
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#0B7A75" aria-hidden="true">น</span><div><b>นัท</b><span>28 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">ข้าวหมกหอมเครื่องเทศมาก ไก่ทอดชิ้นใหญ่ กรอบนอกนุ่มใน น้ำจิ้มเขียวเด็ดสุด มาซ้ำแทบทุกอาทิตย์</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#3B6E2B" aria-hidden="true">อ</span><div><b>อิบรอฮีม</b><span>21 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">สั่งกล่องข้าวหมกไปงานประชุมบริษัท 40 กล่อง มาส่งตรงเวลา ทุกคนในห้องชม แพ็คมาเรียบร้อย ข้าวยังอุ่นอยู่เลยตอนเปิดกล่อง ครั้งหน้าจะสั่งอีกแน่นอน</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#8A4FBF" aria-hidden="true">พ</span><div><b>แพร</b><span>14 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">บัตเตอร์ชิคเก้นเข้มข้นกำลังดี กินคู่ข้าวหมกแล้วลงตัว ร้านสะอาด พนักงานเป็นกันเอง</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#1A73E8" aria-hidden="true">ฟ</span><div><b>ฟาริดา</b><span>9 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">เป็นมุสลิม หาร้านที่ทานได้สบายใจแถวบางคอแหลมไม่ง่าย ร้านนี้ตอบโจทย์ ซาโมซ่าแป้งบางกรอบ ไส้แน่น อลูโกบิรสชาติเหมือนที่เคยกินตอนไปอินเดีย</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#B0721A" aria-hidden="true">ส</span><div><b>สมชาย</b><span>2 ต.ค. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">มาทานตอนเที่ยงวันธรรมดา คิวไม่นาน ข้าวหมกร้อนๆ ไก่ย่างหอมเครื่องเทศ ราคานี้คุ้มมาก</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+          <article class="gcard">
+            <div class="ghead"><span class="gav" style="background:#C8401A" aria-hidden="true">จ</span><div><b>เจ</b><span>25 ก.ย. 2026</span></div></div>
+            <div class="grate"><span class="gstars" aria-label="5 ดาว"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></span><i class="ph-fill ph-seal-check gverified" aria-label="รีวิวจาก Google"></i></div>
+            <p class="gtext">สั่งผ่านแอปมาส่งที่หอ ข้าวยังร้อน แพ็คมาดี น้ำจิ้มเขียวให้มาเยอะ ซุปน่องไก่แซ่บจัดจ้าน</p>
+            <button type="button" class="gmore" hidden>อ่านเพิ่มเติม</button>
+          </article>
+      </div>
+      <button type="button" class="garrow next" aria-label="รีวิวถัดไป"><i class="ph-bold ph-caret-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="heading-2" id="faq-h">คำถามก่อนมาร้าน</h2></div>
+    <div class="faq rv">
+      <details open><summary>เป็นหมกไก่อิสลามไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>ใช่ครับ ทุกเมนูไม่มีหมูและแอลกอฮอล์ <a href="#halal">ดูรายละเอียดเพิ่มเติม</a></p></details>
+      <details><summary>ข้าวหมกไก่ราคาเท่าไหร่?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เซ็ตข้าวหมกไก่ย่างและเซ็ตข้าวหมกไก่ทอด เซ็ตละ 189 บาท ได้ข้าวหมก ไก่ สลัด และน้ำจิ้มเขียว ถ้าอยากได้แค่ข้าวหมก สั่งข้าวหมกแยกได้ 59 บาท</p></details>
+      <details><summary>เปิดปิดกี่โมง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>เปิดทุกวัน 10:00–21:00 วันหยุดพิเศษจะแจ้งทางเพจล่วงหน้า</p></details>
+      <details><summary>สั่งเดลิเวอรี่ได้ทางไหน?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>สั่งผ่าน GrabFood หรือ LINE MAN ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย</p></details>
+      <details><summary>มีที่จอดรถไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>จอดหน้าร้านได้ 4 คัน</p></details>
+      <details><summary>รับจัดเลี้ยงหรือสั่งจำนวนมากได้ไหม?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>รับครับ ทั้งกล่องข้าวหมกสำหรับประชุม งานบุญ และงานเลี้ยง สั่งล่วงหน้าอย่างน้อย 1 วัน เริ่มที่ <span>20</span> กล่อง <a href="tel:+66819416462">โทรหาร้าน</a></p></details>
+      <details><summary>มีเมนูอินเดียอะไรบ้าง?<i class="ph ph-plus" aria-hidden="true"></i></summary><p>มีบัตเตอร์ชิคเก้น 189 บาท อลูโกบิ 149 บาท และซาโมซ่า 139 บาท</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FINAL CTA + FOOTER -->
+<footer class="wood">
+  <section class="final" aria-labelledby="final-h">
+    <div class="wrap">
+      <h2 class="heading-2" id="final-h">หิวแล้วแวะมาได้เลย<br>เปิดทุกวัน 10:00–21:00</h2>
+      <div class="cta-three">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3" target="_blank" rel="noopener" aria-label="นำทางด้วย Google Maps"><i class="ph ph-map-pin" aria-hidden="true"></i>Google Maps</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน GrabFood]"><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</a>
+        <a class="btn btn-line" href="[ลิงก์ร้านบน LINE MAN]"><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</a>
+      </div>
+    </div>
+  </section>
+  <div class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div><span class="brand" style="color:var(--on-wood)"><img class="brand-logo" src="img/logo.png" alt="" width="40" height="40">อามัน ข้าวหมกไก่</span><p>ข้าวหมกไก่ย่าง ไก่ทอด <span>ถนนเจริญราษฎร์</span> <span class="nw">บางคอแหลม</span></p></div>
+        <div><h3>เวลาเปิด</h3><p>ทุกวัน 10:00–21:00</p></div>
+        <div><h3>สั่งอาหาร</h3><a href="https://www.google.com/maps/search/?api=1&amp;query=%E0%B8%AD%E0%B8%B2%E0%B8%A1%E0%B8%B1%E0%B8%99%20%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7%E0%B8%AB%E0%B8%A1%E0%B8%81%E0%B9%84%E0%B8%81%E0%B9%88%2050%20%E0%B8%96%E0%B8%99%E0%B8%99%E0%B9%80%E0%B8%88%E0%B8%A3%E0%B8%B4%E0%B8%8D%E0%B8%A3%E0%B8%B2%E0%B8%A9%E0%B8%8E%E0%B8%A3%E0%B9%8C%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%82%E0%B8%84%E0%B8%A5%E0%B9%88%20%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%84%E0%B8%AD%E0%B9%81%E0%B8%AB%E0%B8%A5%E0%B8%A1%20%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3">Google Maps</a><a href="[ลิงก์ร้านบน GrabFood]">GrabFood</a><a href="[ลิงก์ร้านบน LINE MAN]">LINE MAN</a></div>
+        <div><h3>ติดต่อ</h3><a href="tel:+66819416462">โทร 081 941 6462</a><a href="#">LINE @amanbriyani</a><a href="#">Facebook · Instagram · TikTok</a></div>
+      </div>
+      <div class="copy"><span>© 2026 อามัน ข้าวหมกไก่ (Aman Briyani Rice)</span><a href="#">นโยบายความเป็นส่วนตัว</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="fab" id="fab">
+  <div class="fab-menu" id="fab-menu" role="group" aria-label="ช่องทางสั่งอาหาร">
+    <a class="fab-btn fab-tel" href="tel:+66819416462"><i class="ph-fill ph-phone" aria-hidden="true"></i><span class="fab-label">โทร 081 941 6462</span></a>
+    <a class="fab-btn" href="[ลิงก์ร้านบน LINE MAN]"><img src="img/logo-lineman.png" alt="" width="52" height="52"><span class="fab-label">LINE MAN</span></a>
+    <a class="fab-btn" href="[ลิงก์ร้านบน GrabFood]"><img src="img/logo-grab.png" alt="" width="52" height="52"><span class="fab-label">GrabFood</span></a>
+  </div>
+  <span class="fab-bubble" aria-hidden="true">สั่งเลย</span>
+  <button class="fab-btn fab-main" type="button" aria-expanded="false" aria-controls="fab-menu" aria-label="สั่งเลย"><i class="ph-fill ph-basket" aria-hidden="true"></i><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+</div>
+
+<div class="sheet" id="delivery-sheet" role="dialog" aria-labelledby="delivery-h" hidden>
+  <!-- แสดงเฉพาะตอนลิงก์ GrabFood / LINE MAN ยังเป็น [placeholder] · ใส่ลิงก์จริงแล้วปุ่มแอปจะกลับมาเอง -->
+  <div class="sheet-head"><b id="delivery-h" class="heading-6">สั่งเดลิเวอรี่</b><button type="button" class="sheet-x" popovertarget="delivery-sheet" popovertargetaction="hide" aria-label="ปิด"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
+  <p>เปิดแอป GrabFood หรือ LINE MAN แล้วค้นหาชื่อร้าน</p>
+  <div class="shop-name"><b id="shop-name">อามัน ข้าวหมกไก่</b><button type="button" class="btn btn-line btn-sm" data-copy>คัดลอกชื่อ</button></div>
+  <div class="sheet-apps"><span><img class="app-logo" src="img/logo-grab.png" alt="" width="20" height="20">GrabFood</span><span><img class="app-logo" src="img/logo-lineman.png" alt="" width="20" height="20">LINE MAN</span></div>
+  <p>ราคาบนแอปอาจต่างจากราคาที่ร้านเล็กน้อย</p>
+</div>
+
+<script>
+(function(){
+  var fab=document.getElementById('fab'),fabBtn=fab&&fab.querySelector('.fab-main');
+  if(fab){
+    function setFab(o){fab.classList.toggle('open',o);fabBtn.setAttribute('aria-expanded',o?'true':'false');fabBtn.setAttribute('aria-label',o?'ปิดช่องทางสั่ง':'สั่งเลย')}
+    fabBtn.addEventListener('click',function(){setFab(!fab.classList.contains('open'))});
+    document.addEventListener('click',function(e){if(fab.classList.contains('open')&&!fab.contains(e.target))setFab(false)});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&fab.classList.contains('open')){setFab(false);fabBtn.focus()}});
+  }
+})();
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Links the client has not supplied yet ([placeholder] or "#"): look normal, show a short note on click.
+     Replace the href with the real URL and the link works as usual. */
+  var toast=document.createElement('div');toast.className='note-toast';toast.setAttribute('role','status');toast.setAttribute('aria-live','polite');document.body.appendChild(toast);
+  var tt;function hide(){toast.classList.remove('on')}
+  function note(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(hide,6500)}
+  toast.addEventListener('click',hide);
+  function msgFor(h){
+    if(/GrabFood/.test(h))return 'ยังไม่มีลิงก์ร้านบน GrabFood · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
+    if(/LINE MAN/.test(h))return 'ยังไม่มีลิงก์ร้านบน LINE MAN · ค้นหา “อามัน ข้าวหมกไก่” ในแอปได้เลย';
+    if(/LINE ร้าน/.test(h))return 'ลิงก์ LINE ร้านกำลังอัปเดต · ค้นหา @amanbriyani ในแอป LINE ได้เลย';
+    if(/^tel:/.test(h))return 'เบอร์โทรร้านกำลังอัปเดต · มาที่ร้านได้ทุกวัน 10:00–21:00';
+    return 'ลิงก์นี้กำลังอัปเดต';
+  }
+  document.querySelectorAll('a[href]').forEach(function(a){
+    var h=a.getAttribute('href');
+    if(h==='#'||/\[/.test(h)){
+      var m=msgFor(h);
+      a.dataset.todo=h;a.removeAttribute('href');
+      a.classList.add('is-pending');a.setAttribute('role','button');a.tabIndex=0;
+      a.setAttribute('aria-label',a.textContent.trim()+' — '+m);
+      a.addEventListener('click',function(e){e.preventDefault();note(m)});
+      a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();note(m)}});
+    }
+  });
+
+  /* GrabFood and LINE MAN always stay as two separate buttons (no merged delivery button) */
+
+  /* Open now? Bangkok time; holidays not known yet */
+  document.querySelectorAll('.open[data-open]').forEach(function(el){
+    try{
+      var p=el.dataset.open.split('-').map(function(t){var x=t.split(':');return +x[0]*60+ +x[1]});
+      var parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Bangkok',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+      var hh=+parts.find(function(x){return x.type==='hour'}).value%24,mm=+parts.find(function(x){return x.type==='minute'}).value;
+      var now=hh*60+mm,open=now>=p[0]&&now<p[1];
+      el.classList.add(open?'is-open':'is-closed');
+      el.querySelector('.open-now').textContent=open?'เปิดอยู่ · ':'ปิดแล้ว · เปิด';
+    }catch(e){}
+  });
+
+  /* Mobile menu */
+  var tg=document.querySelector('.toggle'),panel=document.getElementById('panel');
+  function setMenu(open){tg.setAttribute('aria-expanded',open);tg.setAttribute('aria-label',open?'ปิดเมนู':'เปิดเมนู');panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':''}
+  tg.addEventListener('click',function(){setMenu(tg.getAttribute('aria-expanded')!=='true')});
+  /* header hides on scroll down, shows on scroll up */
+  var nav=document.querySelector('.nav'),lastY=window.scrollY,ticking=false;
+  window.addEventListener('scroll',function(){
+    if(ticking)return;ticking=true;
+    requestAnimationFrame(function(){
+      var y=window.scrollY,d=y-lastY;
+      if(Math.abs(d)>6){nav.classList.toggle('is-hidden',d>0&&y>120&&!panel.classList.contains('open'));lastY=y}
+      ticking=false;
+    });
+  },{passive:true});
+  nav.addEventListener('focusin',function(){nav.classList.remove('is-hidden')});
+
+  panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){hide();if(panel.classList.contains('open')){setMenu(false);tg.focus()}}});
+
+  if(!('IntersectionObserver' in window))return;
+
+  /* Nav: mark the section in view */
+  var navLinks=document.querySelectorAll('.nav-links a');
+  var spy=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(!e.isIntersecting)return;
+    navLinks.forEach(function(a){if(a.getAttribute('href')==='#'+e.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  })},{rootMargin:'-45% 0px -50% 0px'});
+  navLinks.forEach(function(a){var t=document.querySelector(a.getAttribute('href'));if(t)spy.observe(t)});
+
+  /* Reviews carousel */
+  var gt=document.querySelector('.gtrack');
+  if(gt){
+    var gp=document.querySelector('.garrow.prev'),gn=document.querySelector('.garrow.next');
+    var step=function(){var c=gt.querySelector('.gcard');return c?c.getBoundingClientRect().width+24:gt.clientWidth};
+    var ends=function(){gp.disabled=gt.scrollLeft<4;gn.disabled=gt.scrollLeft+gt.clientWidth>=gt.scrollWidth-4};
+    gp.addEventListener('click',function(){gt.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'})});
+    gn.addEventListener('click',function(){gt.scrollBy({left:step(),behavior:reduce?'auto':'smooth'})});
+    gt.addEventListener('scroll',ends,{passive:true});window.addEventListener('resize',ends);ends();
+    gt.querySelectorAll('.gcard').forEach(function(c){
+      var t=c.querySelector('.gtext'),b=c.querySelector('.gmore');
+      if(t.scrollHeight>t.clientHeight+2)b.hidden=false;
+      b.addEventListener('click',function(){var o=c.classList.toggle('open');b.textContent=o?'ย่อ':'อ่านเพิ่มเติม'});
+    });
+  }
+
+  /* Reveal key blocks once as they enter (already visible ones stay put) */
+  if(reduce)return;
+  var vh=innerHeight;
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target,sib=el.parentElement.children,idx=[].indexOf.call(sib,el);
+    el.style.animationDelay=(sib.length>2?(idx%3)*80:0)+'ms';el.classList.add('play');io.unobserve(el);
+  })},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){var r=el.getBoundingClientRect();if(r.top<vh&&r.bottom>0)return;io.observe(el)});
+})();
+</script>
+</body>
+</html>
